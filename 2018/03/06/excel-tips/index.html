@@ -103,18 +103,18 @@
   <meta name="keywords" content="Windows," />
 
 
-<meta name="description" content="Below are some tips for Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value1=TEXT(A1,&quot;0000000000&quot;) Add leading zeros to any value1=RIGHT(REPT(&quot;0&quot;,1">
+<meta name="description" content="Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value=TEXT(A1,&amp;quot;0000000000&amp;quot;) Add leading zeros to any valu">
 <meta name="keywords" content="Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Excel Tips">
 <meta property="og:url" content="https://gary5496.github.io/2018/03/06/excel-tips/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="Below are some tips for Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value1=TEXT(A1,&quot;0000000000&quot;) Add leading zeros to any value1=RIGHT(REPT(&quot;0&quot;,1">
+<meta property="og:description" content="Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value=TEXT(A1,&amp;quot;0000000000&amp;quot;) Add leading zeros to any valu">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-06T06:39:43.040Z">
+<meta property="og:updated_time" content="2018-03-07T09:17:50.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel Tips">
-<meta name="twitter:description" content="Below are some tips for Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value1=TEXT(A1,&quot;0000000000&quot;) Add leading zeros to any value1=RIGHT(REPT(&quot;0&quot;,1">
+<meta name="twitter:description" content="Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you. Add leading zeros to a numeric value=TEXT(A1,&amp;quot;0000000000&amp;quot;) Add leading zeros to any valu">
 
 
 
@@ -409,9 +409,18 @@
       
 
       
-        <p>Below are some tips for Excel collected during my daily work, which may be helpful for you.</p>
-<h3 id="Add-leading-zeros-to-a-numeric-value"><a href="#Add-leading-zeros-to-a-numeric-value" class="headerlink" title="Add leading zeros to a numeric value"></a>Add leading zeros to a numeric value</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=TEXT(A1,<span class="string">"0000000000"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Add-leading-zeros-to-any-value"><a href="#Add-leading-zeros-to-any-value" class="headerlink" title="Add leading zeros to any value"></a>Add leading zeros to any value</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=RIGHT(REPT(<span class="string">"0"</span>,10)&amp;A2,10)</span><br></pre></td></tr></table></figure>
+        <p>Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.</p>
+<h3 id="Add-leading-zeros-to-a-numeric-value"><a href="#Add-leading-zeros-to-a-numeric-value" class="headerlink" title="Add leading zeros to a numeric value"></a>Add leading zeros to a numeric value</h3><pre><code>=TEXT(A1,&quot;0000000000&quot;)
+</code></pre><h3 id="Add-leading-zeros-to-any-value"><a href="#Add-leading-zeros-to-any-value" class="headerlink" title="Add leading zeros to any value"></a>Add leading zeros to any value</h3><pre><code>=RIGHT(REPT(&quot;0&quot;,10)&amp;A2,10)
+</code></pre><p>The symbol <code>&amp;</code> will be used to concatenate the strings. The function <code>REPT</code> will repeat the character for times specified.</p>
+<h3 id="Look-up-a-value-from-a-range"><a href="#Look-up-a-value-from-a-range" class="headerlink" title="Look up a value from a range"></a>Look up a value from a range</h3><pre><code>G5=VLOOKUP(&quot;string&quot;,B2:F200,2,FALSE)
+</code></pre><p>The above example will look up the value <code>string</code> from the first column <code>B</code> and the current row <code>5</code> of the range <code>B2:F206</code>, and the value of <code>C5</code>, which is specified by the 3rd parameter <code>2</code>, will be returned. The fourth parameter <code>FALSE</code> means exact match.</p>
+<h3 id="Convert-an-error-value-to-blank"><a href="#Convert-an-error-value-to-blank" class="headerlink" title="Convert an error value to blank"></a>Convert an error value to blank</h3><pre><code>=IFERROR(VLOOKUP(B251,A$1:I$360,8,FALSE),&quot;&quot;)
+</code></pre><p>Since the <code>VLOOKUP</code> function may return an error value if the look-up is failed, we can use the <code>IFERROR</code> function to convert the error value to blank.</p>
+<h3 id="Get-a-substring-from-a-string"><a href="#Get-a-substring-from-a-string" class="headerlink" title="Get a substring from a string"></a>Get a substring from a string</h3><pre><code>=MID(C2,2,3)
+</code></pre><p>The above example will get the substring from string C2. It will begin at the second position, and the length will be 3.</p>
+<h3 id="Summarize-the-value-by-some-conditions"><a href="#Summarize-the-value-by-some-conditions" class="headerlink" title="Summarize the value by some conditions"></a>Summarize the value by some conditions</h3><pre><code>=SUMIFS(A:A,B:B,&quot;&gt;10&quot;, B:B,&quot;&lt;20&quot;)
+</code></pre><p>The above example will summarize the values for A column, when the value in column B is greater than 10 and less than 20.</p>
 
       
     </div>
@@ -612,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-leading-zeros-to-a-numeric-value"><span class="nav-number">1.</span> <span class="nav-text">Add leading zeros to a numeric value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-leading-zeros-to-any-value"><span class="nav-number">2.</span> <span class="nav-text">Add leading zeros to any value</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-leading-zeros-to-a-numeric-value"><span class="nav-number">1.</span> <span class="nav-text">Add leading zeros to a numeric value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-leading-zeros-to-any-value"><span class="nav-number">2.</span> <span class="nav-text">Add leading zeros to any value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Look-up-a-value-from-a-range"><span class="nav-number">3.</span> <span class="nav-text">Look up a value from a range</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convert-an-error-value-to-blank"><span class="nav-number">4.</span> <span class="nav-text">Convert an error value to blank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-a-substring-from-a-string"><span class="nav-number">5.</span> <span class="nav-text">Get a substring from a string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summarize-the-value-by-some-conditions"><span class="nav-number">6.</span> <span class="nav-text">Summarize the value by some conditions</span></a></li></ol></div>
             
 
           </div>

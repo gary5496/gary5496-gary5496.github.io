@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd5b9;
+  background: #cbe93e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2922,4 +2922,7 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+code {
+  color: #098;
 }

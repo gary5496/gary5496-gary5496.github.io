@@ -107,7 +107,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="about me">
 <meta property="og:url" content="https://gary5496.github.io/about/index.html">
-<meta property="og:site_name" content="gary5496">
+<meta property="og:site_name" content="Gary Guo">
 <meta property="og:description" content="About meHello! This is Gary Guo. This site will be used to record my learning footprints about SAP, ABAP, PI, Basis, Fiori, SAPUI5, Javascript, Java, etc.">
 <meta property="og:locale" content="en-US">
 <meta property="og:updated_time" content="2018-03-06T06:38:51.044Z">
@@ -116,10 +116,6 @@
 <meta name="twitter:description" content="About meHello! This is Gary Guo. This site will be used to record my learning footprints about SAP, ABAP, PI, Basis, Fiori, SAPUI5, Javascript, Java, etc.">
 
 
-  
-
-
-  <link rel="alternate" href="/atom.xml" title="gary5496" type="application/atom+xml" />
 
 
 
@@ -133,7 +129,7 @@
     sidebar: "",
   };
 </script>
-  <title>about me | gary5496</title>
+  <title>about me | Gary Guo</title>
   
 
 
@@ -191,12 +187,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">gary5496</span>
+        <span class="site-title">Gary Guo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">My Learning Footprints</p>
+        <p class="site-subtitle">Learn as if you were to live forever...</p>
       
   </div>
 
@@ -348,6 +344,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="gitalk-container"></div>
+    </div>
+
+  
 
 
 
@@ -433,13 +434,6 @@
             </nav>
           
 
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
           
 
           
@@ -658,6 +652,27 @@
 
 
 
+
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+      const gitalk = new Gitalk({
+        clientID: 'eb46b34271d9e8373ae4',
+        clientSecret: '3a26795df7299057098c9533c6bb73bc6da3b13d',
+        repo: 'website_comments',
+        owner: 'gary5496',
+        admin: 'gary5496'.split(','),
+        id: location.pathname,
+        // facebook-like distraction free mode
+        distractionFreeMode: 'true',
+        createIssueManually: 'true'
+      })
+      gitalk.render('gitalk-container')
+    </script>
+  
 
 
 
@@ -988,6 +1003,102 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f7UFW8yLqumQmiFKHjpFjOhd-gzGzoHsz", "x53vi74Qu2n0DceYyPTqUcHs");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set 'security' option to 'false'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

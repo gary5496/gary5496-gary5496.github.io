@@ -104,16 +104,14 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="gary5496">
+<meta property="og:title" content="Gary Guo">
 <meta property="og:url" content="https://gary5496.github.io/archives/2018/03/index.html">
-<meta property="og:site_name" content="gary5496">
+<meta property="og:site_name" content="Gary Guo">
 <meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gary5496">
+<meta name="twitter:title" content="Gary Guo">
 
 
-
-  <link rel="alternate" href="/atom.xml" title="gary5496" type="application/atom+xml" />
 
 
 
@@ -127,7 +125,7 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | gary5496</title>
+  <title>Archive | Gary Guo</title>
   
 
 
@@ -185,12 +183,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">gary5496</span>
+        <span class="site-title">Gary Guo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">My Learning Footprints</p>
+        <p class="site-subtitle">Learn as if you were to live forever...</p>
       
   </div>
 
@@ -336,7 +334,7 @@
         
             <a class="post-title-link" href="/2018/03/06/hexo-github-setup/" itemprop="url">
               
-                <span itemprop="name">Github homepage setup with Hexo in Windows</span>
+                <span itemprop="name">Github website setup with Hexo in Windows</span>
               
             </a>
         
@@ -480,13 +478,6 @@
             </nav>
           
 
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
           
 
           
@@ -685,6 +676,10 @@
 
 
 
+
+
+
+  
 
 
 
@@ -1015,6 +1010,102 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("f7UFW8yLqumQmiFKHjpFjOhd-gzGzoHsz", "x53vi74Qu2n0DceYyPTqUcHs");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set 'security' option to 'false'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

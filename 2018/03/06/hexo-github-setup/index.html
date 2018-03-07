@@ -103,18 +103,18 @@
   <meta name="keywords" content="Windows," />
 
 
-<meta name="description" content="If you want to set up a Github website with Hexo, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, you can follo">
+<meta name="description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
 <meta name="keywords" content="Windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github website setup with Hexo in Windows">
+<meta property="og:title" content="GitHub website setup with Hexo in Windows">
 <meta property="og:url" content="https://gary5496.github.io/2018/03/06/hexo-github-setup/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="If you want to set up a Github website with Hexo, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, you can follo">
+<meta property="og:description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-07T05:55:39.011Z">
+<meta property="og:updated_time" content="2018-03-07T08:36:06.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github website setup with Hexo in Windows">
-<meta name="twitter:description" content="If you want to set up a Github website with Hexo, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, you can follo">
+<meta name="twitter:title" content="GitHub website setup with Hexo in Windows">
+<meta name="twitter:description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>Github website setup with Hexo in Windows | Gary Guo</title>
+  <title>GitHub website setup with Hexo in Windows | Gary Guo</title>
   
 
 
@@ -331,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github website setup with Hexo in Windows</h1>
+          <h1 class="post-title" itemprop="name headline">GitHub website setup with Hexo in Windows</h1>
         
 
         <div class="post-meta">
@@ -378,7 +378,7 @@
 
           
           
-             <span id="/2018/03/06/hexo-github-setup/" class="leancloud_visitors" data-flag-title="Github website setup with Hexo in Windows">
+             <span id="/2018/03/06/hexo-github-setup/" class="leancloud_visitors" data-flag-title="GitHub website setup with Hexo in Windows">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -409,7 +409,7 @@
       
 
       
-        <p>If you want to set up a Github website with Hexo, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, you can follow the below guide.</p>
+        <p>If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, you can follow the below guide.</p>
 <h2 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h2><ol>
 <li>Set up the account and repository in GitHub</li>
 <li>Install Git</li>
@@ -430,31 +430,33 @@
 <li>Errors &amp; Tips</li>
 <li>Links &amp; References</li>
 </ol>
-<h3 id="Set-up-the-account-and-repository-in-GitHub"><a href="#Set-up-the-account-and-repository-in-GitHub" class="headerlink" title="Set up the account and repository in GitHub"></a>Set up the account and repository in GitHub</h3><p>Create an account in <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a>, click on the <em>Create New</em> button in the left upper corner, choose <em>New Repository</em>. </p>
-<p>In the <em>Repository name</em>, input <em>[your GitHub account].github.io</em> such as “gary5496.github.io”, select the checkbox <em>Initialize this repository with a README</em>, and click on button <em>Create repository</em>.</p>
-<p>In the main page of the new repository, choose tab <em>Settings</em>. In the <em>GitHub Pages</em> section, change <em>Source</em> from <em>None</em> to <em>master branch</em>, and click on <em>Save</em> button next to it.</p>
+<h3 id="Set-up-the-account-and-repository-in-GitHub"><a href="#Set-up-the-account-and-repository-in-GitHub" class="headerlink" title="Set up the account and repository in GitHub"></a>Set up the account and repository in GitHub</h3><p>Create an account in <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a>, click on the <code>Create New</code> button in the left upper corner, choose <code>New Repository</code>. </p>
+<p>In the <code>Repository name</code>, input <code>[your_GitHub_account].github.io</code> such as “gary5496.github.io”, select the checkbox <code>Initialize this repository with a README</code>, and click on button <code>Create repository</code>.</p>
+<p>In the home page of the new repository, choose tab <code>Settings</code>. In the <code>GitHub Pages</code> section, change <code>Source</code> from <code>None</code> to <code>master branch</code>, and click on <code>Save</code> button next to it.</p>
 <h3 id="Install-Git"><a href="#Install-Git" class="headerlink" title="Install Git"></a>Install Git</h3><p>Git is the tool to manage your repository on GitHub.</p>
 <p>Download the Git from <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a>, and install it.</p>
-<p>After installation, right click on any folder, and choose <em>Git Bash Here</em> to open Git Bash. To bind your GitHub account and email to your local computer, run the below command.</p>
+<p>After installation, right click on any folder, and choose <code>Git Bash Here</code> to open Git Bash. To bind your GitHub account and email to the Git tool on your local computer, run the below commands.</p>
 <pre><code>git config --global user.name [your GitHub account]
 git config --global user.email [your GitHub email address]
 </code></pre><h3 id="Install-Node-js"><a href="#Install-Node-js" class="headerlink" title="Install Node.js"></a>Install Node.js</h3><p>Hexo is a framework based on Node.js.</p>
 <p>Download Node.js from <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a>, and install it. Run the below command to validate the Node.js status after installation.</p>
 <pre><code>node -v
-</code></pre><p>npm is the package manager for Node.js. Run the below command to check the npm status.</p>
+</code></pre><p>npm is the package manager for JavasSript. Run the below command to check the npm status.</p>
 <pre><code>npm -v
 </code></pre><h3 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h3><p>Hexo is a framework which is helpful to build a blog. See <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a> for details.</p>
-<p>Create a folder as the base folder for Hexo. Run CMD command from the Hexo base folder, and run the below command to install Hexo.</p>
+<p>Create a folder as the base folder for Hexo. Run <code>cmd</code> command, run <code>cd</code> to change the folder to the Hexo base folder, and run the below command to install Hexo.</p>
 <pre><code>npm install -g hexo-cli 
 </code></pre><p>Run the below command to install Hexo Git deployer</p>
 <pre><code>npm install hexo-deployer-git --save
 </code></pre><p>Run the below command to initialize Hexo</p>
 <pre><code>hexo init
-</code></pre><p>Run the below command to start Hexo server. You can stop the server via Ctrl + C.</p>
+</code></pre><p>Run the below command to start Hexo server. You can stop the server by pressing Ctrl + C.</p>
 <pre><code>hexo server
 </code></pre><p>After the server start, open the below link in browser, and you can see the initial page for Hexo</p>
-<pre><code>http://localhost:4000/
-</code></pre><h3 id="Hexo-basic-commands"><a href="#Hexo-basic-commands" class="headerlink" title="Hexo basic commands"></a>Hexo basic commands</h3><p>Initialize Hexo after installation</p>
+<blockquote>
+<p><a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
+</blockquote>
+<h3 id="Hexo-basic-commands"><a href="#Hexo-basic-commands" class="headerlink" title="Hexo basic commands"></a>Hexo basic commands</h3><p>Initialize Hexo after installation</p>
 <pre><code>hexo init
 </code></pre><p>Start Hexo server</p>
 <pre><code>hexo server
@@ -464,16 +466,16 @@ hexo s
 </code></pre><p>Create a new post</p>
 <pre><code>hexo new [post_name]
 hexo n [post_name]
-</code></pre><p>Generate the HTML page for .md file</p>
+</code></pre><p>Generate the website for .md files</p>
 <pre><code>hexo generate
 hexo g
 </code></pre><p>Deploy the website to GitHub</p>
 <pre><code>hexo deploy
 hexo d
-</code></pre><p>Generate the HTML page for .md file and deploy the website to GitHub</p>
+</code></pre><p>Generate the website for .md files and deploy the website to GitHub</p>
 <pre><code>hexo deploy --generate
 hexo d -g
-</code></pre><p>Clean the cache. It may be necessary after the change on a post, a page or configuration file.</p>
+</code></pre><p>Clean the cache. It may be necessary after the change on a post, a page or a configuration file.</p>
 <pre><code>hexo clean
 </code></pre><h3 id="Hexo-folder-structure-and-basic-setup"><a href="#Hexo-folder-structure-and-basic-setup" class="headerlink" title="Hexo folder structure and basic setup"></a>Hexo folder structure and basic setup</h3><ul>
 <li>node_modules: the folder to save Node.js modules for Hexo</li>
@@ -481,93 +483,41 @@ hexo d -g
 <li>source: the folder to save the source markdown (.md) files</li>
 <li>scaffolds: the folder for templates</li>
 <li>public: the folder to save the HTML pages after generation</li>
-<li>_config.yml: the root configuration file</li>
-<li>themes/[theme_name]/_config.yml: the theme configuration file</li>
+<li>_config.yml: the <code>root configuration file</code></li>
+<li>themes/[theme_name]/_config.yml: the <code>theme configuration file</code></li>
 <li>source/_posts: the folder to save the post markdown (.md) files</li>
 </ul>
-<p>Update the root configuration file for the below parameters</p>
-<pre><code># Site
-title: Gary Guo
-subtitle: Learn as if you were to live forever...
-description:
-author: Gary Guo
-language: en-US
-timezone:
-
-# URL
-## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;
-url: https://gary5496.github.io/
-root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-</code></pre><h3 id="Change-Hexo-theme"><a href="#Change-Hexo-theme" class="headerlink" title="Change Hexo theme"></a>Change Hexo theme</h3><p>Check the Hexo themes from <a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>. </p>
+<p>Update the <code>root configuration file</code> for the below parameters</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="attr">https://gary5496.github.io/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">highlight:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  line_number:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  auto_detect:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Change-Hexo-theme"><a href="#Change-Hexo-theme" class="headerlink" title="Change Hexo theme"></a>Change Hexo theme</h3><p>Check the Hexo themes from <a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>. </p>
 <p>For example, if you want to download the Next theme and use it, follow the below steps.</p>
 <p>a. Run the below command to download the Next theme to themes folder.</p>
 <pre><code>git clone https://github.com/theme-next/hexo-theme-next themes/next
-</code></pre><p>b. Change the theme parameter to next in the root configuration file</p>
-<pre><code># Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: next
-</code></pre><p>c. Change the parameters in theme configuration file themes/next/_config.yml to use another schema and add social links if necessary.</p>
-<pre><code># Schemes
-#scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-scheme: Gemini
-
-# Social Links.
-# Usage: `Key: permalink || icon`
-social:
-  GitHub: https://github.com/gary5496 || github
-  E-Mail: mailto:gary5496@163.com || envelope
-
-# Code Highlight theme
-# Available values: normal | night | night eighties | night blue | night bright
-# https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night
+</code></pre><p>b. Change the theme parameter to next in the <code>root configuration file</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+<p>c. Change the parameters in the <code>theme configuration file</code> to use another scheme and add social links if necessary.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br><span class="line"></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line"><span class="attr">  GitHub:</span> <span class="attr">https://github.com/gary5496</span> <span class="string">||</span> <span class="string">github</span></span><br><span class="line"><span class="attr">  E-Mail:</span> <span class="attr">mailto:gary5496@163.com</span> <span class="string">||</span> <span class="string">envelope</span></span><br><span class="line"></span><br><span class="line"><span class="attr">highlight_theme:</span> <span class="string">night</span></span><br></pre></td></tr></table></figure>
+<p>d. Update the file <code>base.styl</code> under folder <code>\themes\next\source\css\_variables</code>, and change the parameter as below</p>
+<pre><code>$code-foreground                = #009988
 </code></pre><h3 id="About-Markdown"><a href="#About-Markdown" class="headerlink" title="About Markdown"></a>About Markdown</h3><p>Markdown is a text-to-HTML formatting syntax for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML). See <a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">https://www.appinn.com/markdown/</a> for Markdown syntax details.</p>
-<p>Here are some useful syntax.</p>
-<pre><code>*italic text*
-
-**bold text**
-
-***
-
-&lt;http://www.url.com&gt;
-
-###header 3
-
-- list item 1
-- list item 2
-
-text before `small code block` text after
-
-![Alt text](/path/to/img.jpg)
-
-    code block line 1
-    code block line 2
-</code></pre><p>You can choose a Markdown editor like <strong>MarkdownPad</strong> to edit Markdown files. Download it from <a href="http://www.markdownpad.com/" target="_blank" rel="noopener">http://www.markdownpad.com/</a> and install it. The editor has a preview functionality which is very helpful to edit. md files.</p>
-<p>Install <strong>Awesomium 1.6.6 SDK</strong> from <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe</a> and restart the computer, if LivePreview is not working for MarkdownPad and the error message is <em>This view has crashed!</em></p>
-<h3 id="Link-to-a-local-image"><a href="#Link-to-a-local-image" class="headerlink" title="Link to a local image"></a>Link to a local image</h3><p>Update the root configuration file as below. After the configuration change, there will be a folder created when using command <code>hexo new [post_name]</code> to create a new post, and the folder name will be the same as post name.</p>
-<pre><code>post_asset_folder: true
-</code></pre><p>You can copy your image file to the post folder, and use the below Markdown syntax to add an image in a post. With this approach, the image will be showing in the post, but it is not showing in the home page.</p>
-<pre><code>![alt_text](image_name.jpg)
-</code></pre><p>You can install the below package and then use the below Markdown syntax to add an image to a post, and the image will be showing in both the post and home page.</p>
+<p>Here is some common syntax.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*italic text*</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**bold text**</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">***</span></span><br><span class="line"></span><br><span class="line">&lt;http://www.url.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="section">### header 3</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>list item 1</span><br><span class="line"><span class="bullet">- </span>list item 2</span><br><span class="line"></span><br><span class="line">text before <span class="code">`small code block`</span> text after</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line"><span class="code">	code block line 1</span></span><br><span class="line"><span class="code">	code block line 2</span></span><br></pre></td></tr></table></figure>
+<p>You can choose a Markdown editor like <code>MarkdownPad</code> to edit Markdown files. Download it from <a href="http://www.markdownpad.com/" target="_blank" rel="noopener">http://www.markdownpad.com/</a> and install it. The editor has a preview functionality which is very helpful for editing.</p>
+<p>Install <code>Awesomium 1.6.6 SDK</code> from <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe</a> and restart the computer, if LivePreview is not working for MarkdownPad and the error message is <code>This view has crashed!</code></p>
+<h3 id="Link-to-a-local-image"><a href="#Link-to-a-local-image" class="headerlink" title="Link to a local image"></a>Link to a local image</h3><p>Update the <code>root configuration file</code> as below. After the configuration change, there will be a folder created when using command <code>hexo new [post_name]</code> to create a new post, and the folder name will be the same as post name.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>You can copy your image file to the post folder, and use the below Markdown syntax to add an image in a post. With this approach, the image will be showing in the post, but it is not showing in the home page.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">alt_text</span>](<span class="link">image_name.jpg</span>)</span><br></pre></td></tr></table></figure>
+<p>You can install the below package and then use the below Markdown syntax to add an image to a post, and the image will be showing in both the post and home page.</p>
 <pre><code>npm install https://github.com/CodeFalling/hexo-asset-image --save
-
-{% asset_img image_name.jpg This is an image %}
-</code></pre><h3 id="Add-the-pages-tags-categories"><a href="#Add-the-pages-tags-categories" class="headerlink" title="Add the pages: tags, categories"></a>Add the pages: tags, categories</h3><p>Update the root configuration file.</p>
-<pre><code># Directory
-tag_dir: tags
-category_dir: categories
-</code></pre><p>Update the theme configuration file.</p>
-<pre><code>menu:
-  tags: /tags/ || tags
-  categories: /categories/ || th
-</code></pre><p>Run the below command to create the page for tags</p>
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_img image_</span>name.jpg This is an image %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add-the-pages-tags-categories"><a href="#Add-the-pages-tags-categories" class="headerlink" title="Add the pages: tags, categories"></a>Add the pages: tags, categories</h3><p>Update the <code>root configuration file</code> for the directories.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></span><br></pre></td></tr></table></figure>
+<p>Update the <code>theme configuration file</code> for the menu parameter.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">  tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">  categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br></pre></td></tr></table></figure>
+<p>Run the below command to create the page for tags</p>
 <pre><code>hexo new page tags
-</code></pre><p>Update the file <em>\source\tags\index.md</em></p>
+</code></pre><p>Update the file <code>\source\tags\index.md</code></p>
 <pre><code>---
 title: tags
 date: 2018-03-06 14:38:05
@@ -576,19 +526,18 @@ comments: false
 ---
 </code></pre><p>Run the below command to create the page for categories</p>
 <pre><code>hexo new page categories
-</code></pre><p>Update the file <em>\source\categories\index.md</em></p>
+</code></pre><p>Update the file <code>\source\categories\index.md</code></p>
 <pre><code>---
 title: categories
 date: 2018-03-06 14:39:05
 type: &quot;categories&quot;
 comments: false
 ---
-</code></pre><h3 id="Add-the-page-about-me"><a href="#Add-the-page-about-me" class="headerlink" title="Add the page: about me"></a>Add the page: about me</h3><p>Update the theme configuration file.</p>
-<pre><code>menu:
-  about: /about/ || user
-</code></pre><p>Run the below command to create the page for about me</p>
+</code></pre><h3 id="Add-the-page-about-me"><a href="#Add-the-page-about-me" class="headerlink" title="Add the page: about me"></a>Add the page: about me</h3><p>Update the <code>theme configuration file</code> for the menu parameter.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">  about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br></pre></td></tr></table></figure>
+<p>Run the below command to create the page for about</p>
 <pre><code>hexo new page about
-</code></pre><p>Update the file <em>\source\about\index.md</em></p>
+</code></pre><p>Update the file <code>\source\about\index.md</code></p>
 <pre><code>---
 title: about me
 date: 2018-03-06 14:19:41
@@ -596,122 +545,63 @@ date: 2018-03-06 14:19:41
 ### About me
 
 This is my blog.
-</code></pre><h3 id="Add-search-functionality"><a href="#Add-search-functionality" class="headerlink" title="Add search functionality"></a>Add search functionality</h3><p>Install the hexo search package via the below command</p>
+</code></pre><h3 id="Add-search-functionality"><a href="#Add-search-functionality" class="headerlink" title="Add search functionality"></a>Add search functionality</h3><p>Install the Hexo search package via the below command</p>
 <pre><code>npm install hexo-generator-searchdb --save
-</code></pre><p>Add the below parameters to root configuration file.</p>
-<pre><code>search:
-  path: search.xml
-  field: post
-</code></pre><p>Change the parameters in theme configuration file.</p>
-<pre><code># Local search
-# Dependencies: https://github.com/theme-next/hexo-generator-searchdb
-local_search:
-  enable: true
-</code></pre><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>Run the below command to create a new post</p>
+</code></pre><p>Add the below parameters to <code>root configuration file</code>.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br></pre></td></tr></table></figure>
+<p>Change the below parameter in <code>theme configuration file</code>.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>Run the below command to create a new post</p>
 <pre><code>hexo new [post_name]
-</code></pre><p>Update the file <em>\source_post[post_name].md</em></p>
-<pre><code>---
-title: Hello World
-date: 2018-03-06 14:19:41
-tags: [Windows]
-categories: Windows
----
-###Hello
-
-Hello! This is my first blog.
-
-    printf(&quot;Hello world!&quot;);
-</code></pre><h3 id="Deploy-to-GitHub"><a href="#Deploy-to-GitHub" class="headerlink" title="Deploy to GitHub"></a>Deploy to GitHub</h3><p>If you are using <strong>HTTP</strong> to deploy your Hexo contents to GitHub, you may get a pop-up dialog to input your GitHub  and password when calling <code>hexo deploy</code> during deployment.</p>
-<p>In this case, the root <em>_config.yml</em> file is configured as below.</p>
-<pre><code>deploy:
-    type: git
-    repo: https://github.com/gary5496/gary5496.github.io.git
-    name: gary5496
-    email: gary5496@163.com
-    branch: master
-</code></pre><p>If you are using <strong>SSH</strong> to deploy your Hexo contents to GitHub, you can follow the below steps.</p>
-<p>a. Run the below command via Git Bash</p>
-<pre><code>ssh-keygen -t rsa -C &quot;your GitHub email address&quot;
-</code></pre><p>b. Use the default file path <em>C:/User/[Windows account]/.ssh/id_rsa</em>, and input the passphrase if necessary</p>
-<p>c. Open the file <em>C:/User/[Windows account]/.ssh/id_rsa.pub</em>, and copy the entire file content</p>
-<p>d. Log on to GitHub, click on <em>Avatar</em> on the left upper corner, choose <em>Settings</em>, choose <em>SSH and GPG Keys</em>, click on button <em>New SSH Key</em>, input the <em>Title</em> with any value, paste the entire file content from last step as <em>Key</em>, and click on button <em>Add SSH Key</em></p>
-<p>e. If the passphrase is not empty in the step b, and you don’t want to reenter your passphrase every time you use your SSH key, you can add your key to the SSH agent, which manages your SSH keys and remembers your passphrase.</p>
+</code></pre><p>Update the file <code>\source\_post\[post_name].md</code>. See below for example.</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2018-03-06 14:19:41</span><br><span class="line">tags: [Windows]</span><br><span class="line">categories: Windows</span><br><span class="line">---</span><br><span class="line"><span class="section">###Hello</span></span><br><span class="line"></span><br><span class="line">Hello! This is my first blog.</span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">	printf("Hello world!");</span></span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-GitHub"><a href="#Deploy-to-GitHub" class="headerlink" title="Deploy to GitHub"></a>Deploy to GitHub</h3><p>If you are using <code>HTTP</code> to deploy your website to GitHub, you may get a pop-up dialog to input your GitHub account and password when running command <code>hexo deploy</code> during deployment.</p>
+<p>In this case, the <code>root configuration file</code> is configured as below.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repo:</span> <span class="attr">https://github.com/gary5496/gary5496.github.io.git</span></span><br><span class="line">	<span class="attr">name:</span> <span class="string">gary5496</span></span><br><span class="line">	<span class="attr">email:</span> <span class="string">gary5496@163.com</span></span><br><span class="line">	<span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>If you are using <code>SSH</code> to deploy your website to GitHub, you can follow the below steps.</p>
+<p>a. Run the below command via Git Bash to generate a key pair.</p>
+<pre><code>ssh-keygen -t rsa -C &quot;your_GitHub_email_address&quot;
+</code></pre><p>b. Use the default file path <code>C:/User/[Windows_account]/.ssh/</code>, and input the passphrase if necessary</p>
+<p>c. Open the file <code>C:/User/[Windows_account]/.ssh/id_rsa.pub</code>, and copy the entire file content</p>
+<p>d. Log on to GitHub, click on <code>Avatar</code> on the left upper corner, choose <code>Settings</code>, choose <code>SSH and GPG Keys</code>, click on button <code>New SSH Key</code>, input the <code>Title</code> with any value, paste the entire file content from last step as <code>Key</code>, and click on button <code>Add SSH Key</code></p>
+<p>e. If the passphrase is not empty in the step b, and you don’t want to reenter your passphrase every time you use your SSH key, you can run the below commands to add your key to the SSH agent, which manages your SSH keys and remembers your passphrase.</p>
 <pre><code>eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 </code></pre><p>f. Run the below command via Git Bash to check the SSH connection</p>
 <pre><code>ssh -T git@github.com
 </code></pre><p>The successful result should be like below.</p>
-<pre><code>Hi gary5496! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre><p>g. Run the below command for deployment</p>
+<blockquote>
+<p>Hi gary5496! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p>g. Run the below command to deploy website to GitHub</p>
 <pre><code>hexo deploy
-</code></pre><p>In this case, the root <em>_config.yml</em> file is configured as below.</p>
-<pre><code>deploy:
-      type: git
-      repo: git@github.com:gary5496/gary5496.github.io.git
-      branch: master
-</code></pre><h3 id="Count-of-Visitors"><a href="#Count-of-Visitors" class="headerlink" title="Count of Visitors"></a>Count of Visitors</h3><p>Open the site <a href="https://leancloud.cn/" target="_blank" rel="noopener">https://leancloud.cn/</a>, sign up a new account with GitHub. Enter your GitHub account, email address, password and phone number, and create an account. Validate your email address</p>
-<p>Create a new application with developer edition. Open the settings for the new created application, choose Application Key, and note down the App ID and App Key.</p>
+</code></pre><p>In this case, the <code>root configuration file</code> is configured as below.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">		<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">		<span class="attr">repo:</span> <span class="string">git@github.com:gary5496/gary5496.github.io.git</span></span><br><span class="line">		<span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h3 id="Count-of-Visitors"><a href="#Count-of-Visitors" class="headerlink" title="Count of Visitors"></a>Count of Visitors</h3><p>Open the site <a href="https://leancloud.cn/" target="_blank" rel="noopener">https://leancloud.cn/</a>, sign up a new account with GitHub. Enter <code>your GitHub account, GitHub email address, password and phone number</code>, and create an account. Validate your email address.</p>
+<p>Create a new application with developer edition. Open the settings for the new created application, choose <code>Application Key</code>, and note down the <code>App ID</code> and <code>App Key</code>.</p>
 <p>Update the parameters in the theme configuration file</p>
-<pre><code># Show number of visitors to each article.
-# You can visit https://leancloud.cn get AppID and AppKey.
-leancloud_visitors:
-  enable: true
-  app_id: [your app id]
-  app_key: [your app key]
-  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
-  security: true
-  betterPerformance: false
-</code></pre><h3 id="Add-comments-for-website"><a href="#Add-comments-for-website" class="headerlink" title="Add comments for website"></a>Add comments for website</h3><p>Create a new GitHub repository <em>website_comments</em> to save the comments for the website</p>
-<p>Request a GitHub OAuth application via the link <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a>, or via navigation by GitHub homepage -&gt; Avatar on the left upper corner -&gt; Settings -&gt; Developer Settings -&gt; OAuth Apps -&gt; Request a new application. Input the parameters as below, and register application</p>
-<pre><code>Application name: website_comments
-
-Homepage URL: https://gary5496.github.io/
-
-Authorization callback URL: https://gary5496.github.io/
-</code></pre><p>Note down the Client ID and Client Secret on the application page.</p>
-<p>Update the theme configuration file to add the below parameters</p>
-<pre><code># Gitalk
-# more info please open https://github.com/gitalk/gitalk
-gitalk:
-  enable: true
-  clientID: [above_client_id]
-  clientSecret: [above_client_secret]
-  repo: website_comments
-  owner: gary5496
-  admin: gary5496
-  distractionFreeMode: true # Facebook-like distraction free mode
-  createIssueManually: true
-</code></pre><p>Create a file <em>gitalk.swig</em> under folder <em>next/layout/_third-party/comments</em>. See below for the file content. </p>
-<pre><code>{% if not (theme.duoshuo and theme.duoshuo.shortname) and not theme.duoshuo_shortname %}
-  
-	  {% if theme.gitalk.enable %}  //_config.yml文件若没有添加enable: true可删除该判断
-	
-	    {% if theme.gitalk.distractionFreeMode  %}      
-	      <link rel="stylesheet" href="https://yiyeti.cc/usr/themes/veryse/css/gitalk.css">
-	      <script src="https://yiyeti.cc/usr/themes/veryse/css/gitalk.min.js"></script>
-	      <script type="text/javascript">
-	          var gitalk = new Gitalk({
-	            clientID:  '{{theme.gitalk.clientID}}', 
-	            clientSecret: '{{theme.gitalk.clientSecret}}',
-	            id: window.location.pathname,
-	            repo: '{{theme.gitalk.repo}}', 
-	            owner: '{{theme.gitalk.owner}}', 
-	            admin: '{{theme.gitalk.admin}}', 
-	            distractionFreeMode: '{{theme.gitalk.distractionFreeMode}}',
-	          })
-	          gitalk.render('gitalk-container')
-	      </script>
-	    {% endif %}
-
-  {% endif %}
-{% endif %}
-</code></pre><p>Update the file <em>index.swig</em> under folder <em>next/layout/_third-party/comments</em> to append the below code</p>
-<pre><code>{% include 'gitalk.swig' %}
-</code></pre><p>Update the file <em>comments.swig</em> under folder <em>next/layout/_partials</em> to add the below code</p>
-<pre><code>{% elseif theme.gitalk.distractionFreeMode %}  
-  &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;
-{% endif %}
-</code></pre><h3 id="Errors-amp-Tips"><a href="#Errors-amp-Tips" class="headerlink" title="Errors &amp; Tips"></a>Errors &amp; Tips</h3><p>Error message:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  app_id:</span> <span class="string">[your_app_id]</span></span><br><span class="line"><span class="attr">  app_key:</span> <span class="string">[your_app_key]</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line"><span class="attr">  security:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  betterPerformance:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h3 id="Add-comments-for-website"><a href="#Add-comments-for-website" class="headerlink" title="Add comments for website"></a>Add comments for website</h3><p>Create a new GitHub repository <code>website_comments</code> to save the comments for the website</p>
+<p>Request a GitHub <code>OAuth application</code> via the link <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a>, or via navigation by <code>GitHub homepage -&gt; Avatar on the left upper corner -&gt; Settings -&gt; Developer Settings -&gt; OAuth Apps -&gt; Request a new application</code>. Input the parameters as below, and register application</p>
+<blockquote>
+<p>Application name: website_comments</p>
+</blockquote>
+<blockquote>
+<p>Homepage URL: <a href="https://gary5496.github.io/">https://gary5496.github.io/</a></p>
+</blockquote>
+<blockquote>
+<p>Authorization callback URL: <a href="https://gary5496.github.io/">https://gary5496.github.io/</a></p>
+</blockquote>
+<p>Note down the <code>Client ID</code> and <code>Client Secret</code> on the application page.</p>
+<p>Update the <code>theme configuration file</code> to add the below parameters</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  clientID:</span> <span class="string">[above_client_id]</span></span><br><span class="line"><span class="attr">  clientSecret:</span> <span class="string">[above_client_secret]</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">website_comments</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  admin:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  distractionFreeMode:</span> <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line"><span class="attr">  createIssueManually:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>Create a file <code>gitalk.swig</code> under folder <code>next/layout/_third-party/comments</code>. See below for the file content. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> not (theme.duoshuo and theme.duoshuo.shortname) and not theme.duoshuo_shortname %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;% <span class="keyword">if</span> theme.gitalk.enable %&#125;  <span class="comment">//_config.yml文件若没有添加enable: true可删除该判断</span></span><br><span class="line"></span><br><span class="line">    &#123;% <span class="keyword">if</span> theme.gitalk.distractionFreeMode  %&#125;      </span><br><span class="line">      &lt;link rel=<span class="string">'stylesheet'</span> href=<span class="string">"https://yiyeti.cc/usr/themes/veryse/css/gitalk.css"</span>&gt;</span><br><span class="line">      &lt;script src=<span class="string">"https://yiyeti.cc/usr/themes/veryse/css/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">      &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">          <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line">            clientID:  <span class="string">'&#123;&#123;theme.gitalk.clientID&#125;&#125;'</span>, </span><br><span class="line">            clientSecret: <span class="string">'&#123;&#123;theme.gitalk.clientSecret&#125;&#125;'</span>,</span><br><span class="line">            id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">            repo: <span class="string">'&#123;&#123;theme.gitalk.repo&#125;&#125;'</span>, </span><br><span class="line">            owner: <span class="string">'&#123;&#123;theme.gitalk.owner&#125;&#125;'</span>, </span><br><span class="line">            admin: <span class="string">'&#123;&#123;theme.gitalk.admin&#125;&#125;'</span>, </span><br><span class="line">            distractionFreeMode: <span class="string">'&#123;&#123;theme.gitalk.distractionFreeMode&#125;&#125;'</span>,</span><br><span class="line">          &#125;)</span><br><span class="line">          gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">      &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Update the file <code>index.swig</code> under folder <code>next/layout/_third-party/comments</code> to add the below code</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">'gitalk.swig'</span> %&#125;</span><br></pre></td></tr></table></figure>
+<p>Update the file <code>comments.swig</code> under folder <code>next/layout/_partials</code> to add the below code</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.distractionFreeMode %&#125;  </span><br><span class="line">  &lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Errors-amp-Tips"><a href="#Errors-amp-Tips" class="headerlink" title="Errors &amp; Tips"></a>Errors &amp; Tips</h3><p>Error message:</p>
 <blockquote>
 <p>After the change on a post, a page or a configuration file, the change is not reflected on the site.</p>
 </blockquote>
@@ -721,19 +611,19 @@ gitalk:
 </blockquote>
 <p>Error message:</p>
 <blockquote>
-<p>The LivePreview functionality is not working for MarkdownPad editor. The error message is “The view has crashed!”.</p>
+<p>The LivePreview functionality is not working for MarkdownPad editor. The error message is <code>The view has crashed!</code>.</p>
 </blockquote>
 <p>Solution:</p>
 <blockquote>
-<p>Install <strong>Awesomium 1.6.6 SDK</strong> from <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">this link</a> and restart the computer</p>
+<p>Install <code>Awesomium 1.6.6 SDK</code> from <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">this link</a> and restart the computer</p>
 </blockquote>
 <p>Error message:</p>
 <blockquote>
-<p>If you are using <strong>SSH</strong> to deploy your Hexo contents to GitHub, you got an error message “Could not read from remote repository” when you are running the command <code>hexo deploy</code> to deploy the site to GitHub via cmd.</p>
+<p>If you are using <code>SSH</code> to deploy your Hexo contents to GitHub, you got an error message <code>Could not read from remote repository</code> when you are running the command <code>hexo deploy</code> to deploy the site to GitHub via cmd.</p>
 </blockquote>
 <p>Solution:</p>
 <blockquote>
-<p>Use <em>Git Bash</em> to run the command, instead of <em>cmd</em></p>
+<p>Use <code>Git Bash</code> to run the command, instead of <code>cmd</code></p>
 </blockquote>
 <h3 id="Links-amp-References"><a href="#Links-amp-References" class="headerlink" title="Links &amp; References"></a>Links &amp; References</h3><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></li>

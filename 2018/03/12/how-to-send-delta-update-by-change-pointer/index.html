@@ -100,24 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SAP,Interface,IDOC," />
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gary Guo">
-<meta property="og:url" content="https://gary5496.github.io/404.html">
+<meta name="description" content="In this guide, I will share the steps about how to use change pointer to send the material master delta updates to external system. For demo purpose, I will write the IDOC to SAP application server fi">
+<meta name="keywords" content="SAP,Interface,IDOC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to send material master delta updates to external system by change pointer">
+<meta property="og:url" content="https://gary5496.github.io/2018/03/12/how-to-send-delta-update-by-change-pointer/index.html">
 <meta property="og:site_name" content="Gary Guo">
+<meta property="og:description" content="In this guide, I will share the steps about how to use change pointer to send the material master delta updates to external system. For demo purpose, I will write the IDOC to SAP application server fi">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-07T03:31:39.291Z">
+<meta property="og:updated_time" content="2018-03-12T09:11:59.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gary Guo">
+<meta name="twitter:title" content="How to send material master delta updates to external system by change pointer">
+<meta name="twitter:description" content="In this guide, I will share the steps about how to use change pointer to send the material master delta updates to external system. For demo purpose, I will write the IDOC to SAP application server fi">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/404.html"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/03/12/how-to-send-delta-update-by-change-pointer/"/>
 
 
 
@@ -126,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title> | Gary Guo</title>
+  <title>How to send material master delta updates to external system by change pointer | Gary Guo</title>
   
 
 
@@ -296,58 +300,199 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/12/how-to-send-delta-update-by-change-pointer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline"></h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <!DOCTYPE HTML>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8;">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="robots" content="all">
-  <meta name="robots" content="index,follow">
-  <link rel="stylesheet" type="text/css" href="https://qzone.qq.com/gy/404/style/404style.css">
-</head>
-<body>
-  <script type="text/plain" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页">
-  </script>
-  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script>
-  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
-</body>
-</html>
+          <h1 class="post-title" itemprop="name headline">How to send material master delta updates to external system by change pointer</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T16:17:32+08:00">2018-03-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>In this guide, I will share the steps about how to use change pointer to send the material master delta updates to external system. For demo purpose, I will write the IDOC to SAP application server file system with XML file format. </p>
+<blockquote>
+<p>System: ECC</p>
+<p>Release: 740</p>
+</blockquote>
+<h3 id="Create-message-type-t-code-WE81"><a href="#Create-message-type-t-code-WE81" class="headerlink" title="Create message type (t-code: WE81)"></a>Create message type (t-code: WE81)</h3><p>Create message type <code>ZMATMAS_DIST</code> via t-code <code>WE81</code>. Use any short text you like</p>
+<h3 id="Link-message-type-with-IDOC-type-t-code-WE82"><a href="#Link-message-type-with-IDOC-type-t-code-WE82" class="headerlink" title="Link message type with IDOC type (t-code: WE82)"></a>Link message type with IDOC type (t-code: WE82)</h3><p>Link the message type <code>ZMATMAS_DIST</code> with standard IDOC type <code>MATMAS05</code> and release <code>740</code></p>
+<h3 id="Make-sure-the-change-pointer-is-activated-globally-t-code-BD61"><a href="#Make-sure-the-change-pointer-is-activated-globally-t-code-BD61" class="headerlink" title="Make sure the change pointer is activated globally (t-code: BD61)"></a>Make sure the change pointer is activated globally (t-code: BD61)</h3><p>Run t-code <code>BD61</code> to make sure the change pointer is activated globally</p>
+<h3 id="Make-sure-the-change-pointer-is-activated-for-the-message-type-t-code-BD50"><a href="#Make-sure-the-change-pointer-is-activated-for-the-message-type-t-code-BD50" class="headerlink" title="Make sure the change pointer is activated for the message type (t-code: BD50)"></a>Make sure the change pointer is activated for the message type (t-code: BD50)</h3><p>Run t-code <code>BD50</code>, and add a new table entry for <code>ZMATMAS_DIST</code>. Select the <code>active</code> checkbox</p>
+<h3 id="Maintain-the-change-pointer-table-fields-for-the-message-type-t-code-BD52"><a href="#Maintain-the-change-pointer-table-fields-for-the-message-type-t-code-BD52" class="headerlink" title="Maintain the change pointer table fields for the message type (t-code: BD52)"></a>Maintain the change pointer table fields for the message type (t-code: BD52)</h3><p>Run t-code <code>BD52</code>, input change pointer <code>ZMATMAS_DIST</code>, and input the table fields for which change pointer will be created. If one table field is specified here, the change pointer with the message type <code>ZMATMAS_DIST</code> will be created when the field value is changed.</p>
+<ul>
+<li>Object: <code>MATERIAL</code></li>
+<li>Table name: <code>MARA, MARC, DMAKT, etc</code></li>
+<li>Field name: <code>MEINS, MATKL, NTGEW, KEY</code></li>
+</ul>
+<blockquote>
+<p>When <code>KEY</code> is used as field name, the change pointer will be created when a new table record is created/deleted.</p>
+</blockquote>
+<h3 id="Create-a-logical-system-if-necessary-t-code-BD54"><a href="#Create-a-logical-system-if-necessary-t-code-BD54" class="headerlink" title="Create a logical system if necessary (t-code: BD54)"></a>Create a logical system if necessary (t-code: BD54)</h3><p>Create a new logical system <code>LS_DIST</code>. You can reuse your existing logical system as well.</p>
+<h3 id="Add-the-message-type-to-distribution-model-t-code-BD64"><a href="#Add-the-message-type-to-distribution-model-t-code-BD64" class="headerlink" title="Add the message type to distribution model (t-code: BD64)"></a>Add the message type to distribution model (t-code: BD64)</h3><p>Run t-code <code>BD64</code>. Switch to <code>Edit</code> mode. Choose <code>Create Model View</code> to create a new model view <code>E4D</code>. You can reuse your existing model view as well. </p>
+<p>Choose <code>Add Message Type</code> to add one distribution record with message type <code>ZMATMAS_DIST</code>, sender <code>E4DCLNT100</code>, which is the logical system of current SAP system specified in t-code <code>SCC4</code>, receiver <code>LS_DIST</code> </p>
+<h3 id="Create-a-XML-file-port-t-code-WE21"><a href="#Create-a-XML-file-port-t-code-WE21" class="headerlink" title="Create a XML file port (t-code: WE21)"></a>Create a XML file port (t-code: WE21)</h3><p>Create a XML file port <code>XMLPORT</code> via t-code <code>WE21</code>. Choose <code>Physical directory</code>, choose the directory like <code>\usr\sap\tmp\</code>, and choose <code>EDI_PATH_CREATE_MESTYP_DOCNUM</code> as the function to generate file name</p>
+<h3 id="Maintain-the-partner-profile-t-code-WE20"><a href="#Maintain-the-partner-profile-t-code-WE20" class="headerlink" title="Maintain the partner profile (t-code: WE20)"></a>Maintain the partner profile (t-code: WE20)</h3><p>Run t-code <code>WE20</code>, create the partner profile for the logical system <code>LS_DIST</code>. Save the partner profile, click <code>Create outbound parameters</code> button to add the outbound parameters for message type <code>ZMATMAS_DIST</code>. Use receiver port <code>XMLPORT</code>, basic type <code>MATMAS05</code>, output mode <code>Transfer IDoc immediately</code> </p>
+<h3 id="Maintain-the-additional-data-for-message-type-t-code-BD60"><a href="#Maintain-the-additional-data-for-message-type-t-code-BD60" class="headerlink" title="Maintain the additional data for message type (t-code: BD60)"></a>Maintain the additional data for message type (t-code: BD60)</h3><p>Run t-code <code>BD60</code>. Copy the record <code>MATMAS</code> to a new record <code>ZMATMAS_DIST</code>, and deselect the checkbox <code>Reducable Message Type</code>. The format function module <code>MASTERIDOC_CREATE_SMD_MATMAS</code> is used to create material IDOC from change pointer.</p>
+<h3 id="Update-material-master-data-t-code-MM02"><a href="#Update-material-master-data-t-code-MM02" class="headerlink" title="Update material master data (t-code: MM02)"></a>Update material master data (t-code: MM02)</h3><p>Run t-code <code>MM02</code>, input material <code>P-100</code>, choose view <code>Basic Data 1</code>, change the gross weight and save the change</p>
+<h3 id="Check-the-change-pointer-in-BDCP2-t-code-SE16"><a href="#Check-the-change-pointer-in-BDCP2-t-code-SE16" class="headerlink" title="Check the change pointer in BDCP2 (t-code: SE16)"></a>Check the change pointer in BDCP2 (t-code: SE16)</h3><p>Run t-code <code>SE16</code>, input table <code>BDCP2</code>, input message type <code>ZMATMAS_DIST</code> and execute the program. You will see that a new change pointer with message type <code>ZMATMAS_DIST</code> and blank processing status is generated.</p>
+<h3 id="Create-IDOC-from-change-pointer-t-code-BD21"><a href="#Create-IDOC-from-change-pointer-t-code-BD21" class="headerlink" title="Create IDOC from change pointer (t-code: BD21)"></a>Create IDOC from change pointer (t-code: BD21)</h3><p>Run t-code <code>BD21</code> or run program <code>RBDMIDOC</code> manually. You can schedule the program as periodical batch job as well. Input message type <code>ZMATMAS_DIST</code> and execute the program. You will get the information message saying that <code># IDOC created and generated for the message type ZMATMAS_DIST</code>.</p>
+<p>Run t-code <code>SE16</code>, and check the previous change pointer. You will see that the change pointer processing status is changed to <code>X</code>.</p>
+<h3 id="Check-the-new-generated-IDOC-t-code-WE02"><a href="#Check-the-new-generated-IDOC-t-code-WE02" class="headerlink" title="Check the new generated IDOC (t-code: WE02)"></a>Check the new generated IDOC (t-code: WE02)</h3><p>Run t-code <code>WE02</code>, input the message type <code>ZMATMAS_DIST</code> and execute. You will see the new generated IDOC.</p>
+<h3 id="Check-the-XML-file-generated-t-code-AL11"><a href="#Check-the-XML-file-generated-t-code-AL11" class="headerlink" title="Check the XML file generated (t-code: AL11)"></a>Check the XML file generated (t-code: AL11)</h3><p>Run t-code <code>AL11</code>, open the directory <code>\usr\sap\tmp\</code>. You will see that a XML file <code>ZMATMAS_DI_02496857.xml</code> was created. Open the file, and you will see the IDOC XML file details.</p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SAP/" rel="tag"># SAP</a>
+          
+            <a href="/tags/Interface/" rel="tag"># Interface</a>
+          
+            <a href="/tags/IDOC/" rel="tag"># IDOC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/06/hexo-github-setup/" rel="next" title="GitHub website setup with Hexo in Windows">
+                <i class="fa fa-chevron-left"></i> GitHub website setup with Hexo in Windows
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -382,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -476,6 +630,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-message-type-t-code-WE81"><span class="nav-number">1.</span> <span class="nav-text">Create message type (t-code: WE81)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Link-message-type-with-IDOC-type-t-code-WE82"><span class="nav-number">2.</span> <span class="nav-text">Link message type with IDOC type (t-code: WE82)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-sure-the-change-pointer-is-activated-globally-t-code-BD61"><span class="nav-number">3.</span> <span class="nav-text">Make sure the change pointer is activated globally (t-code: BD61)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-sure-the-change-pointer-is-activated-for-the-message-type-t-code-BD50"><span class="nav-number">4.</span> <span class="nav-text">Make sure the change pointer is activated for the message type (t-code: BD50)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maintain-the-change-pointer-table-fields-for-the-message-type-t-code-BD52"><span class="nav-number">5.</span> <span class="nav-text">Maintain the change pointer table fields for the message type (t-code: BD52)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-logical-system-if-necessary-t-code-BD54"><span class="nav-number">6.</span> <span class="nav-text">Create a logical system if necessary (t-code: BD54)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-the-message-type-to-distribution-model-t-code-BD64"><span class="nav-number">7.</span> <span class="nav-text">Add the message type to distribution model (t-code: BD64)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-XML-file-port-t-code-WE21"><span class="nav-number">8.</span> <span class="nav-text">Create a XML file port (t-code: WE21)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maintain-the-partner-profile-t-code-WE20"><span class="nav-number">9.</span> <span class="nav-text">Maintain the partner profile (t-code: WE20)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maintain-the-additional-data-for-message-type-t-code-BD60"><span class="nav-number">10.</span> <span class="nav-text">Maintain the additional data for message type (t-code: BD60)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-material-master-data-t-code-MM02"><span class="nav-number">11.</span> <span class="nav-text">Update material master data (t-code: MM02)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-the-change-pointer-in-BDCP2-t-code-SE16"><span class="nav-number">12.</span> <span class="nav-text">Check the change pointer in BDCP2 (t-code: SE16)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-IDOC-from-change-pointer-t-code-BD21"><span class="nav-number">13.</span> <span class="nav-text">Create IDOC from change pointer (t-code: BD21)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-the-new-generated-IDOC-t-code-WE02"><span class="nav-number">14.</span> <span class="nav-text">Check the new generated IDOC (t-code: WE02)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Check-the-XML-file-generated-t-code-AL11"><span class="nav-number">15.</span> <span class="nav-text">Check the XML file generated (t-code: AL11)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

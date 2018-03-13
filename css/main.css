@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #39d6ff;
+  background: #26f1e9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2925,7 +2925,4 @@ ul.breadcrumb li+li:last-child {
 }
 code {
   color: #098;
-}
-.posts-collapse .post-title {
-  margin-left: 180px;
 }

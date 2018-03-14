@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://gary5496.github.io/"/>
-  <updated>2018-03-14T07:55:57.957Z</updated>
+  <updated>2018-03-12T09:11:59.101Z</updated>
   <id>https://gary5496.github.io/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>this-is-a-very-very-long-test-123457890-1234567890-1234567890-1234567890</title>
-    <link href="https://gary5496.github.io/2018/03/14/this-is-a-very-very-long-test-123457890-1234567890-1234567890-1234567890/"/>
-    <id>https://gary5496.github.io/2018/03/14/this-is-a-very-very-long-test-123457890-1234567890-1234567890-1234567890/</id>
-    <published>2018-03-14T07:55:57.000Z</published>
-    <updated>2018-03-14T07:55:57.957Z</updated>
-    
-    <content type="html"><![CDATA[<p>Initialize Hexo after installation</p><pre><code>hexo init</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Initialize Hexo after installation&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;hexo init
-&lt;/code&gt;&lt;/pre&gt;
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>How to send material master delta updates to external system by change pointer</title>

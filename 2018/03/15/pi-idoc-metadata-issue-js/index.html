@@ -103,18 +103,18 @@
   <meta name="keywords" content="SAP,IDOC,PI,Issue Resolution," />
 
 
-<meta name="description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with release 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  AnalysisTh">
+<meta name="description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with SAPRelease 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  Analysi">
 <meta name="keywords" content="SAP,IDOC,PI,Issue Resolution">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PI IDOC metadata issue in Java Stack with error message">
+<meta property="og:title" content="PI IDOC metadata issue in Java Stack">
 <meta property="og:url" content="https://gary5496.github.io/2018/03/15/pi-idoc-metadata-issue-js/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with release 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  AnalysisTh">
+<meta property="og:description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with SAPRelease 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  Analysi">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-15T09:42:11.775Z">
+<meta property="og:updated_time" content="2018-03-15T09:47:37.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PI IDOC metadata issue in Java Stack with error message">
-<meta name="twitter:description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with release 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  AnalysisTh">
+<meta name="twitter:title" content="PI IDOC metadata issue in Java Stack">
+<meta name="twitter:description" content="BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with SAPRelease 46C is failed with error message Unable to get meta data for IDOC type &amp;lt;IDOC_TYPE&amp;gt;: SEGMENT_UNKNOWN.  Analysi">
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>PI IDOC metadata issue in Java Stack with error message | Gary Guo</title>
+  <title>PI IDOC metadata issue in Java Stack | Gary Guo</title>
   
 
 
@@ -331,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PI IDOC metadata issue in Java Stack with error message</h1>
+          <h1 class="post-title" itemprop="name headline">PI IDOC metadata issue in Java Stack</h1>
         
 
         <div class="post-meta">
@@ -406,12 +406,11 @@
       
 
       
-        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The PI channel using adapter module <code>IDOCXmlToFlatConvertor</code> with release <code>46C</code> is failed with error message <code>Unable to get meta data for IDOC type &lt;IDOC_TYPE&gt;: SEGMENT_UNKNOWN</code>. </p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>The adapter module <code>IDOCXmlToFlatConvertor</code> is using IDOC metadata in Java stack to transform IDOC from XML format to flat file format. We tried to load the IDOC metadata in PI NWA (Java stack) manually with the <code>Connection Factory</code> and <code>System Release</code> parameters maintained in the PI channel, and the load is failed with error message <code>Service node &lt;node&gt; is not accessible; metadata cannot be shown or manipulated</code>. </p>
-<p>After RFC trace, we find that the RFC function <code>IDOCTYPE_READ_COMPLETE</code> is called when loading IDOC metadata in Java stack. The RFC function is changed in the recent upgrade. In the new change, if the check <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is true, it will add a new IDOC segment <code>E1IDOCENHANCEMENT</code>, which is valid since release 700. Since the new IDOC segment is not valid in release <code>46C</code>, the RFC function will be failed, and the PI channel will be failed.</p>
+        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The PI channel using adapter module <code>IDOCXmlToFlatConvertor</code> with <code>SAPRelease 46C</code> is failed with error message <code>Unable to get meta data for IDOC type &lt;IDOC_TYPE&gt;: SEGMENT_UNKNOWN</code>. </p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>The adapter module <code>IDOCXmlToFlatConvertor</code> is using IDOC metadata in Java stack to transform IDOC from XML format to flat file format. We tried to load the IDOC metadata in PI NWA (Java stack) manually with the <code>Connection Factory</code> and <code>SAPRelease</code> parameters maintained in the PI channel, and the load is failed with error message <code>Service node &lt;node&gt; is not accessible; metadata cannot be shown or manipulated</code>. </p>
+<p>After RFC trace, we find that the ECC RFC function <code>IDOCTYPE_READ_COMPLETE</code> is called by PI when loading IDOC metadata in Java stack. The RFC function is changed in the recent upgrade. In the new change, if the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is true, it will add a new IDOC segment <code>E1IDOCENHANCEMENT</code>, which is valid since release 700 (t-code <code>WE31</code>). Since the new IDOC segment is not valid in release <code>46C</code>, the RFC function will be failed, which causes the failure of PI channel.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">IF CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = abap_true.</span><br><span class="line">  READ TABLE LT_SYNTAX WITH KEY SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT TRANSPORTING NO FIELDS.</span><br><span class="line">  IF sy-subrc &lt;&gt; 0.</span><br><span class="line">    DESCRIBE TABLE LT_SYNTAX LINES COUNT.</span><br><span class="line">    READ TABLE lt_syntax INDEX COUNT INTO l_LAST.</span><br><span class="line">    L_LAST-nr = L_LAST-nr + 1.</span><br><span class="line">    l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">    CLEAR: L_LAST-parseg, L_LAST-refsegtyp, L_LAST-mustfl, l_last-parpno.</span><br><span class="line">    L_LAST-occmin = 1.</span><br><span class="line">    L_LAST-hlevel = 01.</span><br><span class="line">    L_LAST-occmax = 999999.</span><br><span class="line">    APPEND L_LAST TO lt_syntax.</span><br><span class="line">  ENDIF.</span><br><span class="line">ENDIF.</span><br></pre></td></tr></table></figure>
-<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h3><p>To fix the issue, we can maintain a new entry in table EDICONFIG, so that the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is false. With this fix, the new IDOC segment will not be added, and it will fix the issue.</p>
-<p>To fix it, we add a table entry in <code>EDICONFIG</code> for the user with EDI parameter <code>NO_ENHSEND</code> by running program <code>RBDENHANCEDDOCUSET</code>. The service user to load ECC IDOC metadata from PI Java stack could be found in the <code>Connection Factory</code>.</p>
+<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h3><p>To fix the issue, we can maintain a new entry in table EDICONFIG, so that the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is false. With this change, the new IDOC segment will not be added, and it will fix the issue. A table entry in <code>EDICONFIG</code> for the service user with EDI parameter <code>NO_ENHSEND</code> is added by running program <code>RBDENHANCEDDOCUSET</code>. The service user to load IDOC metadata from PI Java stack could be found in the <code>Connection Factory</code> in NWA.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">METHOD send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  DATA: wa TYPE ediconfig,</span><br><span class="line">        uname like sy-uname.</span><br><span class="line"></span><br><span class="line">  IF cl_rfc=&gt;is_external_direct( ) = abap_true. &quot; external call only</span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    SELECT  SINGLE * FROM ediconfig</span><br><span class="line">      INTO wa</span><br><span class="line">       WHERE uname = uname</span><br><span class="line">        AND edi_global  = &apos; &apos;</span><br><span class="line">        AND edi_param = &apos;NO_ENHSEND&apos;</span><br><span class="line">        AND edi_parval = &apos;X&apos;.</span><br><span class="line"></span><br><span class="line">    IF sy-subrc = 0.</span><br><span class="line">      send_docu = abap_false.</span><br><span class="line">    ELSE.</span><br><span class="line">      send_docu = abap_true.</span><br><span class="line">    ENDIF.</span><br><span class="line"></span><br><span class="line">  ELSE.</span><br><span class="line">    send_docu = abap_true. &quot;</span><br><span class="line">  ENDIF.</span><br><span class="line"></span><br><span class="line">ENDMETHOD.</span><br></pre></td></tr></table></figure>
 
       

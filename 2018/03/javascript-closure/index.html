@@ -100,24 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://gary5496.github.io/tags/index.html">
+<meta name="description" content="IntroductionIn a function, the variables may come from global variable like window, local variable, or the variable of its ancestor functions. If the variable comes from its ancestor functions, it is">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Closure in JavaScript">
+<meta property="og:url" content="https://gary5496.github.io/2018/03/javascript-closure/index.html">
 <meta property="og:site_name" content="Gary Guo">
+<meta property="og:description" content="IntroductionIn a function, the variables may come from global variable like window, local variable, or the variable of its ancestor functions. If the variable comes from its ancestor functions, it is">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-06T06:38:35.032Z">
+<meta property="og:updated_time" content="2018-03-19T08:33:10.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="Closure in JavaScript">
+<meta name="twitter:description" content="IntroductionIn a function, the variables may come from global variable like window, local variable, or the variable of its ancestor functions. If the variable comes from its ancestor functions, it is">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/tags/"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/03/javascript-closure/"/>
 
 
 
@@ -126,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>tags | Gary Guo</title>
+  <title>Closure in JavaScript | Gary Guo</title>
   
 
 
@@ -302,89 +306,195 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-closure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">tags</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                8 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/IDOC/" style="font-size: 30px; color: #111">IDOC</a> <a href="/tags/Interface/" style="font-size: 12px; color: #ccc">Interface</a> <a href="/tags/Issue-Resolution/" style="font-size: 21px; color: #6f6f6f">Issue Resolution</a> <a href="/tags/Java/" style="font-size: 12px; color: #ccc">Java</a> <a href="/tags/JavaScript/" style="font-size: 21px; color: #6f6f6f">JavaScript</a> <a href="/tags/PI/" style="font-size: 21px; color: #6f6f6f">PI</a> <a href="/tags/SAP/" style="font-size: 30px; color: #111">SAP</a> <a href="/tags/Windows/" style="font-size: 21px; color: #6f6f6f">Windows</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Closure in JavaScript</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T15:50:49+08:00">2018-03-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>In a function, the variables may come from global variable like <code>window</code>, local variable, or the variable of its ancestor functions. If the variable comes from its ancestor functions, it is called <code>Closure</code> in JavaScript. </p>
+<p>There are three variable scopes: <code>Local</code>, <code>Closure</code> and <code>Global</code>. If the variable is coming from its ancestor function and the child function is still being used, the variable in the ancestor function will be saved and it will not be recycled by JavaScript garbage collection.</p>
+<p>In JavaScript garbage collection, if the where-used list for a variable/function/object is 0, it will be recycled. Otherwise, it will be kept. If <code>Closure</code> is used and the child function is still in used, the ancestor function and its variable will be kept since the where-used list is not 0.</p>
+<h3 id="Understand-variable-scope"><a href="#Understand-variable-scope" class="headerlink" title="Understand variable scope"></a>Understand variable scope</h3><p>In the below case, the output of <code>f1, f2, f3</code> will be all <code>16</code>, because the variable scope is <strong>finalized</strong> in the <code>return arr;</code> statement. When the statement <code>return arr;</code> is executed, the variable <code>i</code> is <code>4</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=<span class="number">3</span>; i++) &#123;</span><br><span class="line">        arr.push(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> i * i;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> results = count();</span><br><span class="line"><span class="keyword">var</span> f1 = results[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> f2 = results[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> f3 = results[<span class="number">2</span>];</span><br><span class="line">f1();    <span class="comment">//16</span></span><br><span class="line">f2();    <span class="comment">//16</span></span><br><span class="line">f3();    <span class="comment">//16</span></span><br></pre></td></tr></table></figure>
+<p>To fix the issue in the above case, we can change the code as below. In the below case, the variable <code>i</code> is <strong>finalized</strong> and passed to <code>n</code> when the statement <code>(function(n){...})(i);</code> is executed. When the statement is executed, the variable <code>i</code> is <code>1, 2, 3</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">3</span>; i++) &#123;</span><br><span class="line">        arr.push((<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> n * n;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> results = count();</span><br><span class="line"><span class="keyword">var</span> f1 = results[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> f2 = results[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> f3 = results[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">f1(); <span class="comment">// 1</span></span><br><span class="line">f2(); <span class="comment">// 4</span></span><br><span class="line">f3(); <span class="comment">// 9</span></span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000</a></p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/javascript-this/" rel="next" title="this keyword in JavaScript">
+                <i class="fa fa-chevron-left"></i> this keyword in JavaScript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="gitalk-container"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -405,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -499,6 +618,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understand-variable-scope"><span class="nav-number">2.</span> <span class="nav-text">Understand variable scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -690,6 +825,23 @@
 
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+      const gitalk = new Gitalk({
+        clientID: 'eb46b34271d9e8373ae4',
+        clientSecret: '3a26795df7299057098c9533c6bb73bc6da3b13d',
+        repo: 'website_comments',
+        owner: 'gary5496',
+        admin: 'gary5496'.split(','),
+        id: location.pathname,
+        // facebook-like distraction free mode
+        distractionFreeMode: 'true',
+        createIssueManually: 'false'
+      })
+      gitalk.render('gitalk-container')
+    </script>
   
 
 

@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gary5496.github.io/2018/03/javascript-closure/</loc>
+    
+    <lastmod>2018-03-19T08:33:10.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://gary5496.github.io/2018/03/javascript-this/</loc>
+    
+    <lastmod>2018-03-19T07:43:35.051Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://gary5496.github.io/2018/03/pi-idoc-metadata-issue/</loc>
     
-    <lastmod>2018-03-16T09:26:40.012Z</lastmod>
+    <lastmod>2018-03-19T06:31:29.607Z</lastmod>
     
   </url>
   

@@ -100,18 +100,18 @@
 
 
   
-  <meta name="keywords" content="Windows," />
+  <meta name="keywords" content="Website," />
 
 
 <meta name="description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
-<meta name="keywords" content="Windows">
+<meta name="keywords" content="Website">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub website setup with Hexo in Windows">
 <meta property="og:url" content="https://gary5496.github.io/2018/03/hexo-github-setup/index.html">
 <meta property="og:site_name" content="Gary Guo">
 <meta property="og:description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-14T07:37:39.421Z">
+<meta property="og:updated_time" content="2018-03-21T02:22:50.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub website setup with Hexo in Windows">
 <meta name="twitter:description" content="If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo">
@@ -370,7 +370,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
 
                 
                 
@@ -453,18 +453,16 @@ git config --global user.email [your GitHub email address]
 <pre><code>npm install hexo-deployer-git --save
 </code></pre><p>Run the below command to initialize Hexo</p>
 <pre><code>hexo init
-</code></pre><p>Run the below command to start Hexo server. You can stop the server by pressing Ctrl + C.</p>
+</code></pre><h3 id="Hexo-basic-commands"><a href="#Hexo-basic-commands" class="headerlink" title="Hexo basic commands"></a>Hexo basic commands</h3><p>Initialize Hexo after installation</p>
+<pre><code>hexo init
+</code></pre><p>Start Hexo server. You can stop the server by pressing Ctrl + C.</p>
 <pre><code>hexo server
+hexo s
 </code></pre><p>After the server start, open the below link in browser, and you can see the initial page for Hexo</p>
 <blockquote>
 <p><a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 </blockquote>
-<h3 id="Hexo-basic-commands"><a href="#Hexo-basic-commands" class="headerlink" title="Hexo basic commands"></a>Hexo basic commands</h3><p>Initialize Hexo after installation</p>
-<pre><code>hexo init
-</code></pre><p>Start Hexo server</p>
-<pre><code>hexo server
-hexo s
-</code></pre><p>Create a new page, like tags, categories, about me, etc</p>
+<p>Create a new page, like tags, categories, about me, etc</p>
 <pre><code>hexo new page [page_name]
 </code></pre><p>Create a new post</p>
 <pre><code>hexo new [post_name]
@@ -499,7 +497,7 @@ hexo d -g
 </code></pre><p>b. Change the theme parameter to next in the <code>root configuration file</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
 <p>c. Change the parameters in the <code>theme configuration file</code> to use another scheme and add social links if necessary.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br><span class="line"></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line"><span class="attr">  GitHub:</span> <span class="attr">https://github.com/gary5496</span> <span class="string">||</span> <span class="string">github</span></span><br><span class="line"><span class="attr">  E-Mail:</span> <span class="attr">mailto:gary5496@163.com</span> <span class="string">||</span> <span class="string">envelope</span></span><br><span class="line"></span><br><span class="line"><span class="attr">highlight_theme:</span> <span class="string">night</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br><span class="line"></span><br><span class="line"><span class="attr">highlight_theme:</span> <span class="string">night</span></span><br></pre></td></tr></table></figure>
 <p>d. Update the file <code>custom.styl</code> under folder <code>\themes\next\source\css\_custom</code>, and change the parameter as below</p>
 <pre><code>// Custom styles.
 
@@ -508,7 +506,7 @@ code {
 }
 </code></pre><h3 id="About-Markdown"><a href="#About-Markdown" class="headerlink" title="About Markdown"></a>About Markdown</h3><p>Markdown is a text-to-HTML formatting syntax for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML). See <a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">https://www.appinn.com/markdown/</a> for Markdown syntax details.</p>
 <p>Here is some common syntax.</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*italic text*</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**bold text**</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">***</span></span><br><span class="line"></span><br><span class="line">&lt;http://www.url.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="section">### header 3</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>list item 1</span><br><span class="line"><span class="bullet">- </span>list item 2</span><br><span class="line"></span><br><span class="line">text before <span class="code">`small code block`</span> text after</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line"><span class="code">	code block line 1</span></span><br><span class="line"><span class="code">	code block line 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*italic text*</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**bold text**</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">***</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.url.com</span>&gt;</span></span></span><br><span class="line">[<span class="string">url tile</span>](<span class="link">url address</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">### header 3</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>list item 1</span><br><span class="line"><span class="bullet">- </span>list item 2</span><br><span class="line"></span><br><span class="line">text before <span class="code">`small code block`</span> text after</span><br><span class="line"></span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/to/img.jpg</span>)</span><br><span class="line"></span><br><span class="line"><span class="code">    code block line 1</span></span><br><span class="line"><span class="code">    code block line 2</span></span><br></pre></td></tr></table></figure>
 <p>You can choose a Markdown editor like <code>MarkdownPad</code> to edit Markdown files. Download it from <a href="http://www.markdownpad.com/" target="_blank" rel="noopener">http://www.markdownpad.com/</a> and install it. The editor has a preview functionality which is very helpful for editing.</p>
 <p>Install <code>Awesomium 1.6.6 SDK</code> from <a href="http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe" target="_blank" rel="noopener">http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe</a> and restart the computer, if LivePreview is not working for MarkdownPad and the error message is <code>This view has crashed!</code></p>
 <h3 id="Link-to-a-local-image"><a href="#Link-to-a-local-image" class="headerlink" title="Link to a local image"></a>Link to a local image</h3><p>Update the <code>root configuration file</code> as below. After the configuration change, there will be a folder created when using command <code>hexo new [post_name]</code> to create a new post, and the folder name will be the same as post name.</p>
@@ -561,10 +559,10 @@ This is my blog.
 <h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>Run the below command to create a new post</p>
 <pre><code>hexo new [post_name]
 </code></pre><p>Update the file <code>\source\_post\[post_name].md</code>. See below for example.</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2018-03-06 14:19:41</span><br><span class="line">tags: [Windows]</span><br><span class="line">categories: Windows</span><br><span class="line">---</span><br><span class="line"><span class="section">###Hello</span></span><br><span class="line"></span><br><span class="line">Hello! This is my first blog.</span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">	printf("Hello world!");</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2018-03-06 14:19:41</span><br><span class="line">tags: [Windows]</span><br><span class="line">categories: Windows</span><br><span class="line">---</span><br><span class="line"><span class="section">###Hello</span></span><br><span class="line"></span><br><span class="line">Hello! This is my first blog.</span><br><span class="line"><span class="code">    </span></span><br><span class="line"><span class="code">    printf("Hello world!");</span></span><br></pre></td></tr></table></figure>
 <h3 id="Deploy-to-GitHub"><a href="#Deploy-to-GitHub" class="headerlink" title="Deploy to GitHub"></a>Deploy to GitHub</h3><p>If you are using <code>HTTP</code> to deploy your website to GitHub, you may get a pop-up dialog to input your GitHub account and password when running command <code>hexo deploy</code> during deployment.</p>
 <p>In this case, the <code>root configuration file</code> is configured as below.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repo:</span> <span class="attr">https://github.com/gary5496/gary5496.github.io.git</span></span><br><span class="line">	<span class="attr">name:</span> <span class="string">gary5496</span></span><br><span class="line">	<span class="attr">email:</span> <span class="string">gary5496@163.com</span></span><br><span class="line">	<span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/gary5496/gary5496.github.io.git</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  email:</span> <span class="string">gary5496@163.com</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 <p>If you are using <code>SSH</code> to deploy your website to GitHub, you can follow the below steps.</p>
 <p>a. Run the below command via Git Bash to generate a key pair.</p>
 <pre><code>ssh-keygen -t rsa -C &quot;your_GitHub_email_address&quot;
@@ -583,12 +581,9 @@ ssh-add ~/.ssh/id_rsa
 <p>g. Run the below command to deploy website to GitHub</p>
 <pre><code>hexo deploy
 </code></pre><p>In this case, the <code>root configuration file</code> is configured as below.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">		<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">		<span class="attr">repo:</span> <span class="string">git@github.com:gary5496/gary5496.github.io.git</span></span><br><span class="line">		<span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<h3 id="Count-of-Visitors"><a href="#Count-of-Visitors" class="headerlink" title="Count of Visitors"></a>Count of Visitors</h3><p>Add a project in <a href="https://console.firebase.google.com/u/0/" target="_blank" rel="noopener">https://console.firebase.google.com/u/0/</a>, input any <code>Project Name</code>, choose a <code>Country/Region</code>, and <code>Create project</code>.</p>
-<p>Once the project is created, choose <code>DEVELOP -&gt; Database</code> in the left side menu, click on <code>Get started</code> of <code>Cloud Firestore Beta</code> in the right side, and choose the second option <code>Start in test mode</code> and click on <code>Enable</code> to start the database.</p>
-<p>Click on the <code>Project Overview</code> in the left side menu, and choose <code>Project settings</code>. Note down <code>Project ID</code> and <code>Web API Key</code>.</p>
-<p>Open the <code>theme configuration file</code> and update the parameters as below</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">firestore:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  collection:</span> <span class="string">articles</span> <span class="comment">#required, a string collection name to access firestore database</span></span><br><span class="line"><span class="attr">  apiKey:</span> <span class="string">[your_web_api_key]</span></span><br><span class="line"><span class="attr">  projectId:</span> <span class="string">[your_project_id]</span></span><br><span class="line"><span class="attr">  bluebird:</span> <span class="literal">false</span> <span class="comment">#enable this if you want to include bluebird 3.5.1(core version) Promise polyfill</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:gary5496/gary5496.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h3 id="Count-of-Visitors"><a href="#Count-of-Visitors" class="headerlink" title="Count of Visitors"></a>Count of Visitors</h3><p>Open the <code>theme configuration file</code> and update the parameters as below</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  total_visitors:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  total_visitors_icon:</span> <span class="string">user</span></span><br><span class="line"><span class="attr">  total_views:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  total_views_icon:</span> <span class="string">eye</span></span><br><span class="line"><span class="attr">  post_views:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  post_views_icon:</span> <span class="string">eye</span></span><br></pre></td></tr></table></figure>
 <h3 id="Add-comments-for-website"><a href="#Add-comments-for-website" class="headerlink" title="Add comments for website"></a>Add comments for website</h3><p>Create a new GitHub repository <code>website_comments</code> to save the comments for the website</p>
 <p>Request a GitHub <code>OAuth application</code> via the link <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">https://github.com/settings/applications/new</a>, or via navigation by <code>GitHub homepage -&gt; Avatar on the left upper corner -&gt; Settings -&gt; Developer Settings -&gt; OAuth Apps -&gt; Request a new application</code>. Input the parameters as below, and register application</p>
 <blockquote>
@@ -602,13 +597,13 @@ ssh-add ~/.ssh/id_rsa
 </blockquote>
 <p>Note down the <code>Client ID</code> and <code>Client Secret</code> on the application page.</p>
 <p>Update the <code>theme configuration file</code> to add the below parameters</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  clientID:</span> <span class="string">[above_client_id]</span></span><br><span class="line"><span class="attr">  clientSecret:</span> <span class="string">[above_client_secret]</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">website_comments</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  admin:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  distractionFreeMode:</span> <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line"><span class="attr">  createIssueManually:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  clientID:</span> <span class="string">[above_client_id]</span></span><br><span class="line"><span class="attr">  clientSecret:</span> <span class="string">[above_client_secret]</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">website_comments</span></span><br><span class="line"><span class="attr">  owner:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  admin:</span> <span class="string">gary5496</span></span><br><span class="line"><span class="attr">  distractionFreeMode:</span> <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line"><span class="attr">  createIssueManually:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>Create a file <code>gitalk.swig</code> under folder <code>next/layout/_third-party/comments</code>. See below for the file content. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> not (theme.duoshuo and theme.duoshuo.shortname) and not theme.duoshuo_shortname %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;% <span class="keyword">if</span> theme.gitalk.enable %&#125;  <span class="comment">//_config.yml文件若没有添加enable: true可删除该判断</span></span><br><span class="line"></span><br><span class="line">    &#123;% <span class="keyword">if</span> theme.gitalk.distractionFreeMode  %&#125;      </span><br><span class="line">      &lt;link rel=<span class="string">'stylesheet'</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line">      &lt;script src=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">      &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">          <span class="keyword">var</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line">            clientID:  <span class="string">'&#123;&#123;theme.gitalk.clientID&#125;&#125;'</span>, </span><br><span class="line">            clientSecret: <span class="string">'&#123;&#123;theme.gitalk.clientSecret&#125;&#125;'</span>,</span><br><span class="line">            id: <span class="built_in">window</span>.location.pathname,</span><br><span class="line">            repo: <span class="string">'&#123;&#123;theme.gitalk.repo&#125;&#125;'</span>, </span><br><span class="line">            owner: <span class="string">'&#123;&#123;theme.gitalk.owner&#125;&#125;'</span>, </span><br><span class="line">            admin: <span class="string">'&#123;&#123;theme.gitalk.admin&#125;&#125;'</span>, </span><br><span class="line">            distractionFreeMode: <span class="string">'&#123;&#123;theme.gitalk.distractionFreeMode&#125;&#125;'</span>,</span><br><span class="line">          &#125;)</span><br><span class="line">          gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">      &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> theme.gitalk.enable %&#125;</span><br><span class="line">  &#123;% <span class="keyword">if</span> page.comments %&#125;</span><br><span class="line">    &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line">    &lt;script src=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">      <span class="keyword">const</span> gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line">        clientID: <span class="string">'&#123;&#123;theme.gitalk.clientID&#125;&#125;'</span>,</span><br><span class="line">        clientSecret: <span class="string">'&#123;&#123;theme.gitalk.clientSecret&#125;&#125;'</span>,</span><br><span class="line">        repo: <span class="string">'&#123;&#123;theme.gitalk.repo&#125;&#125;'</span>,</span><br><span class="line">        owner: <span class="string">'&#123;&#123;theme.gitalk.owner&#125;&#125;'</span>,</span><br><span class="line">        admin: <span class="string">'&#123;&#123;theme.gitalk.admin&#125;&#125;'</span>.split(<span class="string">','</span>),</span><br><span class="line">        id: location.pathname,</span><br><span class="line">        <span class="comment">// facebook-like distraction free mode</span></span><br><span class="line">        distractionFreeMode: <span class="string">'&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;'</span>,</span><br><span class="line">        createIssueManually: <span class="string">'&#123;&#123; theme.gitalk.createIssueManually &#125;&#125;'</span></span><br><span class="line">      &#125;)</span><br><span class="line">      gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &#123;% endif %&#125;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
 <p>Update the file <code>index.swig</code> under folder <code>next/layout/_third-party/comments</code> to add the below code</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">'gitalk.swig'</span> %&#125;</span><br></pre></td></tr></table></figure>
 <p>Update the file <code>comments.swig</code> under folder <code>next/layout/_partials</code> to add the below code</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.distractionFreeMode %&#125;  </span><br><span class="line">  &lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.distractionFreeMode %&#125;  </span><br><span class="line">  &lt;div id=<span class="string">"gitalk-container"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="Errors-amp-Tips"><a href="#Errors-amp-Tips" class="headerlink" title="Errors &amp; Tips"></a>Errors &amp; Tips</h3><p>Error message:</p>
 <blockquote>
 <p>After the change on a post, a page or a configuration file, the change is not reflected on the site.</p>
@@ -664,7 +659,7 @@ ssh-add ~/.ssh/id_rsa
       
         <div class="post-tags">
           
-            <a href="/tags/Windows/" rel="tag"># Windows</a>
+            <a href="/tags/Website/" rel="tag"># Website</a>
           
         </div>
       
@@ -768,7 +763,7 @@ ssh-add ~/.ssh/id_rsa
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -791,7 +786,11 @@ ssh-add ~/.ssh/id_rsa
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -820,7 +819,17 @@ ssh-add ~/.ssh/id_rsa
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -836,6 +845,36 @@ ssh-add ~/.ssh/id_rsa
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" title="Markdown Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jsfiddle.net/tw09jte9/7/" title="jsfiddle" target="_blank">jsfiddle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" title="JavaScript - Liao XueFeng" target="_blank">JavaScript - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="Git - Liao XueFeng" target="_blank">Git - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="Blog - Ruan YiFeng" target="_blank">Blog - Ruan YiFeng</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

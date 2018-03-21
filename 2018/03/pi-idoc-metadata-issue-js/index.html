@@ -415,9 +415,9 @@
         <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The PI channel using adapter module <code>IDOCXmlToFlatConvertor</code> with <code>SAPRelease 46C</code> is failed with error message <code>Unable to get meta data for IDOC type &lt;IDOC_TYPE&gt;: SEGMENT_UNKNOWN</code>. </p>
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>The adapter module <code>IDOCXmlToFlatConvertor</code> is using IDOC metadata in Java stack to transform IDOC from XML format to flat file format. We tried to load the IDOC metadata in PI NWA (Java stack) manually with the <code>Connection Factory</code> and <code>SAPRelease</code> parameters maintained in the PI channel, and the load is failed with error message <code>Service node &lt;node&gt; is not accessible; metadata cannot be shown or manipulated</code>. </p>
 <p>After RFC trace, we find that the ECC RFC function <code>IDOCTYPE_READ_COMPLETE</code> is called by PI when loading IDOC metadata in Java stack. The RFC function is changed in the recent upgrade. In the new change, if the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is true, it will add a new IDOC segment <code>E1IDOCENHANCEMENT</code>, which is valid since release 700 (t-code <code>WE31</code>). Since the new IDOC segment is not valid in release <code>46C</code>, the RFC function will be failed, which causes the failure of PI channel.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">IF CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = abap_true.</span><br><span class="line">  READ TABLE LT_SYNTAX WITH KEY SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT TRANSPORTING NO FIELDS.</span><br><span class="line">  IF sy-subrc &lt;&gt; 0.</span><br><span class="line">    DESCRIBE TABLE LT_SYNTAX LINES COUNT.</span><br><span class="line">    READ TABLE lt_syntax INDEX COUNT INTO l_LAST.</span><br><span class="line">    L_LAST-nr = L_LAST-nr + 1.</span><br><span class="line">    l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">    CLEAR: L_LAST-parseg, L_LAST-refsegtyp, L_LAST-mustfl, l_last-parpno.</span><br><span class="line">    L_LAST-occmin = 1.</span><br><span class="line">    L_LAST-hlevel = 01.</span><br><span class="line">    L_LAST-occmax = 999999.</span><br><span class="line">    APPEND L_LAST TO lt_syntax.</span><br><span class="line">  ENDIF.</span><br><span class="line">ENDIF.</span><br></pre></td></tr></table></figure>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">  <span class="keyword">READ</span> <span class="keyword">TABLE</span> LT_SYNTAX <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">  <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">    <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> LT_SYNTAX <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> lt_syntax <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">    L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">    l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">    <span class="keyword">CLEAR</span>: L_LAST-parseg, L_LAST-refsegtyp, L_LAST-mustfl, l_last-parpno.</span><br><span class="line">    L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">    L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">    L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">    <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> lt_syntax.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br><span class="line"><span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
 <h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h3><p>To fix the issue, we can maintain a new entry in table EDICONFIG, so that the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is false. With this change, the new IDOC segment will not be added, and it will fix the issue. A table entry in <code>EDICONFIG</code> for the service user with EDI parameter <code>NO_ENHSEND</code> is added by running program <code>RBDENHANCEDDOCUSET</code>. The service user to load IDOC metadata from PI Java stack could be found in the <code>Connection Factory</code> in NWA.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">METHOD send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  DATA: wa TYPE ediconfig,</span><br><span class="line">        uname like sy-uname.</span><br><span class="line"></span><br><span class="line">  IF cl_rfc=&gt;is_external_direct( ) = abap_true. &quot; external call only</span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    SELECT  SINGLE * FROM ediconfig</span><br><span class="line">      INTO wa</span><br><span class="line">       WHERE uname = uname</span><br><span class="line">        AND edi_global  = &apos; &apos;</span><br><span class="line">        AND edi_param = &apos;NO_ENHSEND&apos;</span><br><span class="line">        AND edi_parval = &apos;X&apos;.</span><br><span class="line"></span><br><span class="line">    IF sy-subrc = 0.</span><br><span class="line">      send_docu = abap_false.</span><br><span class="line">    ELSE.</span><br><span class="line">      send_docu = abap_true.</span><br><span class="line">    ENDIF.</span><br><span class="line"></span><br><span class="line">  ELSE.</span><br><span class="line">    send_docu = abap_true. &quot;</span><br><span class="line">  ENDIF.</span><br><span class="line"></span><br><span class="line">ENDMETHOD.</span><br></pre></td></tr></table></figure>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">METHOD</span> send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  <span class="keyword">DATA</span>: wa <span class="keyword">TYPE</span> ediconfig,</span><br><span class="line">        uname <span class="keyword">like</span> sy-uname.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> cl_rfc=&gt;is_external_direct( ) = <span class="literal">abap_true</span>. <span class="comment">" external call only</span></span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    <span class="keyword">SELECT</span>  <span class="keyword">SINGLE</span> * <span class="keyword">FROM</span> ediconfig</span><br><span class="line">      <span class="keyword">INTO</span> wa</span><br><span class="line">       <span class="keyword">WHERE</span> uname = uname</span><br><span class="line">        <span class="keyword">AND</span> edi_global  = <span class="string">' '</span></span><br><span class="line">        <span class="keyword">AND</span> edi_param = <span class="string">'NO_ENHSEND'</span></span><br><span class="line">        <span class="keyword">AND</span> edi_parval = <span class="string">'X'</span>.</span><br><span class="line"></span><br><span class="line">    <span class="built_in">IF</span> sy-subrc = <span class="number">0</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_false</span>.</span><br><span class="line">    <span class="built_in">ELSE</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">ELSE</span>.</span><br><span class="line">    send_docu = <span class="literal">abap_true</span>. <span class="comment">"</span></span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line"><span class="built_in">ENDMETHOD</span>.</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -548,7 +548,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -571,7 +571,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -600,7 +604,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -616,6 +630,36 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" title="Markdown Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jsfiddle.net/tw09jte9/7/" title="jsfiddle" target="_blank">jsfiddle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" title="JavaScript - Liao XueFeng" target="_blank">JavaScript - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="Git - Liao XueFeng" target="_blank">Git - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="Blog - Ruan YiFeng" target="_blank">Blog - Ruan YiFeng</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

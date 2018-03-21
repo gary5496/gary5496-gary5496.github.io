@@ -316,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-closure/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-testing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -335,7 +335,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/javascript-closure/" itemprop="url">Closure in JavaScript</a></h1>
+                <a class="post-title-link" href="/2018/03/javascript-testing/" itemprop="url">Testing in JavaScript</a></h1>
         
 
         <div class="post-meta">
@@ -347,7 +347,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T15:50:49+08:00">2018-03-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T15:21:52+08:00">2018-03-21</time>
             
 
             
@@ -404,15 +404,51 @@
       
         
           
-          IntroductionIn a function, the variables may come from global variable like window, local variable, or the variable of its ancestor functions. If the variable comes from its ancestor functions, it is 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/javascript-closure/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>There are many ways to test and debug JavaScript code. Here I will note down some methods that I am using.</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-Create-a-HTML-file-with-JavaScript-code"><a href="#1-Create-a-HTML-file-with-JavaScript-code" class="headerlink" title="1. Create a HTML file with JavaScript code"></a>1. Create a HTML file with JavaScript code</h4><p>Create a HTML file such as <code>test.html</code> with JavaScript code in local directory. Open the file directly<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"ISO-8859-1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> test = <span class="string">'Test string'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(test);</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"Hello, World!"</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">This is a test page.</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-Test-with-jsfiddle"><a href="#2-Test-with-jsfiddle" class="headerlink" title="2. Test with jsfiddle"></a>2. Test with jsfiddle</h4><ul>
+<li><p>Open site <a href="https://jsfiddle.net" target="_blank" rel="noopener">jsfiddle</a></p>
+</li>
+<li><p>Add the below code to HTML section</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"console-log"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add the below code to CSS section</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.console-line</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">font-family</span>: monospace;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add the below code to JavaScript section and choose a <code>jQuery</code> library as the <code>FRAMEWORK &amp; EXTENSIONS</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> consoleLine = <span class="string">"&lt;p class=\"console-line\"&gt;&lt;/p&gt;"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span> = &#123;</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#console-log"</span>).append($(consoleLine).html(text));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Choose <code>Save</code> button to save new fiddle, and bookmark the new URL</p>
+</li>
+<li><p>Now, you can add your code for testing. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = <span class="string">"Test String"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br><span class="line">alert(<span class="string">"Hello, World!"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-Test-with-Visual-Studio-Code-and-local-web-server"><a href="#3-Test-with-Visual-Studio-Code-and-local-web-server" class="headerlink" title="3. Test with Visual Studio Code and local web server"></a>3. Test with Visual Studio Code and local web server</h4><ul>
+<li>Install Node.js</li>
+<li>Create a new folder for your project</li>
+<li><p>Add a package.json file to the project folder</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"Demo"</span>, </span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>, </span><br><span class="line">   <span class="attr">"description"</span>: <span class="string">"demo project."</span>, </span><br><span class="line">   <span class="attr">"scripts"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite"</span>: <span class="string">"lite-server --port 10001"</span>, </span><br><span class="line">     <span class="attr">"start"</span>: <span class="string">"npm run lite"</span> </span><br><span class="line">   &#125;, </span><br><span class="line">   <span class="attr">"author"</span>: <span class="string">""</span>, </span><br><span class="line">   <span class="attr">"license"</span>: <span class="string">"ISC"</span>, </span><br><span class="line">   <span class="attr">"devDependencies"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite-server"</span>: <span class="string">"^1.3.1"</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Install the web server</p>
+<p>In a terminal window (command prompt in Windows) opened on your project folder, run this command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>This will install lite-server (defined in package.json), a static server that loads index.html in your default browser and auto refreshes it when application files change.</p>
+</li>
+<li><p>Start the local web server</p>
+<p>Assuming you have an index.html file in your project folder. In the same terminal window (command prompt in Windows) run this command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>Wait a second and index.html is loaded and displayed in your default browser served by your local web server!<br>lite-server is watching your files and refreshes the page as soon as you make changes to any html, js or css files.<br>And if you have VS Code configured to auto save (menu File / Auto Save), you see changes in the browser as you type!</p>
+<p>Notes:</p>
+<blockquote>
+<p>Do not close the command line prompt until you’re done coding in your app for the day<br>It opens on <a href="http://localhost:10001" target="_blank" rel="noopener">http://localhost:10001</a> but you can change the port by editing the package.json file.</p>
+</blockquote>
+<p>That’s it. Now before any coding session just type npm start and you are good to go!</p>
+</li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://blogs.msdn.microsoft.com/cdndevs/2016/01/24/visual-studio-code-and-local-web-server/" target="_blank" rel="noopener">Visual Studio Code and local web server</a></p>
+
+          
         
       
     </div>
@@ -464,7 +500,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-this/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-abap-highlight/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -483,7 +519,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/javascript-this/" itemprop="url">this keyword in JavaScript</a></h1>
+                <a class="post-title-link" href="/2018/03/hexo-abap-highlight/" itemprop="url">Highlight ABAP Language in Hexo</a></h1>
         
 
         <div class="post-meta">
@@ -495,7 +531,325 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T14:31:01+08:00">2018-03-19</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T12:34:49+08:00">2018-03-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ABAP/" itemprop="url" rel="index"><span itemprop="name">ABAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The code highlighting functionality <code>highlight.js</code> is not enabled for ABAP language for Hexo by default. You can follow the below guide to enable it.</p>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><h4 id="1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="1. Update the file .\node_modules\highlight.js\lib\index.js under Hexo base folder, and add the below code"></a>1. Update the file <code>.\node_modules\highlight.js\lib\index.js</code> under Hexo base folder, and add the below code</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hljs.registerLanguage(<span class="string">'abap'</span>, <span class="built_in">require</span>(<span class="string">'./languages/abap'</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="2. Create a file .\node_modules\highlight.js\lib\languages\abap.js under Hexo base folder, and add the below code"></a>2. Create a file <code>.\node_modules\highlight.js\lib\languages\abap.js</code> under Hexo base folder, and add the below code</h4><p>The ABAP language syntax file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/2db174f25da1153f0ca2da12e742526909ad6b3a/src/languages/abap.js" target="_blank" rel="noopener">GitHub</a>, adjusted as below.</p>
+<ul>
+<li>Add <code>module.exports =</code> at the beginning</li>
+<li>Adjust the comment end tag from <code>&#39;\n&#39;</code> to <code>&#39;$&#39;</code></li>
+<li>Correct some typos in the keywords</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">hljs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    case_insensitive: <span class="literal">true</span>,</span><br><span class="line">    keywords: &#123;</span><br><span class="line">    keyword: <span class="string">'ABBREVIATED ABS ABSTRACT FINAL ACCEPT ACCEPTING ACCORDING ACOS ACTUAL ADD ADD-CORRESPONDING ADDITIONS ADJACENT AFTER '</span>  </span><br><span class="line">        +<span class="string">'ALIASES ALL ALLOCATE ANALYZER AND APPEND APPENDING AS ASCENDING DESCENDING ASIN ASSIGN ASSIGNING ATAN ATTRIBUTE AUTHORITY-CHECK '</span></span><br><span class="line">        +<span class="string">'AVG BACK BACKGOUND BEFORE BETWEEN BIG LITTLE BINARY BIT BLANK BLOCK BREAK-POINT BUFFER BY BYPASSING BYTE BYTECHARACTER CALL CASE RESPECTING '</span></span><br><span class="line">        +<span class="string">'CASTING CEIL CENTERED CHANGE CHANGING CHARACTER CHECK CHECKBOX SYMBOL ICONLINE CLASS-DATA CLASS-EVENTS CLASS-METHODS CLEANUP CLEAR '</span></span><br><span class="line">        +<span class="string">'CLIENT CLOCK CLOSE CODE COL_BACKGROUND COL_HEADING COL_NORMAL COL_TOTAL COLLECT COLOR COLUMN COMMENT COMMIT COMMON COMMUNICATION COMPARING '</span></span><br><span class="line">        +<span class="string">'COMPONENT COMPONENTS COMPUTE CONCATENATE CONDENSE CONSTANTS CONTEXT CONTEXTS CONTINUE CONTROL CONTROLS CONVERSION CONVERT COS COSH COUNT COUNTRY '</span></span><br><span class="line">        +<span class="string">'COUNTY CREATE CURRENCY CURRENT CURSOR CUSTOMER-FUNCTION DATA DATABASE DATASET DATE DEALLOCATE DECIMALS DEFAULT UTF-8 NON-UNICODE DEFERRED '</span></span><br><span class="line">        +<span class="string">'DEFINE DEFINING DEFINITION DELETE DELETING DEMAND DESCENDING DESCRIBE DESTINATION DIALOG DIRECTORY DISTANCE DISTINCT DIVIDE DIVIDE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'DUPLICATE DUPLICATES DURING DYNAMIC EDIT EDITOR-CALL ELSE ELSEIF ENCODING ENDING ENDON ENTRIES ERRORS EVENT EVENTS EXCEPTION EXCEPTIONS EXCEPTION-TABLE '</span></span><br><span class="line">        +<span class="string">'EXCLUDE EXCLUDING EXIT EXIT-COMMAND EXP EXPORT EXPORTING EXTENDED EXTENSION EXTRACT FETCH FIELD FIELD-GROUPS FIELDS NO FIELD-SYMBOLS FILTER FINAL FIND '</span></span><br><span class="line">        +<span class="string">'FIRST FLOOR FOR FORMAT FORWARD BACKWARD FOUND FRAC FRAME FREE FRIENDS FROM FUNCTION-POOL GET GIVING GROUP HANDLER HASHED HAVING HEADER HEADING '</span></span><br><span class="line">        +<span class="string">'HELP-ID HIDE HIGH LOW HOLD HOTSPOT ICON ID IGNORING IMMEDIATELY IMPLEMENTATION IMPORT IMPORTING IN INCLUDE INCREMENT INDEX INDEX-LINE INHERITING '</span></span><br><span class="line">        +<span class="string">'INIT INITIAL INITIALIZATION INNER INSERT INSTANCES INTENSIFIED INTERFACES INTERVALS INTO APPENDING INVERTED-DATE IS ITAB JOIN KEEPING '</span></span><br><span class="line">        +<span class="string">'KEY KEYS KIND LANGUAGE LAST LEADING LEAVE LEFT LEFT-JUSTIFIED CIRCULAR LEGACY LENGTH LIKE LINE LINE-COUNT LINES LINE-SELECTION '</span></span><br><span class="line">        +<span class="string">'LINE-SIZE LIST LIST-PROCESSING LOAD LOAD-OF-PROGRAM LOCAL LOCALE LOG LOG10 LOWER '</span></span><br><span class="line">        +<span class="string">'MARGIN MARK MASK MATCH MAX MAXIMUM MEMORY MESSAGE MESSAGE-ID MESSAGES METHODS MIN MOD MODE IF MODIFIER MODIFY MOVE MOVE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'MULTIPLY MULTIPLY-CORRESPONDING NEW NEW-LINE NEW-PAGE NEXT NO- NODES NODETABLE NO-DISPLAY NO-GAP NO-GAPS NO-HEADING WITH-HEADING NON NO-SCROLLING '</span></span><br><span class="line">        +<span class="string">'SCROLLING NOT NO-TITLE WITH-TITLE NO-ZERO NP NS NUMBER OBJECT OBLIGATORY OCCURENCE OCCURENCES OCCURS OF OFF OFFSET ON ONLY ONOFF OPEN '</span></span><br><span class="line">        +<span class="string">'OPTION OPTIONAL OR ORDER OTHERS OUTER OUTPUT-LENGTH OVERLAY PACK PACKAGE PAGE LAST PAGES PARAMETER PARAMETERS PARAMETER-TABLE '</span></span><br><span class="line">        +<span class="string">'PART PERFORM PERFORMING PFN PF-STATUS PLACES POS_HIGH POS_LOW POSITION POSITIONS PRIMARY PRINT PRINT-CONTROL PRIVATE PROCESS PROGRAM PROPERTY '</span></span><br><span class="line">        +<span class="string">'PUBLIC PROTECTED PRIVATE PUSHBUTTON PUT QUICKINFO RADIOBUTTON RAISE RAISING RANGE RANGES READ RECEIVE RECEIVING REDEFINITION '</span></span><br><span class="line">        +<span class="string">'REF REFERENCE REFRESH REJECT RENAMING REPLACE REPLACEMENT REPORT RESERVE RESET RESOLUTION RESULTS RETURN RETURNING RIGHT RIGHT-JUSTIFIED '</span></span><br><span class="line">        +<span class="string">'ROLLBACK ROWS RUN SCAN SCREEN SCREEN-GROUP1 SCREEN-GROUP2 SCREEN-GROUP3 SCREEN-GROUP4 SCREEN-GROUP5 SCREEN-INPUT SCREEN-INTENSIFIED SCROLL '</span></span><br><span class="line">        +<span class="string">'SCROLL-BOUNDARY SEARCH SECTION SELECT SELECTION SELECTIONS SELECTION-SCREEN SELECTION-SET SELECTION-TABLE SELECT-OPTIONS SEND SEPARATED SET '</span></span><br><span class="line">        +<span class="string">'SHARED SHIFT SIGN SIN SINGLE DISTINCT SINH SIZE SKIP SORT SORTABLE SPECIFIED SPLIT SQL SQRT STABLE STAMP STANDARD START STARTING '</span></span><br><span class="line">        +<span class="string">'STATICS STEP-LOOP STOP STRLEN STRUCTURE SUBMIT SUBTRACT SUBTRACT-CORRESPONDING SUFFIX SUM SUPPLY SUPPRESS SYMBOLS SYSTEM-EXCEPTIONS TABLE TABLENAME '</span></span><br><span class="line">        +<span class="string">'TABLES TABLEVIEW TAN TANH TASK TEXT THEN TIME TIMES TITLE TITLEBAR TO TOPIC TOP-OF-PAGE TRAILING TRANSACTION TRANSFER TRANSLATE TRUNC TYPE '</span></span><br><span class="line">        +<span class="string">'TYPELIKE TYPE-POOL TYPE-POOLS TYPES ULINE UNION UNIQUE UNIT UNTIL UP UPDATE UPPER USER-COMMAND USING VALUE VALUES VARY VARYING '</span></span><br><span class="line">        +<span class="string">'VERSION VIA WAIT WHEN WHERE WINDOW WITH WORK WRITE XSTRLEN ZONE TRANSPORTING '</span></span><br><span class="line">        +<span class="string">'CA CN CO CP CS EQ GE GT LE LT NA NE'</span></span><br><span class="line">        +<span class="string">'START-OF-SELECTION START-OF-PAGE END-OF-PAGE END-OF-SELECTION AT ENDAT'</span>,</span><br><span class="line">      literal: <span class="string">'abap_true abap_false'</span>,</span><br><span class="line">      built_in: <span class="string">'DO FORM IF LOOP MODULE START-OF_FILE DEFINE WHILE BEGIN ENDDO ENDFORM ENDIF ENDLOOP ENDMODULE END-OF_FILE END-OF-DEFINITION ENDWHILE END'</span></span><br><span class="line">        +<span class="string">' METHOD ENDMETHOD CHAIN ENDCHAIN CASE ENDCASE FUNCTION ENDFUNCTION ELSEIF ELSE TRY ENDTRY CATCH '</span></span><br><span class="line">    &#125;,</span><br><span class="line">    contains: [ </span><br><span class="line">      hljs.APOS_STRING_MODE,</span><br><span class="line">      hljs.NUMBER_MODE,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'^[*]'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'\b*"'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'built_in'</span>,</span><br><span class="line">        begin: <span class="string">'CALL +([A-Z])'</span>,</span><br><span class="line">        end:<span class="string">' +'</span>,</span><br><span class="line">        relevance: <span class="number">10</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code"><a href="#3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="3. Create a file .\node_modules\highlight.js\styles\abap.css under Hexo base folder, and add the below code"></a>3. Create a file <code>.\node_modules\highlight.js\styles\abap.css</code> under Hexo base folder, and add the below code</h4><p>The ABAP language css file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/f1b511817f2fda61304dead6725daac47704f29b/src/styles/abap.css" target="_blank" rel="noopener">GitHub</a>.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ABAP styles by Cassio Binkowski &lt;cassioiks@gmail.com&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.hljs</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">overflow-x</span>: auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-keyword</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#0005fb</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-string</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#4da31e</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-comment</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#7c7879</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-built_in</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-literal</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-subst</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-number</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#5aceff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder"><a href="#4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder" class="headerlink" title="4. Update the file \node_modules\hexo-util\highlight_alias.json under Hexo base folder"></a>4. Update the file <code>\node_modules\hexo-util\highlight_alias.json</code> under Hexo base folder</h4><p>Add the below field-value mappings to alias object</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>: <span class="string">"abap"</span>,</span><br><span class="line"><span class="string">"ABAP"</span>: <span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
+<p>Add the below value to languages array</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Run <code>hexo clean</code>, <code>hexo generate</code> to generate the files. Below is the result with ABAP code highlighting.</p>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> edisyn <span class="keyword">into</span> <span class="keyword">table</span> i_edisyn</span><br><span class="line">                         <span class="keyword">where</span> idoctyp <span class="keyword">eq</span> doctyp</span><br><span class="line">                         <span class="keyword">and</span>   cimtyp  <span class="keyword">eq</span> cimtyp.</span><br><span class="line">    <span class="built_in">if</span> sy-subrc ne <span class="number">0</span>. <span class="comment">"muß edisyn noch gemerged werden?</span></span><br><span class="line">      ....</span><br><span class="line">    <span class="built_in">endif</span>.<span class="comment">"EDISYN</span></span><br><span class="line"><span class="comment">* nun kann man aus der i_edisyn i_idocsyn füllen</span></span><br><span class="line">    <span class="built_in">loop</span> <span class="keyword">at</span> i_edisyn.</span><br><span class="line">      <span class="keyword">clear</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding i_edisyn <span class="keyword">to</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span> i_edisyn-posno <span class="keyword">to</span> i_idocsyn-nr.</span><br><span class="line">      <span class="keyword">append</span> i_idocsyn.</span><br><span class="line">    <span class="built_in">endloop</span>.</span><br><span class="line">  <span class="built_in">endif</span>.<span class="comment">"cimtyp</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">    <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">      <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">      <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">      L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">      l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">      <span class="keyword">CLEAR</span>: L_LAST-parseg,  L_LAST-mustfl, l_last-parpno.</span><br><span class="line">      L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">      L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">      L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">      <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding L_LAST <span class="keyword">to</span> i_edisyn.</span><br><span class="line">      <span class="keyword">move</span> L_LAST <span class="keyword">to</span> i_edisyn-posno.</span><br><span class="line">      <span class="keyword">append</span> i_edisyn.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/isagalaev/highlight.js/pull/1259" target="_blank" rel="noopener">Add ABAP Language to highlight.js - GitHub</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/hexo-backup/" itemprop="url">Backup Hexo using GitHub</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T22:39:19+08:00">2018-03-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h3><p>You have already installed Git from <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there. </p>
+<h3 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h3><p>You want to backup Hexo website data and restore it from anothter computer.</p>
+<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>Log on GitHub with your account. Create a branch such as <code>backup</code> for repository &lt;account_name&gt;.github.io</p>
+<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><ul>
+<li><p>Open the file <code>.gitignore</code> in Hexo base folder, and check if it contains the below two entries. If no, add them to the file.</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"><span class="string">/node_modules</span></span><br></pre></td></tr></table></figure>
+<p>Directory <code>/.deploy_git</code> contains the files after generation by command <code>hexo generate</code>. We don’t need to backup them.<br>Directory <code>/node_modules</code> contains the node.js modules. We don’t need to backup them.</p>
+</li>
+<li><p>Execute the below command in the first backup</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Init Git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># Create the backup branch, and switch to the new branch</span></span><br><span class="line">git checkout -b backup</span><br><span class="line"><span class="comment"># Link a remote repository to origin</span></span><br><span class="line">git remote add origin git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Execute the below command in each backup</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the files and sub-directories in the current directory to staging area</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># Commit the changes in the staging area to current branch</span></span><br><span class="line">git commit -m <span class="string">"commit_comments"</span></span><br><span class="line"><span class="comment"># Push the backup branch to remote repository backup branch</span></span><br><span class="line">git push origin backup</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Restore"><a href="#Restore" class="headerlink" title="Restore"></a>Restore</h3><p>If you need to restore the Hexo websites in another computer, you have to follow the <a href="https://gary5496.github.io/2018/03/hexo-github-setup/">Hexo setup guide</a> to set up the Hexo in another computer first. Then, run the below command the clone the remote repository backup branch to the local directory.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone the remote repository backup branch to the current directory</span></span><br><span class="line">git <span class="built_in">clone</span> -b backup git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://blog.csdn.net/zk673820543/article/details/52698760" target="_blank" rel="noopener">http://blog.csdn.net/zk673820543/article/details/52698760</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br><a href="http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1" target="_blank" rel="noopener">http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-copy-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/javascript-copy-types/" itemprop="url">Shadow copy and Deep copy in JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T15:57:50+08:00">2018-03-20</time>
             
 
             
@@ -552,16 +906,13 @@
       
         
           
-          BackgroundAfter reading the below few posts about this variable in JavaScript. I think I have to write a post to note down my understanding about it.
-http://www.ruanyifeng.com/blog/2010/04/using_this_
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/javascript-this/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h3 id="Shadow-Copy"><a href="#Shadow-Copy" class="headerlink" title="Shadow Copy"></a>Shadow Copy</h3><p>In a shadow copy, the <code>simple value</code> properties of the source object is copied to the target object. However, for those <code>object</code> properties and methods of source object, the reference is assigned to the target object, instead of copy.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Chinese = &#123;</span><br><span class="line">    nation: <span class="string">"Chinese"</span>,</span><br><span class="line">    birthPlace: [<span class="string">"Beijing"</span>, <span class="string">"Shanghai"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Doctor = &#123;</span><br><span class="line">    career: <span class="string">"Doctor"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extendCopy</span>(<span class="params">p</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123; </span><br><span class="line">        c[i] = p[i];</span><br><span class="line">    &#125;    </span><br><span class="line">    c.uber = p;    </span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Doctor = extendCopy(Chinese);</span><br><span class="line"></span><br><span class="line">Doctor.birthPlace.push(<span class="string">"Hongkong"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(Doctor.birthPlace);     <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br><span class="line"><span class="built_in">console</span>.log(Chinese.birthPlace);    <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Deep-Copy"><a href="#Deep-Copy" class="headerlink" title="Deep Copy"></a>Deep Copy</h3><p>In a deep copy, all the properties and methods of the source object is copied to the target object.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Chinese = &#123;</span><br><span class="line">    nation: <span class="string">"Chinese"</span>,</span><br><span class="line">    birthPlace: [<span class="string">"Beijing"</span>, <span class="string">"Shanghai"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Doctor = &#123;</span><br><span class="line">    career: <span class="string">"Doctor"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span>) &#123;</span><br><span class="line">            c[i] = (p[i].constructor === <span class="built_in">Array</span>) ? [] : &#123;&#125;;</span><br><span class="line">            deepCopy(p[i], c[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c[i] = p[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Doctor = deepCopy(Chinese);</span><br><span class="line"></span><br><span class="line">Doctor.birthPlace.push(<span class="string">"Hongkong"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(Doctor.birthPlace);     <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br><span class="line"><span class="built_in">console</span>.log(Chinese.birthPlace);    <span class="comment">//["Beijing", "Shanghai"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html</a></p>
+
+          
         
       
     </div>
@@ -613,7 +964,7 @@ http://www.ruanyifeng.com/blog/2010/04/using_this_
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/java-convert-inputstream-to-string/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -632,7 +983,7 @@ http://www.ruanyifeng.com/blog/2010/04/using_this_
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/java-convert-inputstream-to-string/" itemprop="url">Convert InputStream to String (Java)</a></h1>
+                <a class="post-title-link" href="/2018/03/javascript-prototype/" itemprop="url">Prototype in JavaScript</a></h1>
         
 
         <div class="post-meta">
@@ -644,7 +995,7 @@ http://www.ruanyifeng.com/blog/2010/04/using_this_
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-16T16:44:03+08:00">2018-03-16</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T11:26:49+08:00">2018-03-20</time>
             
 
             
@@ -665,7 +1016,7 @@ http://www.ruanyifeng.com/blog/2010/04/using_this_
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
 
                 
                 
@@ -701,759 +1052,54 @@ http://www.ruanyifeng.com/blog/2010/04/using_this_
       
         
           
-          BackgroundSometimes, you would need to convert InputStream to String, and then manipulate it, such as check the String in the trace log, etc.
-Here are some ways to convert an InputStream to a String. 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/java-convert-inputstream-to-string/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/pi-idoc-metadata-issue-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/pi-idoc-metadata-issue-js/" itemprop="url">PI IDOC metadata issue in Java Stack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T17:23:14+08:00">2018-03-15</time>
-            
-
-            
-            
-
-            
-          </span>
+            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>To simulate the OO class feature and implement the inheritance functionality in JavaScript, we have the below methods.</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-Inherit-by-calling-parent-constructor-function"><a href="#1-Inherit-by-calling-parent-constructor-function" class="headerlink" title="1. Inherit by calling parent constructor function"></a>1. Inherit by calling parent constructor function</h4><p>Using this method, all the properties and methods of parent function will be copied to the child objects. </p>
+<h5 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h5><ol>
+<li>It will cost more memory if the parent function has lots of properties and methods or the inheritance chain is long.</li>
+<li>The prototype chain is not correct.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, <span class="string">"Cat"</span>);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === <span class="built_in">Object</span>.prototype);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>In this case, the prototype chain will be:</p>
+<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Object.prototype ----&gt; null
+</code></pre><h4 id="2-Inherit-with-one-parent-object"><a href="#2-Inherit-with-one-parent-object" class="headerlink" title="2. Inherit with one parent object"></a>2. Inherit with one parent object</h4><p>Using this method, <strong>one parent object</strong> will be created to save all the properties and methods of parent function, and the parent object is linked to <code>__proto__</code> property of the child objects. </p>
+<h5 id="Pros"><a href="#Pros" class="headerlink" title="Pros:"></a>Pros:</h5><ol>
+<li>It will cost less memory when <strong>creating</strong> new child objects if the parent function has lots of properties and methods or the inheritance chain is long.</li>
+<li>The prototype chain is correct.</li>
+</ol>
+<h5 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons:"></a>Cons:</h5><ol>
+<li>It will cost more memory when <strong>defining</strong> the child function.</li>
+<li>Since one parent object is linked to multiple child objects, the change to the parent object will affect multiple child objects.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype = <span class="keyword">new</span> Animal(&#123;<span class="attr">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype = <span class="keyword">new</span> Animal(&#123;<span class="attr">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">Dog.prototype.constructor = Dog;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === cat2.__proto__);   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.species.species);    <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(Dog.prototype === Cat.prototype);   <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sp = cat1.species;</span><br><span class="line">sp.species = <span class="string">"New Cat"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//New Cat  </span></span><br><span class="line"><span class="built_in">console</span>.log(cat2.species.species);    <span class="comment">//New Cat</span></span><br></pre></td></tr></table></figure>
+<p>In this case, the prototype chain will be:</p>
+<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Animal.prototype ----&gt; Object.prototype ----&gt; null
+</code></pre><h4 id="3-Inherit-with-new-function-object-Recommended"><a href="#3-Inherit-with-new-function-object-Recommended" class="headerlink" title="3. Inherit with new function object - Recommended"></a>3. Inherit with new function object - Recommended</h4><p>Using this method, all the properties and methods of parent function will be copied to the child objects.</p>
+<h5 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros:"></a>Pros:</h5><ol>
+<li>It will cost less memory when <strong>defining</strong> the child function, since only one blank function object is created.</li>
+<li>The prototype chain is correct.</li>
+<li>The change to one child object will not affect other child objects.</li>
+</ol>
+<h5 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons:"></a>Cons:</h5><ol>
+<li>It will cost more memory when <strong>creating</strong> new child objects, since all the properties and methods of parent function will be copied to the child objects, instead of linking one parent object to the child objects.</li>
+</ol>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attribute">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">F.prototype = Animal.prototype;</span><br><span class="line">Cat.prototype = <span class="keyword">new</span> F();</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attribute">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">F.prototype = Animal.prototype;</span><br><span class="line">Dog.prototype = <span class="keyword">new</span> F();</span><br><span class="line">Dog.prototype.constructor = Dog;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === cat2.__proto__);   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.species.species);    <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(Dog.prototype === Cat.prototype);   <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sp = cat1.species;</span><br><span class="line">sp.species = <span class="string">"New Cat"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//New Cat  </span></span><br><span class="line"><span class="built_in">console</span>.log(cat2.species.species);    <span class="comment">//Cat</span></span><br></pre></td></tr></table></figure>
+<p>In this case, the prototype chain will be:</p>
+<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Animal.prototype ----&gt; Object.prototype ----&gt; null
+</code></pre><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
+<li>When create a new object using constructor function, the <code>__proto__</code> of the new created object will point to the same object of <code>ConstructorFunction.prototype</code>.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> animal = <span class="keyword">new</span> Animal(<span class="string">"Cat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(animal.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>We can create a common function for the inheritance in the third method. </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attr">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherits</span>(<span class="params">Child, Parent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    F.prototype = Parent.prototype;</span><br><span class="line">    Child.prototype = <span class="keyword">new</span> F();</span><br><span class="line">    Child.prototype.constructor = Child;</span><br><span class="line">    Child.uber = Parent.prototype;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Cat, Animal);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attr">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Dog, Animal);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>We can define the new methods for the parent function and child function, in the prototype of the constructor function.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Animal.prototype.getspecies = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.species.species;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Dog.prototype.getname = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(dog1.getspecies()); <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.getname());    <span class="comment">//Wan</span></span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014344997013405abfb7f0e1904a04ba6898a384b1e925000" target="_blank" rel="noopener">Prototype Inheritance by Liao Xue Feng</a></p>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PI/" itemprop="url" rel="index"><span itemprop="name">PI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          BackgroundThe PI channel using adapter module IDOCXmlToFlatConvertor with SAPRelease 46C is failed with error message Unable to get meta data for IDOC type &lt;IDOC_TYPE&gt;: SEGMENT_UNKNOWN. 
-Analysi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/pi-idoc-metadata-issue-js/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/pi-idoc-metadata-issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/pi-idoc-metadata-issue/" itemprop="url">PI IDOC metadata issue with error message IDOC_ADAPTER/155</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T14:19:32+08:00">2018-03-15</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PI/" itemprop="url" rel="index"><span itemprop="name">PI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          BackgroundIn ECC tRFC monitor (t-code: SM58), user finds that there are failed tRFC calls to PI system with error message IDOC_ADAPTER/155: EDISDEF: Port &amp;1 segment defn &amp;2 in IDoc type &amp;3
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/pi-idoc-metadata-issue/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/how-to-use-change-pointer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/how-to-use-change-pointer/" itemprop="url">How to send material master delta updates to external system by change pointer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T16:17:32+08:00">2018-03-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          In this guide, I will share the steps about how to use change pointer to send the material master delta updates to external system. For demo purpose, I will write the IDOC to SAP application server fi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/how-to-use-change-pointer/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-github-setup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/hexo-github-setup/" itemprop="url">GitHub website setup with Hexo in Windows</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T14:52:04+08:00">2018-03-06</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          If you want to set up a GitHub website with Hexo in Windows, and you need your website set up with basic functionality, like tags, categories, about, search, theme, visitor count, comments and etc, yo
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/hexo-github-setup/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/excel-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/excel-tips/" itemprop="url">Excel Tips</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T13:43:46+08:00">2018-03-06</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.
-Add leading zeros to a numeric value=TEXT(A1,&quot;0000000000&quot;)
-Add leading zeros to any valu
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/excel-tips/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1493,6 +1139,10 @@ Add leading zeros to any valu
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1533,7 +1183,7 @@ Add leading zeros to any valu
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1556,7 +1206,11 @@ Add leading zeros to any valu
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1585,7 +1239,17 @@ Add leading zeros to any valu
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1601,6 +1265,36 @@ Add leading zeros to any valu
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" title="Markdown Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jsfiddle.net/tw09jte9/7/" title="jsfiddle" target="_blank">jsfiddle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" title="JavaScript - Liao XueFeng" target="_blank">JavaScript - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="Git - Liao XueFeng" target="_blank">Git - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="Blog - Ruan YiFeng" target="_blank">Blog - Ruan YiFeng</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

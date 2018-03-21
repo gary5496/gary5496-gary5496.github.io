@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Gary Guo">
 <meta property="og:description" content="BackgroundIn ECC tRFC monitor (t-code: SM58), user finds that there are failed tRFC calls to PI system with error message IDOC_ADAPTER/155: EDISDEF: Port &amp;amp;1 segment defn &amp;amp;2 in IDoc type &amp;amp;3">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-19T06:31:29.607Z">
+<meta property="og:updated_time" content="2018-03-21T03:54:41.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PI IDOC metadata issue with error message IDOC_ADAPTER&#x2F;155">
 <meta name="twitter:description" content="BackgroundIn ECC tRFC monitor (t-code: SM58), user finds that there are failed tRFC calls to PI system with error message IDOC_ADAPTER/155: EDISDEF: Port &amp;amp;1 segment defn &amp;amp;2 in IDoc type &amp;amp;3">
@@ -426,7 +426,7 @@ FUNCTION IDX_SYNTAX_CHECK
 FUNCTION IDX_STRUCTURE_GET    
 FUNCTION IDX_META_SYNTAX_READ
 </code></pre><p>In the RFC function <code>IDX_META_SYNTAX_READ</code>, it will read the IDOC metadata from database table <code>EDISYN</code> into internal table <code>I_EDISYN</code>, and then add them to internal table <code>I_IDOCSYN</code>. If <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> returns true, it will read the last record of <code>I_IDOCSYN</code>, use the <code>nr</code> field value of the last record, add <code>1</code>, use it as the <code>nr</code> for the new segment <code>E1IDOCENHANCEMENT</code>, and add the new segment to <code>I_IDOCSYN</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    select * from edisyn into table i_edisyn</span><br><span class="line">                         where idoctyp eq doctyp</span><br><span class="line">                         and   cimtyp  eq cimtyp.</span><br><span class="line">    if sy-subrc ne 0. &quot;muß edisyn noch gemerged werden?</span><br><span class="line">      ....</span><br><span class="line">    endif.&quot;EDISYN</span><br><span class="line">* nun kann man aus der i_edisyn i_idocsyn füllen</span><br><span class="line">    loop at i_edisyn.</span><br><span class="line">      clear i_idocsyn.</span><br><span class="line">      move-corresponding i_edisyn to i_idocsyn.</span><br><span class="line">      move i_edisyn-posno to i_idocsyn-nr.</span><br><span class="line">      append i_idocsyn.</span><br><span class="line">    endloop.</span><br><span class="line">  endif.&quot;cimtyp</span><br><span class="line"></span><br><span class="line">  IF CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = abap_true.</span><br><span class="line">    READ TABLE i_idocsyn WITH KEY SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT TRANSPORTING NO FIELDS.</span><br><span class="line">    IF sy-subrc &lt;&gt; 0.</span><br><span class="line">      DESCRIBE TABLE i_idocsyn LINES COUNT.</span><br><span class="line">      READ TABLE i_idocsyn INDEX COUNT INTO l_LAST.</span><br><span class="line">      L_LAST-nr = L_LAST-nr + 1.</span><br><span class="line">      l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">      CLEAR: L_LAST-parseg,  L_LAST-mustfl, l_last-parpno.</span><br><span class="line">      L_LAST-occmin = 1.</span><br><span class="line">      L_LAST-hlevel = 01.</span><br><span class="line">      L_LAST-occmax = 999999.</span><br><span class="line">      APPEND L_LAST TO i_idocsyn.</span><br><span class="line">      move-corresponding L_LAST to i_edisyn.</span><br><span class="line">      move L_LAST to i_edisyn-posno.</span><br><span class="line">      append i_edisyn.</span><br><span class="line">    ENDIF.</span><br><span class="line">  ENDIF.</span><br></pre></td></tr></table></figure>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> edisyn <span class="keyword">into</span> <span class="keyword">table</span> i_edisyn</span><br><span class="line">                         <span class="keyword">where</span> idoctyp <span class="keyword">eq</span> doctyp</span><br><span class="line">                         <span class="keyword">and</span>   cimtyp  <span class="keyword">eq</span> cimtyp.</span><br><span class="line">    <span class="built_in">if</span> sy-subrc ne <span class="number">0</span>. <span class="comment">"muß edisyn noch gemerged werden?</span></span><br><span class="line">      ....</span><br><span class="line">    <span class="built_in">endif</span>.<span class="comment">"EDISYN</span></span><br><span class="line"><span class="comment">* nun kann man aus der i_edisyn i_idocsyn füllen</span></span><br><span class="line">    <span class="built_in">loop</span> <span class="keyword">at</span> i_edisyn.</span><br><span class="line">      <span class="keyword">clear</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding i_edisyn <span class="keyword">to</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span> i_edisyn-posno <span class="keyword">to</span> i_idocsyn-nr.</span><br><span class="line">      <span class="keyword">append</span> i_idocsyn.</span><br><span class="line">    <span class="built_in">endloop</span>.</span><br><span class="line">  <span class="built_in">endif</span>.<span class="comment">"cimtyp</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">    <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">      <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">      <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">      L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">      l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">      <span class="keyword">CLEAR</span>: L_LAST-parseg,  L_LAST-mustfl, l_last-parpno.</span><br><span class="line">      L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">      L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">      L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">      <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding L_LAST <span class="keyword">to</span> i_edisyn.</span><br><span class="line">      <span class="keyword">move</span> L_LAST <span class="keyword">to</span> i_edisyn-posno.</span><br><span class="line">      <span class="keyword">append</span> i_edisyn.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
 <p>Since there is no <code>ORDER BY</code> in the select statement, and neither <code>sort</code> statement after the selection, the order in table <code>I_EDISYN</code> and <code>I_IDOCSYN</code> could be changed in each selection, and the <code>nr</code> field value from the last record may or may not be the maximum <code>nr</code> in the table. If the <code>nr</code> field value from the last record is not the maximum <code>nr</code> in the table as below example, the IDOC segments <code>STANDARD_SEGMENT6</code> and <code>STANDARD_SEGMENT5</code> will not be loaded into PI IDOC metadata correctly (t-code <code>IDX2</code>).  </p>
 <pre><code>0001    STANDARD_SEGMENT1
 0006    STANDARD_SEGMENT6
@@ -444,7 +444,7 @@ FUNCTION IDX_META_SYNTAX_READ
 </li>
 </ol>
 <p>We can add a table entry in <code>EDICONFIG</code> for the user with EDI parameter <code>NO_ENHSEND</code> by running program <code>RBDENHANCEDDOCUSET</code>. The service user to load ECC IDOC metadata from PI could be found in the RFC destination of the PI port <code>SAP&lt;ECC&gt;</code>, which could be found via t-code <code>IDX1</code> in PI.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">METHOD send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  DATA: wa TYPE ediconfig,</span><br><span class="line">        uname like sy-uname.</span><br><span class="line"></span><br><span class="line">  IF cl_rfc=&gt;is_external_direct( ) = abap_true. &quot; external call only</span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    SELECT  SINGLE * FROM ediconfig</span><br><span class="line">      INTO wa</span><br><span class="line">       WHERE uname = uname</span><br><span class="line">        AND edi_global  = &apos; &apos;</span><br><span class="line">        AND edi_param = &apos;NO_ENHSEND&apos;</span><br><span class="line">        AND edi_parval = &apos;X&apos;.</span><br><span class="line"></span><br><span class="line">    IF sy-subrc = 0.</span><br><span class="line">      send_docu = abap_false.</span><br><span class="line">    ELSE.</span><br><span class="line">      send_docu = abap_true.</span><br><span class="line">    ENDIF.</span><br><span class="line"></span><br><span class="line">  ELSE.</span><br><span class="line">    send_docu = abap_true. &quot;</span><br><span class="line">  ENDIF.</span><br><span class="line"></span><br><span class="line">ENDMETHOD.</span><br></pre></td></tr></table></figure>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">METHOD</span> send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  <span class="keyword">DATA</span>: wa <span class="keyword">TYPE</span> ediconfig,</span><br><span class="line">        uname <span class="keyword">like</span> sy-uname.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> cl_rfc=&gt;is_external_direct( ) = <span class="literal">abap_true</span>. <span class="comment">" external call only</span></span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    <span class="keyword">SELECT</span>  <span class="keyword">SINGLE</span> * <span class="keyword">FROM</span> ediconfig</span><br><span class="line">      <span class="keyword">INTO</span> wa</span><br><span class="line">       <span class="keyword">WHERE</span> uname = uname</span><br><span class="line">        <span class="keyword">AND</span> edi_global  = <span class="string">' '</span></span><br><span class="line">        <span class="keyword">AND</span> edi_param = <span class="string">'NO_ENHSEND'</span></span><br><span class="line">        <span class="keyword">AND</span> edi_parval = <span class="string">'X'</span>.</span><br><span class="line"></span><br><span class="line">    <span class="built_in">IF</span> sy-subrc = <span class="number">0</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_false</span>.</span><br><span class="line">    <span class="built_in">ELSE</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">ELSE</span>.</span><br><span class="line">    send_docu = <span class="literal">abap_true</span>. <span class="comment">"</span></span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line"><span class="built_in">ENDMETHOD</span>.</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -575,7 +575,7 @@ FUNCTION IDX_META_SYNTAX_READ
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -598,7 +598,11 @@ FUNCTION IDX_META_SYNTAX_READ
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -627,7 +631,17 @@ FUNCTION IDX_META_SYNTAX_READ
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -643,6 +657,36 @@ FUNCTION IDX_META_SYNTAX_READ
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" title="Markdown Cheatsheet" target="_blank">Markdown Cheatsheet</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jsfiddle.net/tw09jte9/7/" title="jsfiddle" target="_blank">jsfiddle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" title="JavaScript - Liao XueFeng" target="_blank">JavaScript - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" title="Git - Liao XueFeng" target="_blank">Git - Liao XueFeng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="Blog - Ruan YiFeng" target="_blank">Blog - Ruan YiFeng</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

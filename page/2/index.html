@@ -316,6 +316,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-copy-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/javascript-copy-types/" itemprop="url">Shadow copy and Deep copy in JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T15:57:50+08:00">2018-03-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Shadow-Copy"><a href="#Shadow-Copy" class="headerlink" title="Shadow Copy"></a>Shadow Copy</h3><p>In a shadow copy, the <code>simple value</code> properties of the source object is copied to the target object. However, for those <code>object</code> properties and methods of source object, the reference is assigned to the target object, instead of copy.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Chinese = &#123;</span><br><span class="line">    nation: <span class="string">"Chinese"</span>,</span><br><span class="line">    birthPlace: [<span class="string">"Beijing"</span>, <span class="string">"Shanghai"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Doctor = &#123;</span><br><span class="line">    career: <span class="string">"Doctor"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extendCopy</span>(<span class="params">p</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123; </span><br><span class="line">        c[i] = p[i];</span><br><span class="line">    &#125;    </span><br><span class="line">    c.uber = p;    </span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Doctor = extendCopy(Chinese);</span><br><span class="line"></span><br><span class="line">Doctor.birthPlace.push(<span class="string">"Hongkong"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(Doctor.birthPlace);     <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br><span class="line"><span class="built_in">console</span>.log(Chinese.birthPlace);    <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Deep-Copy"><a href="#Deep-Copy" class="headerlink" title="Deep Copy"></a>Deep Copy</h3><p>In a deep copy, all the properties and methods of the source object is copied to the target object.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Chinese = &#123;</span><br><span class="line">    nation: <span class="string">"Chinese"</span>,</span><br><span class="line">    birthPlace: [<span class="string">"Beijing"</span>, <span class="string">"Shanghai"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Doctor = &#123;</span><br><span class="line">    career: <span class="string">"Doctor"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span>) &#123;</span><br><span class="line">            c[i] = (p[i].constructor === <span class="built_in">Array</span>) ? [] : &#123;&#125;;</span><br><span class="line">            deepCopy(p[i], c[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c[i] = p[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Doctor = deepCopy(Chinese);</span><br><span class="line"></span><br><span class="line">Doctor.birthPlace.push(<span class="string">"Hongkong"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(Doctor.birthPlace);     <span class="comment">//["Beijing", "Shanghai", "Hongkong"]</span></span><br><span class="line"><span class="built_in">console</span>.log(Chinese.birthPlace);    <span class="comment">//["Beijing", "Shanghai"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1030,153 +1176,6 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/pi-idoc-metadata-issue-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/pi-idoc-metadata-issue-js/" itemprop="url">PI IDOC metadata issue in Java Stack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-15T17:23:14+08:00">2018-03-15</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PI/" itemprop="url" rel="index"><span itemprop="name">PI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The PI channel using adapter module <code>IDOCXmlToFlatConvertor</code> with <code>SAPRelease 46C</code> is failed with error message <code>Unable to get meta data for IDOC type &lt;IDOC_TYPE&gt;: SEGMENT_UNKNOWN</code>. </p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>The adapter module <code>IDOCXmlToFlatConvertor</code> is using IDOC metadata in Java stack to transform IDOC from XML format to flat file format. We tried to load the IDOC metadata in PI NWA (Java stack) manually with the <code>Connection Factory</code> and <code>SAPRelease</code> parameters maintained in the PI channel, and the load is failed with error message <code>Service node &lt;node&gt; is not accessible; metadata cannot be shown or manipulated</code>. </p>
-<p>After RFC trace, we find that the ECC RFC function <code>IDOCTYPE_READ_COMPLETE</code> is called by PI when loading IDOC metadata in Java stack. The RFC function is changed in the recent upgrade. In the new change, if the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is true, it will add a new IDOC segment <code>E1IDOCENHANCEMENT</code>, which is valid since release 700 (t-code <code>WE31</code>). Since the new IDOC segment is not valid in release <code>46C</code>, the RFC function will be failed, which causes the failure of PI channel.</p>
-<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">  <span class="keyword">READ</span> <span class="keyword">TABLE</span> LT_SYNTAX <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">  <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">    <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> LT_SYNTAX <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> lt_syntax <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">    L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">    l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">    <span class="keyword">CLEAR</span>: L_LAST-parseg, L_LAST-refsegtyp, L_LAST-mustfl, l_last-parpno.</span><br><span class="line">    L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">    L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">    L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">    <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> lt_syntax.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br><span class="line"><span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
-<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h3><p>To fix the issue, we can maintain a new entry in table EDICONFIG, so that the return result of <code>CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( )</code> is false. With this change, the new IDOC segment will not be added, and it will fix the issue. A table entry in <code>EDICONFIG</code> for the service user with EDI parameter <code>NO_ENHSEND</code> is added by running program <code>RBDENHANCEDDOCUSET</code>. The service user to load IDOC metadata from PI Java stack could be found in the <code>Connection Factory</code> in NWA.</p>
-<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">METHOD</span> send_enhanced_docu.</span><br><span class="line"></span><br><span class="line">  <span class="keyword">DATA</span>: wa <span class="keyword">TYPE</span> ediconfig,</span><br><span class="line">        uname <span class="keyword">like</span> sy-uname.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> cl_rfc=&gt;is_external_direct( ) = <span class="literal">abap_true</span>. <span class="comment">" external call only</span></span><br><span class="line">    uname = cl_abap_syst=&gt;get_user_name( ).</span><br><span class="line">    <span class="keyword">SELECT</span>  <span class="keyword">SINGLE</span> * <span class="keyword">FROM</span> ediconfig</span><br><span class="line">      <span class="keyword">INTO</span> wa</span><br><span class="line">       <span class="keyword">WHERE</span> uname = uname</span><br><span class="line">        <span class="keyword">AND</span> edi_global  = <span class="string">' '</span></span><br><span class="line">        <span class="keyword">AND</span> edi_param = <span class="string">'NO_ENHSEND'</span></span><br><span class="line">        <span class="keyword">AND</span> edi_parval = <span class="string">'X'</span>.</span><br><span class="line"></span><br><span class="line">    <span class="built_in">IF</span> sy-subrc = <span class="number">0</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_false</span>.</span><br><span class="line">    <span class="built_in">ELSE</span>.</span><br><span class="line">      send_docu = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line">  <span class="built_in">ELSE</span>.</span><br><span class="line">    send_docu = <span class="literal">abap_true</span>. <span class="comment">"</span></span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br><span class="line"></span><br><span class="line"><span class="built_in">ENDMETHOD</span>.</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1224,7 +1223,7 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1253,7 +1252,9 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1294,7 +1295,11 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

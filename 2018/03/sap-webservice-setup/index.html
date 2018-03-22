@@ -100,28 +100,28 @@
 
 
   
-  <meta name="keywords" content="Website,Hexo,Node.js," />
+  <meta name="keywords" content="SAP,Webservice," />
 
 
-<meta name="description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
-<meta name="keywords" content="Website,Hexo,Node.js">
+<meta name="description" content="To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before. SOAP technical setup in SAP Run t-code SRT_ADMIN to perform automatic setup for the below">
+<meta name="keywords" content="SAP,Webservice">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Debug Hexo with VS Code">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/nodejs-debugging/index.html">
+<meta property="og:title" content="SOAP technical setup in SAP for Webservice">
+<meta property="og:url" content="https://gary5496.github.io/2018/03/sap-webservice-setup/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
+<meta property="og:description" content="To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before. SOAP technical setup in SAP Run t-code SRT_ADMIN to perform automatic setup for the below">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-21T09:21:56.581Z">
+<meta property="og:updated_time" content="2018-03-22T09:15:54.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debug Hexo with VS Code">
-<meta name="twitter:description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
+<meta name="twitter:title" content="SOAP technical setup in SAP for Webservice">
+<meta name="twitter:description" content="To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before. SOAP technical setup in SAP Run t-code SRT_ADMIN to perform automatic setup for the below">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/nodejs-debugging/"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/03/sap-webservice-setup/"/>
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>Debug Hexo with VS Code | Gary Guo</title>
+  <title>SOAP technical setup in SAP for Webservice | Gary Guo</title>
   
 
 
@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/nodejs-debugging/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/sap-webservice-setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Debug Hexo with VS Code</h1>
+          <h1 class="post-title" itemprop="name headline">SOAP technical setup in SAP for Webservice</h1>
         
 
         <div class="post-meta">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T16:48:30+08:00">2018-03-21</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T17:04:11+08:00">2018-03-22</time>
             
 
             
@@ -370,7 +370,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
 
                 
                 
@@ -412,25 +412,26 @@
       
 
       
-        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>I need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code.</p>
-<p>The code for programing language is highlighted when the website files are generated from markdown files using Hexo command <code>hexo generate</code>. Actually, the hexo command <code>hexo generate</code> is the abbreviation for <code>node &lt;hexo_base_folder&gt;/node_modules/hexo/node_modules/hexo-cli/bin/hexo generate</code>. So, I will use the configuration <code>Node.js: Launch Program</code> in VS code to debug the Hexo application.</p>
-<h3 id="Steps-to-debug-Hexo-application"><a href="#Steps-to-debug-Hexo-application" class="headerlink" title="Steps to debug Hexo application"></a>Steps to debug Hexo application</h3><ol>
-<li><p>Open the Hexo base folder in Visual Studio Code.</p>
+        <p>To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before.</p>
+<h3 id="SOAP-technical-setup-in-SAP"><a href="#SOAP-technical-setup-in-SAP" class="headerlink" title="SOAP technical setup in SAP"></a>SOAP technical setup in SAP</h3><ol>
+<li>Run t-code <code>SRT_ADMIN</code> to perform automatic setup for the below technical settings<ul>
+<li>bgRFC inbound destination</li>
+<li>bgRFC supervisor destination</li>
+<li>Service RFC destination and user</li>
+<li>ICF nodes</li>
+</ul>
 </li>
-<li><p>Switch to <code>Debug</code> view, and choose <code>Add Configuration...</code> in the <code>No Configuration</code> dropdown box</p>
-</li>
-<li><p>In the configuration file <code>launch.json</code>, choose <code>{} Node.js: Launch Program</code>, change the program parameter for the Hexo bin file location, and add a parameter <code>args</code> with value <code>generate</code> manually or by pressing <code>Ctrl + Space</code>. Save the configuration file.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // Use IntelliSense to learn about possible attributes.</span><br><span class="line">    // Hover to view descriptions of existing attributes.</span><br><span class="line">    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br><span class="line">    "version": "0.2.0",</span><br><span class="line">    "configurations": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"program"</span>: <span class="string">"$&#123;workspaceFolder&#125;/node_modules/hexo/node_modules/hexo-cli/bin/hexo"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"generate"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Open a JavaScript file in VS code, like <code>&lt;hexo base folder&gt;\node_modules\hexo\node_modules\hexo-cli\lib\hexo.js</code>, and add a breakpoint in it</p>
-</li>
-<li><p>Press the <code>Start debugging</code> button to start debugging, and the VS Code debugger will stop at the breakpoint.</p>
-<p>You will find the below information in <code>DEBUG CONSOLE</code>.</p>
-<blockquote>
-<p>node –inspect-brk=25386 node_modules\hexo\node_modules\hexo-cli\bin\hexo generate<br>Debugger listening on ws://127.0.0.1:25386/f253557e-17e7-4480-aa80-88b839ed4fe2</p>
-</blockquote>
-</li>
+<li>Run t-code <code>SRM_ADMIN</code> to check the technical settings</li>
+<li>Make sure the Webservice SICF service <code>/sap/bc/srt/xip/sap/&lt;webservice_name&gt;</code> is activated in t-code <code>SICF</code></li>
 </ol>
+<h3 id="Errors-and-Resolutions"><a href="#Errors-and-Resolutions" class="headerlink" title="Errors and Resolutions"></a>Errors and Resolutions</h3><p>Errors:</p>
+<blockquote>
+<p>The webservice message is hanging in webservice monitor <code>SRT_MONI</code> with status <em>wait for scheduler</em>.</p>
+</blockquote>
+<p>Resolution:</p>
+<blockquote>
+<p>Based on SAP note <code>2278161</code>, the probable reason is the incomplete setup of bgRFC supervisor destination. Complete the technical settings setup in <code>SRT_ADMIN</code> to fix the issue.</p>
+</blockquote>
 
       
     </div>
@@ -451,11 +452,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Website/" rel="tag"># Website</a>
+            <a href="/tags/SAP/" rel="tag"># SAP</a>
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+            <a href="/tags/Webservice/" rel="tag"># Webservice</a>
           
         </div>
       
@@ -468,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/javascript-testing/" rel="next" title="Testing in JavaScript">
-                <i class="fa fa-chevron-left"></i> Testing in JavaScript
+              <a href="/2018/03/tls-ssl/" rel="next" title="TLS Handshake">
+                <i class="fa fa-chevron-left"></i> TLS Handshake
               </a>
             
           </div>
@@ -477,10 +476,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/tls-ssl/" rel="prev" title="TLS Handshake">
-                TLS Handshake <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -703,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps-to-debug-Hexo-application"><span class="nav-number">2.</span> <span class="nav-text">Steps to debug Hexo application</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOAP-technical-setup-in-SAP"><span class="nav-number">1.</span> <span class="nav-text">SOAP technical setup in SAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Errors-and-Resolutions"><span class="nav-number">2.</span> <span class="nav-text">Errors and Resolutions</span></a></li></ol></div>
             
 
           </div>

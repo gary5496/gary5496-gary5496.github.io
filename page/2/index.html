@@ -316,6 +316,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/hexo-backup/" itemprop="url">Backup Hexo using GitHub</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T22:39:19+08:00">2018-03-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h3><p>You have already installed Git from <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there. </p>
+<h3 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h3><p>You want to backup Hexo website data and restore it from anothter computer.</p>
+<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>Log on GitHub with your account. Create a branch such as <code>backup</code> for repository &lt;account_name&gt;.github.io</p>
+<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><ul>
+<li><p>Open the file <code>.gitignore</code> in Hexo base folder, and check if it contains the below two entries. If no, add them to the file.</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"><span class="string">/node_modules</span></span><br></pre></td></tr></table></figure>
+<p>Directory <code>/.deploy_git</code> contains the files after generation by command <code>hexo generate</code>. We don’t need to backup them.<br>Directory <code>/node_modules</code> contains the node.js modules. We don’t need to backup them.</p>
+</li>
+<li><p>Execute the below command in the first backup</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Init Git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># Create the backup branch, and switch to the new branch</span></span><br><span class="line">git checkout -b backup</span><br><span class="line"><span class="comment"># Link a remote repository to origin</span></span><br><span class="line">git remote add origin git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Execute the below command in each backup</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the files and sub-directories in the current directory to staging area</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># Commit the changes in the staging area to current branch</span></span><br><span class="line">git commit -m <span class="string">"commit_comments"</span></span><br><span class="line"><span class="comment"># Push the backup branch to remote repository backup branch</span></span><br><span class="line">git push origin backup</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Restore"><a href="#Restore" class="headerlink" title="Restore"></a>Restore</h3><p>If you need to restore the Hexo websites in another computer, you have to follow the <a href="https://gary5496.github.io/2018/03/hexo-github-setup/">Hexo setup guide</a> to set up the Hexo in another computer first. Then, run the below command the clone the remote repository backup branch to the local directory.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone the remote repository backup branch to the current directory</span></span><br><span class="line">git <span class="built_in">clone</span> -b backup git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://blog.csdn.net/zk673820543/article/details/52698760" target="_blank" rel="noopener">http://blog.csdn.net/zk673820543/article/details/52698760</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br><a href="http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1" target="_blank" rel="noopener">http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-copy-types/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -938,249 +1097,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/java-convert-inputstream-to-string/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/java-convert-inputstream-to-string/" itemprop="url">Convert InputStream to String (Java)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-16T16:44:03+08:00">2018-03-16</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>Sometimes, you would need to convert InputStream to String, and then manipulate it, such as check the String in the trace log, etc.</p>
-<p>Here are some ways to convert an InputStream to a String. See below link for details.</p>
-<p><a href="https://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string" target="_blank" rel="noopener">https://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string</a></p>
-<h3 id="Ways-to-convert-an-InputStream-to-a-String"><a href="#Ways-to-convert-an-InputStream-to-a-String" class="headerlink" title="Ways to convert an InputStream to a String"></a>Ways to convert an InputStream to a String</h3><ul>
-<li>Using IOUtils.toString (<code>Apache Utils</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String result = IOUtils.toString(inputStream, <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using CharStreams (<code>guava</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String result = CharStreams.toString(<span class="keyword">new</span> InputStreamReader(</span><br><span class="line">      inputStream, Charsets.UTF_8));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using Scanner (<code>JDK</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Scanner s = <span class="keyword">new</span> Scanner(inputStream).useDelimiter(<span class="string">"\\A"</span>);</span><br><span class="line">String result = s.hasNext() ? s.next() : <span class="string">""</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using Stream Api (<code>Java 8</code>). Warning: This solution convert different line breaks (like <code>\r\n</code>) to <code>\n</code>.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String result = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream))</span><br><span class="line">  .lines().collect(Collectors.joining(<span class="string">"\n"</span>));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using parallel Stream Api (<code>Java 8</code>). Warning: This solution convert different line breaks (like <code>\r\n</code>) to <code>\n</code>.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String result = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream)).lines()</span><br><span class="line">   .parallel().collect(Collectors.joining(<span class="string">"\n"</span>));</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using InputStreamReader and StringBuilder (<code>JDK</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> bufferSize = <span class="number">1024</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[bufferSize];</span><br><span class="line"><span class="keyword">final</span> StringBuilder out = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">Reader in = <span class="keyword">new</span> InputStreamReader(inputStream, <span class="string">"UTF-8"</span>);</span><br><span class="line"><span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">    <span class="keyword">int</span> rsz = in.read(buffer, <span class="number">0</span>, buffer.length);</span><br><span class="line">    <span class="keyword">if</span> (rsz &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    out.append(buffer, <span class="number">0</span>, rsz);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> out.toString();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using StringWriter and IOUtils.copy (<code>Apache Commons</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringWriter writer = <span class="keyword">new</span> StringWriter();</span><br><span class="line">IOUtils.copy(inputStream, writer, <span class="string">"UTF-8"</span>);</span><br><span class="line"><span class="keyword">return</span> writer.toString();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using ByteArrayOutputStream and inputStream.read (<code>JDK</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ByteArrayOutputStream result = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line"><span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">int</span> length;</span><br><span class="line"><span class="keyword">while</span> ((length = inputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">    result.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// StandardCharsets.UTF_8.name() &gt; JDK 7</span></span><br><span class="line"><span class="keyword">return</span> result.toString(<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using BufferedReader (<code>JDK</code>). Warning: This solution convert different line breaks (like <code>\n\r</code>) to <code>line.separator</code> system property (for example, in Windows to “\r\n”).</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String newLine = System.getProperty(<span class="string">"line.separator"</span>);</span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</span><br><span class="line">StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">String line; <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    result.append(flag? newLine: <span class="string">""</span>).append(line);</span><br><span class="line">    flag = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> result.toString();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using BufferedInputStream and ByteArrayOutputStream (<code>JDK</code>)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(inputStream);</span><br><span class="line">ByteArrayOutputStream buf = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line"><span class="keyword">int</span> result = bis.read();</span><br><span class="line"><span class="keyword">while</span>(result != -<span class="number">1</span>) &#123;</span><br><span class="line">    buf.write((<span class="keyword">byte</span>) result);</span><br><span class="line">    result = bis.read();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// StandardCharsets.UTF_8.name() &gt; JDK 7</span></span><br><span class="line"><span class="keyword">return</span> buf.toString(<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Using inputStream.read() and StringBuilder (<code>JDK</code>). Warning: This solution has problem with Unicode, for example with Russian text (work correctly only with non-Unicode text)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ch;</span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">while</span>((ch = inputStream.read()) != -<span class="number">1</span>)</span><br><span class="line">    sb.append((<span class="keyword">char</span>)ch);</span><br><span class="line"><span class="keyword">return</span> sb.toString();</span><br></pre></td></tr></table></figure>
-<h3 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h3><ol>
-<li><p>Solutions <code>4</code>, <code>5</code> and <code>9</code> convert different line breaks to one.</p>
-</li>
-<li><p>Solution <code>11</code> can’t work correctly with Unicode text</p>
-</li>
-</ol>
-<h3 id="Performance-tests"><a href="#Performance-tests" class="headerlink" title="Performance tests"></a>Performance tests</h3><p>Performance tests for small <code>String</code> (length = 175), url in github (mode = Average Time, system = Linux, score 1,343 is the best):</p>
-<pre><code>              Benchmark                         Mode  Cnt   Score   Error  Units
- 8. ByteArrayOutputStream and read (JDK)        avgt   10   1,343 ± 0,028  us/op
- 6. InputStreamReader and StringBuilder (JDK)   avgt   10   6,980 ± 0,404  us/op
-10. BufferedInputStream, ByteArrayOutputStream  avgt   10   7,437 ± 0,735  us/op
-11. InputStream.read() and StringBuilder (JDK)  avgt   10   8,977 ± 0,328  us/op
- 7. StringWriter and IOUtils.copy (Apache)      avgt   10  10,613 ± 0,599  us/op
- 1. IOUtils.toString (Apache Utils)             avgt   10  10,605 ± 0,527  us/op
- 3. Scanner (JDK)                               avgt   10  12,083 ± 0,293  us/op
- 2. CharStreams (guava)                         avgt   10  12,999 ± 0,514  us/op
- 4. Stream Api (Java 8)                         avgt   10  15,811 ± 0,605  us/op
- 9. BufferedReader (JDK)                        avgt   10  16,038 ± 0,711  us/op
- 5. parallel Stream Api (Java 8)                avgt   10  21,544 ± 0,583  us/op
-</code></pre><p>Performance tests for big <code>String</code> (length = 50100), url in github (mode = Average Time, system = Linux, score 200,715 is the best):</p>
-<pre><code>               Benchmark                        Mode  Cnt   Score        Error  Units
- 8. ByteArrayOutputStream and read (JDK)        avgt   10   200,715 ±   18,103  us/op
- 1. IOUtils.toString (Apache Utils)             avgt   10   300,019 ±    8,751  us/op
- 6. InputStreamReader and StringBuilder (JDK)   avgt   10   347,616 ±  130,348  us/op
- 7. StringWriter and IOUtils.copy (Apache)      avgt   10   352,791 ±  105,337  us/op
- 2. CharStreams (guava)                         avgt   10   420,137 ±   59,877  us/op
- 9. BufferedReader (JDK)                        avgt   10   632,028 ±   17,002  us/op
- 5. parallel Stream Api (Java 8)                avgt   10   662,999 ±   46,199  us/op
- 4. Stream Api (Java 8)                         avgt   10   701,269 ±   82,296  us/op
-10. BufferedInputStream, ByteArrayOutputStream  avgt   10   740,837 ±    5,613  us/op
- 3. Scanner (JDK)                               avgt   10   751,417 ±   62,026  us/op
-11. InputStream.read() and StringBuilder (JDK)  avgt   10  2919,350 ± 1101,942  us/op
-</code></pre><p>Performance test (Average Time) depending on Input Stream length in Windows 7 system:</p>
-<pre><code>length  182    546     1092    3276    9828    29484   58968
-
-test8  0.38    0.938   1.868   4.448   13.412  36.459  72.708
-test4  2.362   3.609   5.573   12.769  40.74   81.415  159.864
-test5  3.881   5.075   6.904   14.123  50.258  129.937 166.162
-test9  2.237   3.493   5.422   11.977  45.98   89.336  177.39
-test6  1.261   2.12    4.38    10.698  31.821  86.106  186.636
-test7  1.601   2.391   3.646   8.367   38.196  110.221 211.016
-test1  1.529   2.381   3.527   8.411   40.551  105.16  212.573
-test3  3.035   3.934   8.606   20.858  61.571  118.744 235.428
-test2  3.136   6.238   10.508  33.48   43.532  118.044 239.481
-test10 1.593   4.736   7.527   20.557  59.856  162.907 323.147
-test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
-</code></pre><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><p>After you manipulate the InputStream first time, the “cursor” position will be moved to the last of the InputStream. As a result, if you try to manipulate it again, the result will be incorrect. </p>
-<p>If you need to manipulate an InputStream multiple times, you have to run the below codes to reset/reopen it.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">InputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"in.dat"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// first processing</span></span><br><span class="line">String result = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream))</span><br><span class="line">		  .lines().collect(Collectors.joining(<span class="string">"\n"</span>));</span><br><span class="line"></span><br><span class="line">System.out.println(result);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the below code will be required to manipulate FileInputStream multiple times</span></span><br><span class="line">inputStream.close();</span><br><span class="line">inputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"in.dat"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the below code will be required to manipulate ByteArrayInputStream multiple times</span></span><br><span class="line"><span class="comment">//inputStream.reset();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//second processing</span></span><br><span class="line">String result2 = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream))</span><br><span class="line">		  .lines().collect(Collectors.joining(<span class="string">"\n"</span>));</span><br><span class="line"></span><br><span class="line">System.out.println(result2);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1223,7 +1144,7 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1299,7 +1220,9 @@ test11 3.913   11.506  23.26   68.644  207.591 600.444 1211.545
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

@@ -100,28 +100,23 @@
 
 
   
-  <meta name="keywords" content="Website,Hexo,Node.js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
-<meta name="keywords" content="Website,Hexo,Node.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Debug Hexo with VS Code">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/nodejs-debugging/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gary Guo">
+<meta property="og:url" content="https://gary5496.github.io/page/4/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-21T09:21:56.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debug Hexo with VS Code">
-<meta name="twitter:description" content="BackgroundI need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code. The code for programi">
+<meta name="twitter:title" content="Gary Guo">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/nodejs-debugging/"/>
+  <link rel="canonical" href="https://gary5496.github.io/page/4/"/>
 
 
 
@@ -130,7 +125,7 @@
     sidebar: "",
   };
 </script>
-  <title>Debug Hexo with VS Code | Gary Guo</title>
+  <title>Gary Guo</title>
   
 
 
@@ -177,7 +172,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,9 +299,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -320,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/nodejs-debugging/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/excel-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +333,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Debug Hexo with VS Code</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/excel-tips/" itemprop="url">Excel Tips</a></h1>
         
 
         <div class="post-meta">
@@ -349,7 +347,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T16:48:30+08:00">2018-03-21</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T13:43:46+08:00">2018-03-06</time>
             
 
             
@@ -370,7 +368,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
 
                 
                 
@@ -385,14 +383,6 @@
           
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views: 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
           
 
           
@@ -412,26 +402,23 @@
       
 
       
-        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>I need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code.</p>
-<p>The code for programing language is highlighted when the website files are generated from markdown files using Hexo command <code>hexo generate</code>. Actually, the hexo command <code>hexo generate</code> is the abbreviation for <code>node &lt;hexo_base_folder&gt;/node_modules/hexo/node_modules/hexo-cli/bin/hexo generate</code>. So, I will use the configuration <code>Node.js: Launch Program</code> in VS code to debug the Hexo application.</p>
-<h3 id="Steps-to-debug-Hexo-application"><a href="#Steps-to-debug-Hexo-application" class="headerlink" title="Steps to debug Hexo application"></a>Steps to debug Hexo application</h3><ol>
-<li><p>Open the Hexo base folder in Visual Studio Code.</p>
-</li>
-<li><p>Switch to <code>Debug</code> view, and choose <code>Add Configuration...</code> in the <code>No Configuration</code> dropdown box</p>
-</li>
-<li><p>In the configuration file <code>launch.json</code>, choose <code>{} Node.js: Launch Program</code>, change the program parameter for the Hexo bin file location, and add a parameter <code>args</code> with value <code>generate</code> manually or by pressing <code>Ctrl + Space</code>. Save the configuration file.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // Use IntelliSense to learn about possible attributes.</span><br><span class="line">    // Hover to view descriptions of existing attributes.</span><br><span class="line">    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br><span class="line">    "version": "0.2.0",</span><br><span class="line">    "configurations": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"program"</span>: <span class="string">"$&#123;workspaceFolder&#125;/node_modules/hexo/node_modules/hexo-cli/bin/hexo"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"generate"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Open a JavaScript file in VS code, like <code>&lt;hexo base folder&gt;\node_modules\hexo\node_modules\hexo-cli\lib\hexo.js</code>, and add a breakpoint in it</p>
-</li>
-<li><p>Press the <code>Start debugging</code> button to start debugging, and the VS Code debugger will stop at the breakpoint.</p>
-<p>You will find the below information in <code>DEBUG CONSOLE</code>.</p>
-<blockquote>
-<p>node –inspect-brk=25386 node_modules\hexo\node_modules\hexo-cli\bin\hexo generate<br>Debugger listening on ws://127.0.0.1:25386/f253557e-17e7-4480-aa80-88b839ed4fe2</p>
-</blockquote>
-</li>
-</ol>
+        
+          
+            <p>Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.</p>
+<h3 id="Add-leading-zeros-to-a-numeric-value"><a href="#Add-leading-zeros-to-a-numeric-value" class="headerlink" title="Add leading zeros to a numeric value"></a>Add leading zeros to a numeric value</h3><pre><code>=TEXT(A1,&quot;0000000000&quot;)
+</code></pre><h3 id="Add-leading-zeros-to-any-value"><a href="#Add-leading-zeros-to-any-value" class="headerlink" title="Add leading zeros to any value"></a>Add leading zeros to any value</h3><pre><code>=RIGHT(REPT(&quot;0&quot;,10)&amp;A2,10)
+</code></pre><p>The symbol <code>&amp;</code> will be used to concatenate the strings. The function <code>REPT</code> will repeat the character for times specified.</p>
+<h3 id="Look-up-a-value-from-a-range"><a href="#Look-up-a-value-from-a-range" class="headerlink" title="Look up a value from a range"></a>Look up a value from a range</h3><pre><code>G5=VLOOKUP(&quot;string&quot;,B2:F200,2,FALSE)
+</code></pre><p>The above example will look up the value <code>string</code> from the first column <code>B</code> and the current row <code>5</code> of the range <code>B2:F206</code>, and the value of <code>C5</code>, which is specified by the 3rd parameter <code>2</code>, will be returned. The fourth parameter <code>FALSE</code> means exact match.</p>
+<h3 id="Convert-an-error-value-to-blank"><a href="#Convert-an-error-value-to-blank" class="headerlink" title="Convert an error value to blank"></a>Convert an error value to blank</h3><pre><code>=IFERROR(VLOOKUP(B251,A$1:I$360,8,FALSE),&quot;&quot;)
+</code></pre><p>Since the <code>VLOOKUP</code> function may return an error value if the look-up is failed, we can use the <code>IFERROR</code> function to convert the error value to blank.</p>
+<h3 id="Get-a-substring-from-a-string"><a href="#Get-a-substring-from-a-string" class="headerlink" title="Get a substring from a string"></a>Get a substring from a string</h3><pre><code>=MID(C2,2,3)
+</code></pre><p>The above example will get the substring from string C2. It will begin at the second position, and the length will be 3.</p>
+<h3 id="Summarize-the-value-by-some-conditions"><a href="#Summarize-the-value-by-some-conditions" class="headerlink" title="Summarize the value by some conditions"></a>Summarize the value by some conditions</h3><pre><code>=SUMIFS(A:A,B:B,&quot;&gt;10&quot;, B:B,&quot;&lt;20&quot;)
+</code></pre><p>The above example will summarize the values for A column, when the value in column B is greater than 10 and less than 20.</p>
 
+          
+        
       
     </div>
 
@@ -449,44 +436,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Website/" rel="tag"># Website</a>
-          
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/javascript-testing/" rel="next" title="Testing in JavaScript">
-                <i class="fa fa-chevron-left"></i> Testing in JavaScript
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/tls-ssl/" rel="prev" title="TLS Handshake">
-                TLS Handshake <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -496,24 +453,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="gitalk-container"></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -534,17 +485,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -693,22 +635,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps-to-debug-Hexo-application"><span class="nav-number">2.</span> <span class="nav-text">Steps to debug Hexo application</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -861,10 +787,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.5"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.5"></script>
-
-
 
   
 
@@ -900,23 +822,6 @@
 
 
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script type="text/javascript">
-      const gitalk = new Gitalk({
-        clientID: 'eb46b34271d9e8373ae4',
-        clientSecret: '3a26795df7299057098c9533c6bb73bc6da3b13d',
-        repo: 'website_comments',
-        owner: 'gary5496',
-        admin: 'gary5496'.split(','),
-        id: location.pathname,
-        // facebook-like distraction free mode
-        distractionFreeMode: 'true',
-        createIssueManually: 'false'
-      })
-      gitalk.render('gitalk-container')
-    </script>
   
 
 

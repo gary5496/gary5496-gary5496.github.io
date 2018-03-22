@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://gary5496.github.io/"/>
-  <updated>2018-03-22T08:07:33.458Z</updated>
+  <updated>2018-03-22T09:15:54.239Z</updated>
   <id>https://gary5496.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SOAP technical setup in SAP for Webservice</title>
+    <link href="https://gary5496.github.io/2018/03/sap-webservice-setup/"/>
+    <id>https://gary5496.github.io/2018/03/sap-webservice-setup/</id>
+    <published>2018-03-22T09:04:11.000Z</published>
+    <updated>2018-03-22T09:15:54.239Z</updated>
+    
+    <content type="html"><![CDATA[<p>To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before.</p><h3 id="SOAP-technical-setup-in-SAP"><a href="#SOAP-technical-setup-in-SAP" class="headerlink" title="SOAP technical setup in SAP"></a>SOAP technical setup in SAP</h3><ol><li>Run t-code <code>SRT_ADMIN</code> to perform automatic setup for the below technical settings<ul><li>bgRFC inbound destination</li><li>bgRFC supervisor destination</li><li>Service RFC destination and user</li><li>ICF nodes</li></ul></li><li>Run t-code <code>SRM_ADMIN</code> to check the technical settings</li><li>Make sure the Webservice SICF service <code>/sap/bc/srt/xip/sap/&lt;webservice_name&gt;</code> is activated in t-code <code>SICF</code></li></ol><h3 id="Errors-and-Resolutions"><a href="#Errors-and-Resolutions" class="headerlink" title="Errors and Resolutions"></a>Errors and Resolutions</h3><p>Errors:</p><blockquote><p>The webservice message is hanging in webservice monitor <code>SRT_MONI</code> with status <em>wait for scheduler</em>.</p></blockquote><p>Resolution:</p><blockquote><p>Based on SAP note <code>2278161</code>, the probable reason is the incomplete setup of bgRFC supervisor destination. Complete the technical settings setup in <code>SRT_ADMIN</code> to fix the issue.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before.&lt;/p&gt;
+&lt;h3 id=&quot;SOAP-technical-
+      
+    
+    </summary>
+    
+      <category term="SAP" scheme="https://gary5496.github.io/categories/SAP/"/>
+    
+    
+      <category term="SAP" scheme="https://gary5496.github.io/tags/SAP/"/>
+    
+      <category term="Webservice" scheme="https://gary5496.github.io/tags/Webservice/"/>
+    
+  </entry>
   
   <entry>
     <title>TLS Handshake</title>

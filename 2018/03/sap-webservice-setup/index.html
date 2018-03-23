@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Gary Guo">
 <meta property="og:description" content="To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before. SOAP technical setup in SAP Run t-code SRT_ADMIN to perform automatic setup for the below">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-22T09:15:54.239Z">
+<meta property="og:updated_time" content="2018-03-22T09:18:24.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SOAP technical setup in SAP for Webservice">
 <meta name="twitter:description" content="To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before. SOAP technical setup in SAP Run t-code SRT_ADMIN to perform automatic setup for the below">
@@ -424,14 +424,18 @@
 <li>Run t-code <code>SRM_ADMIN</code> to check the technical settings</li>
 <li>Make sure the Webservice SICF service <code>/sap/bc/srt/xip/sap/&lt;webservice_name&gt;</code> is activated in t-code <code>SICF</code></li>
 </ol>
-<h3 id="Errors-and-Resolutions"><a href="#Errors-and-Resolutions" class="headerlink" title="Errors and Resolutions"></a>Errors and Resolutions</h3><p>Errors:</p>
+<h3 id="Errors-and-Resolutions"><a href="#Errors-and-Resolutions" class="headerlink" title="Errors and Resolutions"></a>Errors and Resolutions</h3><ul>
+<li><p>Error:</p>
 <blockquote>
 <p>The webservice message is hanging in webservice monitor <code>SRT_MONI</code> with status <em>wait for scheduler</em>.</p>
 </blockquote>
-<p>Resolution:</p>
+</li>
+<li><p>Resolution:</p>
 <blockquote>
 <p>Based on SAP note <code>2278161</code>, the probable reason is the incomplete setup of bgRFC supervisor destination. Complete the technical settings setup in <code>SRT_ADMIN</code> to fix the issue.</p>
 </blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -476,6 +480,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/client-auth-and-server-auth/" rel="prev" title="SSL Client Authentication and SSL Server Authentication">
+                SSL Client Authentication and SSL Server Authentication <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -554,7 +562,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

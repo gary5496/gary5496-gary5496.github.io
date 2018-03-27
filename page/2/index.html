@@ -316,6 +316,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/nodejs-debugging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/nodejs-debugging/" itemprop="url">Debug Hexo with VS Code</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T16:48:30+08:00">2018-03-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>I need to add the code highlighting feature for ABAP language in Hexo, so I would need to debug the Hexo Node.js application. The tool I am using is Visual Studio Code.</p>
+<p>The code for programing language is highlighted when the website files are generated from markdown files using Hexo command <code>hexo generate</code>. Actually, the hexo command <code>hexo generate</code> is the abbreviation for <code>node &lt;hexo_base_folder&gt;/node_modules/hexo/node_modules/hexo-cli/bin/hexo generate</code>. So, I will use the configuration <code>Node.js: Launch Program</code> in VS code to debug the Hexo application.</p>
+<h3 id="Steps-to-debug-Hexo-application"><a href="#Steps-to-debug-Hexo-application" class="headerlink" title="Steps to debug Hexo application"></a>Steps to debug Hexo application</h3><ol>
+<li><p>Open the Hexo base folder in Visual Studio Code.</p>
+</li>
+<li><p>Switch to <code>Debug</code> view, and choose <code>Add Configuration...</code> in the <code>No Configuration</code> dropdown box</p>
+</li>
+<li><p>In the configuration file <code>launch.json</code>, choose <code>{} Node.js: Launch Program</code>, change the program parameter for the Hexo bin file location, and add a parameter <code>args</code> with value <code>generate</code> manually or by pressing <code>Ctrl + Space</code>. Save the configuration file.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // Use IntelliSense to learn about possible attributes.</span><br><span class="line">    // Hover to view descriptions of existing attributes.</span><br><span class="line">    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br><span class="line">    "version": "0.2.0",</span><br><span class="line">    "configurations": [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"node"</span>,</span><br><span class="line">        <span class="attr">"program"</span>: <span class="string">"$&#123;workspaceFolder&#125;/node_modules/hexo/node_modules/hexo-cli/bin/hexo"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: [</span><br><span class="line">            <span class="string">"generate"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Open a JavaScript file in VS code, like <code>&lt;hexo base folder&gt;\node_modules\hexo\node_modules\hexo-cli\lib\hexo.js</code>, and add a breakpoint in it</p>
+</li>
+<li><p>Press the <code>Start debugging</code> button to start debugging, and the VS Code debugger will stop at the breakpoint.</p>
+<p>You will find the below information in <code>DEBUG CONSOLE</code>.</p>
+<blockquote>
+<p>node –inspect-brk=25386 node_modules\hexo\node_modules\hexo-cli\bin\hexo generate<br>Debugger listening on ws://127.0.0.1:25386/f253557e-17e7-4480-aa80-88b839ed4fe2</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-testing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -949,193 +1109,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-prototype/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/javascript-prototype/" itemprop="url">Prototype in JavaScript</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T11:26:49+08:00">2018-03-20</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>To simulate the OO class feature and implement the inheritance functionality in JavaScript, we have the below methods.</p>
-<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-Inherit-by-calling-parent-constructor-function"><a href="#1-Inherit-by-calling-parent-constructor-function" class="headerlink" title="1. Inherit by calling parent constructor function"></a>1. Inherit by calling parent constructor function</h4><p>Using this method, all the properties and methods of parent function will be copied to the child objects. </p>
-<h5 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h5><ol>
-<li>It will cost more memory if the parent function has lots of properties and methods or the inheritance chain is long.</li>
-<li>The prototype chain is not correct.</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, <span class="string">"Cat"</span>);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === <span class="built_in">Object</span>.prototype);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>In this case, the prototype chain will be:</p>
-<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Object.prototype ----&gt; null
-</code></pre><h4 id="2-Inherit-with-one-parent-object"><a href="#2-Inherit-with-one-parent-object" class="headerlink" title="2. Inherit with one parent object"></a>2. Inherit with one parent object</h4><p>Using this method, <strong>one parent object</strong> will be created to save all the properties and methods of parent function, and the parent object is linked to <code>__proto__</code> property of the child objects. </p>
-<h5 id="Pros"><a href="#Pros" class="headerlink" title="Pros:"></a>Pros:</h5><ol>
-<li>It will cost less memory when <strong>creating</strong> new child objects if the parent function has lots of properties and methods or the inheritance chain is long.</li>
-<li>The prototype chain is correct.</li>
-</ol>
-<h5 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons:"></a>Cons:</h5><ol>
-<li>It will cost more memory when <strong>defining</strong> the child function.</li>
-<li>Since one parent object is linked to multiple child objects, the change to the parent object will affect multiple child objects.</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype = <span class="keyword">new</span> Animal(&#123;<span class="attr">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype = <span class="keyword">new</span> Animal(&#123;<span class="attr">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">Dog.prototype.constructor = Dog;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === cat2.__proto__);   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.species.species);    <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(Dog.prototype === Cat.prototype);   <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sp = cat1.species;</span><br><span class="line">sp.species = <span class="string">"New Cat"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//New Cat  </span></span><br><span class="line"><span class="built_in">console</span>.log(cat2.species.species);    <span class="comment">//New Cat</span></span><br></pre></td></tr></table></figure>
-<p>In this case, the prototype chain will be:</p>
-<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Animal.prototype ----&gt; Object.prototype ----&gt; null
-</code></pre><h4 id="3-Inherit-with-new-function-object-Recommended"><a href="#3-Inherit-with-new-function-object-Recommended" class="headerlink" title="3. Inherit with new function object - Recommended"></a>3. Inherit with new function object - Recommended</h4><p>Using this method, all the properties and methods of parent function will be copied to the child objects.</p>
-<h5 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros:"></a>Pros:</h5><ol>
-<li>It will cost less memory when <strong>defining</strong> the child function, since only one blank function object is created.</li>
-<li>The prototype chain is correct.</li>
-<li>The change to one child object will not affect other child objects.</li>
-</ol>
-<h5 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons:"></a>Cons:</h5><ol>
-<li>It will cost more memory when <strong>creating</strong> new child objects, since all the properties and methods of parent function will be copied to the child objects, instead of linking one parent object to the child objects.</li>
-</ol>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attribute">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">F.prototype = Animal.prototype;</span><br><span class="line">Cat.prototype = <span class="keyword">new</span> F();</span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attribute">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">F.prototype = Animal.prototype;</span><br><span class="line">Dog.prototype = <span class="keyword">new</span> F();</span><br><span class="line">Dog.prototype.constructor = Dog;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//Cat</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === cat2.__proto__);   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__ === Cat.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(cat1.__proto__.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.species.species);    <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(Dog.prototype === Cat.prototype);   <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sp = cat1.species;</span><br><span class="line">sp.species = <span class="string">"New Cat"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cat1.species.species);    <span class="comment">//New Cat  </span></span><br><span class="line"><span class="built_in">console</span>.log(cat2.species.species);    <span class="comment">//Cat</span></span><br></pre></td></tr></table></figure>
-<p>In this case, the prototype chain will be:</p>
-<pre><code>new Cat() ----&gt; Cat.prototype ----&gt; Animal.prototype ----&gt; Object.prototype ----&gt; null
-</code></pre><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
-<li>When create a new object using constructor function, the <code>__proto__</code> of the new created object will point to the same object of <code>ConstructorFunction.prototype</code>.</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> animal = <span class="keyword">new</span> Animal(<span class="string">"Cat"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(animal.__proto__ === Animal.prototype);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>We can create a common function for the inheritance in the third method. </li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">species</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = species;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attr">species</span>: <span class="string">"Cat"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherits</span>(<span class="params">Child, Parent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    F.prototype = Parent.prototype;</span><br><span class="line">    Child.prototype = <span class="keyword">new</span> F();</span><br><span class="line">    Child.prototype.constructor = Child;</span><br><span class="line">    Child.uber = Parent.prototype;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Cat, Animal);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"Kitty"</span>,<span class="string">"Yellow"</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> Cat(<span class="string">"Miao"</span>,<span class="string">"White"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>)</span>&#123;</span><br><span class="line">    Animal.call(<span class="keyword">this</span>, &#123;<span class="attr">species</span>: <span class="string">"Dog"</span>&#125;);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Dog, Animal);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog1 = <span class="keyword">new</span> Dog(<span class="string">"Wan"</span>,<span class="string">"Yellow"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>We can define the new methods for the parent function and child function, in the prototype of the constructor function.</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Animal.prototype.getspecies = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.species.species;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Dog.prototype.getname = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(dog1.getspecies()); <span class="comment">//Dog</span></span><br><span class="line"><span class="built_in">console</span>.log(dog1.getname());    <span class="comment">//Wan</span></span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014344997013405abfb7f0e1904a04ba6898a384b1e925000" target="_blank" rel="noopener">Prototype Inheritance by Liao Xue Feng</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1183,7 +1156,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

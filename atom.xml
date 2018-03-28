@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://gary5496.github.io/"/>
-  <updated>2018-03-27T09:05:48.472Z</updated>
+  <updated>2018-03-28T09:40:03.360Z</updated>
   <id>https://gary5496.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABAP development for Status Management in SAP</title>
+    <link href="https://gary5496.github.io/2018/03/sap-status-functions/"/>
+    <id>https://gary5496.github.io/2018/03/sap-status-functions/</id>
+    <published>2018-03-28T07:57:53.000Z</published>
+    <updated>2018-03-28T09:40:03.360Z</updated>
+    
+    <content type="html"><![CDATA[<p>Below you will find some objects which is useful when you are performing ABAP development for status management in SAP.</p><h3 id="Function-Modules"><a href="#Function-Modules" class="headerlink" title="Function Modules"></a>Function Modules</h3><ol><li><code>STATUS_READ</code>: With this function, you can get the system status and user status internal codes, such as <code>I0001</code>, <code>E0001</code>.</li><li><code>STATUS_TEXT_EDIT</code>: With this function, you can get the external status code <code>REL</code> <code>APPR</code> for one object. In an update transaction, if you set the input parameter <code>BYPASS_BUFFER</code> to <code>X</code>, it will get the old status code from database. If you set the input parameter <code>BYPASS_BUFFER</code> to blank, it will get the new status code after the change.</li><li><code>STATUS_CHANGE_INTERN</code>: With this function, you can update the system status.</li><li><code>STATUS_CHANGE_EXTERN</code>: With this function, you can update the user status.</li><li><code>STATUS_CHANGES_GET</code>: With this function, you can get the status changes in the current update transaction.</li></ol><h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><ol><li><code>JSTO</code>: Status object information. It contains the status profile and object category for one object.</li><li><code>JEST</code>: Individual Object Status. It contains the object status information. Field <code>INACT</code> indicates whether the status is active or not.</li><li><code>TJ02T</code>: System status texts. It contains the external status code and description for one system status, which is <code>INNNN</code>.</li><li><code>TJ30T</code>: Texts for User Status. It contains the external status code and description for one user status, which is <code>ENNNN</code>. </li><li><code>JCDS</code>: Change Documents for system/user status. It contains the change documents for status management.</li></ol><h3 id="T-codes"><a href="#T-codes" class="headerlink" title="T-codes"></a>T-codes</h3><ol><li><code>BS23</code>: Display system status</li><li><code>BS03</code>: Display status profile (user status)</li></ol><h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul><li>You can use <code>Authorization key</code> to control the authorization to update user status. If the auth key is assigned to one user status in status profile, the authorization with auth object <code>B_USERSTAT</code> and auth key should be assigned to the user, so that one is able to update the user status. </li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Below you will find some objects which is useful when you are performing ABAP development for status management in SAP.&lt;/p&gt;
+&lt;h3 id=&quot;Funct
+      
+    
+    </summary>
+    
+      <category term="SAP" scheme="https://gary5496.github.io/categories/SAP/"/>
+    
+    
+      <category term="SAP" scheme="https://gary5496.github.io/tags/SAP/"/>
+    
+      <category term="ABAP" scheme="https://gary5496.github.io/tags/ABAP/"/>
+    
+  </entry>
   
   <entry>
     <title>Async and Await Keywords in JavaScript</title>

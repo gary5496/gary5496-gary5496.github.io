@@ -100,28 +100,23 @@
 
 
   
-  <meta name="keywords" content="Website,Git," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
-<meta name="keywords" content="Website,Git">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Backup Hexo using GitHub">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/hexo-backup/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gary Guo">
+<meta property="og:url" content="https://gary5496.github.io/page/5/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-21T08:26:03.795Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Backup Hexo using GitHub">
-<meta name="twitter:description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
+<meta name="twitter:title" content="Gary Guo">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/hexo-backup/"/>
+  <link rel="canonical" href="https://gary5496.github.io/page/5/"/>
 
 
 
@@ -130,7 +125,7 @@
     sidebar: "",
   };
 </script>
-  <title>Backup Hexo using GitHub | Gary Guo</title>
+  <title>Gary Guo</title>
   
 
 
@@ -177,7 +172,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,9 +299,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -320,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/excel-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +333,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Backup Hexo using GitHub</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/excel-tips/" itemprop="url">Excel Tips</a></h1>
         
 
         <div class="post-meta">
@@ -349,7 +347,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T22:39:19+08:00">2018-03-20</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T13:43:46+08:00">2018-03-06</time>
             
 
             
@@ -370,7 +368,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
 
                 
                 
@@ -385,14 +383,6 @@
           
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views: 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
           
 
           
@@ -412,25 +402,23 @@
       
 
       
-        <h3 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h3><p>You have already installed Git from <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there. </p>
-<h3 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h3><p>You want to backup Hexo website data and restore it from anothter computer.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>Log on GitHub with your account. Create a branch such as <code>backup</code> for repository &lt;account_name&gt;.github.io</p>
-<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><ul>
-<li><p>Open the file <code>.gitignore</code> in Hexo base folder, and check if it contains the below two entries. If no, add them to the file.</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"><span class="string">/node_modules</span></span><br></pre></td></tr></table></figure>
-<p>Directory <code>/.deploy_git</code> contains the files after generation by command <code>hexo generate</code>. We don’t need to backup them.<br>Directory <code>/node_modules</code> contains the node.js modules. We don’t need to backup them.</p>
-</li>
-<li><p>Execute the below command in the first backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Init Git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># Create the backup branch, and switch to the new branch</span></span><br><span class="line">git checkout -b backup</span><br><span class="line"><span class="comment"># Link a remote repository to origin</span></span><br><span class="line">git remote add origin git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Execute the below command in each backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the files and sub-directories in the current directory to staging area</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># Commit the changes in the staging area to current branch</span></span><br><span class="line">git commit -m <span class="string">"commit_comments"</span></span><br><span class="line"><span class="comment"># Push the backup branch to remote repository backup branch</span></span><br><span class="line">git push origin backup</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="Restore"><a href="#Restore" class="headerlink" title="Restore"></a>Restore</h3><p>If you need to restore the Hexo websites in another computer, you have to follow the <a href="https://gary5496.github.io/2018/03/hexo-github-setup/">Hexo setup guide</a> to set up the Hexo in another computer first. Then, run the below command the clone the remote repository backup branch to the local directory.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone the remote repository backup branch to the current directory</span></span><br><span class="line">git <span class="built_in">clone</span> -b backup git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://blog.csdn.net/zk673820543/article/details/52698760" target="_blank" rel="noopener">http://blog.csdn.net/zk673820543/article/details/52698760</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br><a href="http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1" target="_blank" rel="noopener">http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1</a></p>
+        
+          
+            <p>Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.</p>
+<h3 id="Add-leading-zeros-to-a-numeric-value"><a href="#Add-leading-zeros-to-a-numeric-value" class="headerlink" title="Add leading zeros to a numeric value"></a>Add leading zeros to a numeric value</h3><pre><code>=TEXT(A1,&quot;0000000000&quot;)
+</code></pre><h3 id="Add-leading-zeros-to-any-value"><a href="#Add-leading-zeros-to-any-value" class="headerlink" title="Add leading zeros to any value"></a>Add leading zeros to any value</h3><pre><code>=RIGHT(REPT(&quot;0&quot;,10)&amp;A2,10)
+</code></pre><p>The symbol <code>&amp;</code> will be used to concatenate the strings. The function <code>REPT</code> will repeat the character for times specified.</p>
+<h3 id="Look-up-a-value-from-a-range"><a href="#Look-up-a-value-from-a-range" class="headerlink" title="Look up a value from a range"></a>Look up a value from a range</h3><pre><code>G5=VLOOKUP(&quot;string&quot;,B2:F200,2,FALSE)
+</code></pre><p>The above example will look up the value <code>string</code> from the first column <code>B</code> and the current row <code>5</code> of the range <code>B2:F206</code>, and the value of <code>C5</code>, which is specified by the 3rd parameter <code>2</code>, will be returned. The fourth parameter <code>FALSE</code> means exact match.</p>
+<h3 id="Convert-an-error-value-to-blank"><a href="#Convert-an-error-value-to-blank" class="headerlink" title="Convert an error value to blank"></a>Convert an error value to blank</h3><pre><code>=IFERROR(VLOOKUP(B251,A$1:I$360,8,FALSE),&quot;&quot;)
+</code></pre><p>Since the <code>VLOOKUP</code> function may return an error value if the look-up is failed, we can use the <code>IFERROR</code> function to convert the error value to blank.</p>
+<h3 id="Get-a-substring-from-a-string"><a href="#Get-a-substring-from-a-string" class="headerlink" title="Get a substring from a string"></a>Get a substring from a string</h3><pre><code>=MID(C2,2,3)
+</code></pre><p>The above example will get the substring from string C2. It will begin at the second position, and the length will be 3.</p>
+<h3 id="Summarize-the-value-by-some-conditions"><a href="#Summarize-the-value-by-some-conditions" class="headerlink" title="Summarize the value by some conditions"></a>Summarize the value by some conditions</h3><pre><code>=SUMIFS(A:A,B:B,&quot;&gt;10&quot;, B:B,&quot;&lt;20&quot;)
+</code></pre><p>The above example will summarize the values for A column, when the value in column B is greater than 10 and less than 20.</p>
 
+          
+        
       
     </div>
 
@@ -448,42 +436,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Website/" rel="tag"># Website</a>
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/javascript-copy-types/" rel="next" title="Shadow copy and Deep copy in JavaScript">
-                <i class="fa fa-chevron-left"></i> Shadow copy and Deep copy in JavaScript
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/hexo-abap-highlight/" rel="prev" title="Highlight ABAP Language in Hexo">
-                Highlight ABAP Language in Hexo <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -493,24 +453,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="gitalk-container"></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -531,17 +485,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -690,22 +635,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumption"><span class="nav-number">1.</span> <span class="nav-text">Assumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirement"><span class="nav-number">2.</span> <span class="nav-text">Requirement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">3.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backup"><span class="nav-number">4.</span> <span class="nav-text">Backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restore"><span class="nav-number">5.</span> <span class="nav-text">Restore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -858,10 +787,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.5"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.5"></script>
-
-
 
   
 
@@ -897,23 +822,6 @@
 
 
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script type="text/javascript">
-      const gitalk = new Gitalk({
-        clientID: 'eb46b34271d9e8373ae4',
-        clientSecret: '3a26795df7299057098c9533c6bb73bc6da3b13d',
-        repo: 'website_comments',
-        owner: 'gary5496',
-        admin: 'gary5496'.split(','),
-        id: location.pathname,
-        // facebook-like distraction free mode
-        distractionFreeMode: 'true',
-        createIssueManually: 'false'
-      })
-      gitalk.render('gitalk-container')
-    </script>
   
 
 

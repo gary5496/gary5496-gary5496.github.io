@@ -100,28 +100,28 @@
 
 
   
-  <meta name="keywords" content="Website,Git," />
+  <meta name="keywords" content="SAP," />
 
 
-<meta name="description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
-<meta name="keywords" content="Website,Git">
+<meta name="description" content="Since different applications are using different encodings to process data, there may be encoding issue when the source application and destination application are using different encodings. ECC Encod">
+<meta name="keywords" content="SAP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Backup Hexo using GitHub">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/hexo-backup/index.html">
+<meta property="og:title" content="Encoding in SAP">
+<meta property="og:url" content="https://gary5496.github.io/2018/04/encoding-issue/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
+<meta property="og:description" content="Since different applications are using different encodings to process data, there may be encoding issue when the source application and destination application are using different encodings. ECC Encod">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-21T08:26:03.795Z">
+<meta property="og:updated_time" content="2018-04-12T07:18:53.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Backup Hexo using GitHub">
-<meta name="twitter:description" content="AssumptionYou have already installed Git from https://git-scm.com/, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there.  RequirementYou want t">
+<meta name="twitter:title" content="Encoding in SAP">
+<meta name="twitter:description" content="Since different applications are using different encodings to process data, there may be encoding issue when the source application and destination application are using different encodings. ECC Encod">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/hexo-backup/"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/04/encoding-issue/"/>
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>Backup Hexo using GitHub | Gary Guo</title>
+  <title>Encoding in SAP | Gary Guo</title>
   
 
 
@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/04/encoding-issue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Backup Hexo using GitHub</h1>
+          <h1 class="post-title" itemprop="name headline">Encoding in SAP</h1>
         
 
         <div class="post-meta">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T22:39:19+08:00">2018-03-20</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T12:30:23+08:00">2018-04-12</time>
             
 
             
@@ -370,7 +370,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
 
                 
                 
@@ -412,24 +412,38 @@
       
 
       
-        <h3 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h3><p>You have already installed Git from <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there. </p>
-<h3 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h3><p>You want to backup Hexo website data and restore it from anothter computer.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>Log on GitHub with your account. Create a branch such as <code>backup</code> for repository &lt;account_name&gt;.github.io</p>
-<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><ul>
-<li><p>Open the file <code>.gitignore</code> in Hexo base folder, and check if it contains the below two entries. If no, add them to the file.</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"><span class="string">/node_modules</span></span><br></pre></td></tr></table></figure>
-<p>Directory <code>/.deploy_git</code> contains the files after generation by command <code>hexo generate</code>. We don’t need to backup them.<br>Directory <code>/node_modules</code> contains the node.js modules. We don’t need to backup them.</p>
-</li>
-<li><p>Execute the below command in the first backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Init Git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># Create the backup branch, and switch to the new branch</span></span><br><span class="line">git checkout -b backup</span><br><span class="line"><span class="comment"># Link a remote repository to origin</span></span><br><span class="line">git remote add origin git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Execute the below command in each backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the files and sub-directories in the current directory to staging area</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># Commit the changes in the staging area to current branch</span></span><br><span class="line">git commit -m <span class="string">"commit_comments"</span></span><br><span class="line"><span class="comment"># Push the backup branch to remote repository backup branch</span></span><br><span class="line">git push origin backup</span><br></pre></td></tr></table></figure>
-</li>
+        <p>Since different applications are using different encodings to process data, there may be encoding issue when the source application and destination application are using different encodings.</p>
+<h3 id="ECC-Encoding"><a href="#ECC-Encoding" class="headerlink" title="ECC Encoding"></a>ECC Encoding</h3><ul>
+<li>SAP ECC is saving data in database with Unicode encoding. You can check if your SAP application server is using Little Indian (4103) or Big Indian (4102) via <code>t-code I18N -&gt; I18N Customizing -&gt; I18N System Configuration -&gt; Display Current NLS config -&gt; &quot;Code Page of Application Server&quot;</code>. </li>
+<li>When SAP ECC is sending a XML file to PI, UTF-8 encoding (4110) will be used.</li>
+<li>When SAP ECC is writing a flat file to application server folder, the encoding will depend on the ABAP statement <code>OPEN DATASET ... ENCODING ...</code>. If <code>ENCODING DEFAULT</code> or <code>ENCODING UTF-8</code> is used, UTF-8 will be used.</li>
+<li>When SAP ECC is using file port to write an IDOC flat file, the encoding will be UTF-8 if the <code>Unicode format</code> checkbox is selected in port (t-code WE21).</li>
+<li>When SAP ECC is using file port to write an IDOC flat file, the encoding will be using the relevant code page if <code>Unicode format</code> is not selected and <code>Char. Set</code> is specified in port (t-code WE21).</li>
+<li>When SAP ECC is using file port to write an IDOC flat file, if <code>Unicode format</code> and <code>Char. Set</code> are not specified, the encoding will be using the same encoding as ABAP statement <code>ENCODING NON-UNICODE</code>. In an Unicode SAP system, the encoding in the table <code>TCP0C</code> by platform, language and country will be used. In the case of Linux, English, and US, the encoding will be ISO-8859-1 (1100). You can use ABAP statements <code>SET COUNTRY</code> and <code>SET LOCALE LANGUAGE</code> to change the language and country in a ABAP session.</li>
 </ul>
-<h3 id="Restore"><a href="#Restore" class="headerlink" title="Restore"></a>Restore</h3><p>If you need to restore the Hexo websites in another computer, you have to follow the <a href="https://gary5496.github.io/2018/03/hexo-github-setup/">Hexo setup guide</a> to set up the Hexo in another computer first. Then, run the below command the clone the remote repository backup branch to the local directory.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone the remote repository backup branch to the current directory</span></span><br><span class="line">git <span class="built_in">clone</span> -b backup git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://blog.csdn.net/zk673820543/article/details/52698760" target="_blank" rel="noopener">http://blog.csdn.net/zk673820543/article/details/52698760</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br><a href="http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1" target="_blank" rel="noopener">http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1</a></p>
+<h3 id="PI-Encoding"><a href="#PI-Encoding" class="headerlink" title="PI Encoding"></a>PI Encoding</h3><ul>
+<li>PI sender file channel will use the specified file encoding to read the file, if file type is set to <code>Text</code> instead of <code>Binary</code>. </li>
+<li>You can convert a flat file to XML file via adapter module <code>AF_Modules/MessageTransformBean</code>, and specify the encoding of the XML file by setting the parameter <code>Transform.ContentType</code> to <code>text/plain;charset=utf-8</code>.</li>
+<li>You can convert the encoding of an output file from UTF-8 to ISO-8859-1 via adapter module <code>AF_Modules/TextCodepageConversionBean</code> with parameter <code>Conversion.charset</code> equal to <code>iso-8859-1</code>.</li>
+</ul>
+<h3 id="Utilities"><a href="#Utilities" class="headerlink" title="Utilities"></a>Utilities</h3><p>You can check the hex code and UTF-8 bytes for one character in this <a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">site</a>. Please note:</p>
+<ul>
+<li>The hex code is using Unicode big indian, such as <code>0421</code> for <code>CYRILLIC CAPITAL LETTER ES</code> - <code>C</code>.</li>
+<li>The UTF-8 bytes should contain space if there are multiple bytes for one character, such as <code>D0 A1</code>.</li>
+<li>In some cases, <code>UTF-8 bytes as Latin-1 characters bytes</code> will be showing the same invalid characters as destination application, if source application is using <code>UTF-8</code> encoding, and the destination application is using encoding like <code>ISO-8859-1</code> to process data.<br>You can use Notepad++ to open a file with different encodings, and you can also convert it to use another encoding.<br>You can use some application like <code>WinHex</code> or <code>Hex_edit</code> to see the hex code for one text file.</li>
+</ul>
+<h3 id="Common-Encoding-Code-Pages"><a href="#Common-Encoding-Code-Pages" class="headerlink" title="Common Encoding/Code Pages"></a>Common Encoding/Code Pages</h3><ul>
+<li>1100 for ISO-8859-1, which is similar to WINDOWS-1252/ANSI</li>
+<li>4110 for UTF-8, the optional BOM (Byte Order Mask) will be EFBBBF for UTF-8</li>
+<li>4102 for UTF-16be</li>
+<li>4103 for UTF-16le</li>
+<li>8400 for GB2312</li>
+</ul>
+<h3 id="One-encoding-issue-in-my-work"><a href="#One-encoding-issue-in-my-work" class="headerlink" title="One encoding issue in my work"></a>One encoding issue in my work</h3><ul>
+<li>Issue: Below is one encoding issue I came accross with in my work. In SAP ECC system, the character is showing as <code>C</code>, but in destination application, the character is showing as <code>Ð ¡</code>, and can not be recoginzed.</li>
+<li>Analysis: The special character <code>CYRILLIC CAPITAL LETTER ES</code> which is showing exactly the same as <code>LATIN LETTER C</code> is used in SAP ECC. In debugging mode, we will see that the hex code is <code>2104</code> since SAP ECC system is using Unicode little indian. In the <a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">site</a>, we checked with the hex code <code>0421</code> which is Unicode big indian, and we can find that the UTF-8 bytes for this character is <code>D0 A1</code>, and <code>UTF-8 bytes as Latin-1 characters bytes</code> is showing as <code>Ð ¡</code>.</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">Check hex code and UTF-8 bytes for one character</a><br><a href="https://launchpad.support.sap.com/#/notes/552464" target="_blank" rel="noopener">SAP note 552464 - What is Big Endian / Little Endian? What Endian do I have?</a></p>
 
       
     </div>
@@ -450,9 +464,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Website/" rel="tag"># Website</a>
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/SAP/" rel="tag"># SAP</a>
           
         </div>
       
@@ -465,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/javascript-copy-types/" rel="next" title="Shadow copy and Deep copy in JavaScript">
-                <i class="fa fa-chevron-left"></i> Shadow copy and Deep copy in JavaScript
+              <a href="/2018/03/sap-status-functions/" rel="next" title="ABAP development for Status Management in SAP">
+                <i class="fa fa-chevron-left"></i> ABAP development for Status Management in SAP
               </a>
             
           </div>
@@ -474,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/hexo-abap-highlight/" rel="prev" title="Highlight ABAP Language in Hexo">
-                Highlight ABAP Language in Hexo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assumption"><span class="nav-number">1.</span> <span class="nav-text">Assumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirement"><span class="nav-number">2.</span> <span class="nav-text">Requirement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">3.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backup"><span class="nav-number">4.</span> <span class="nav-text">Backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restore"><span class="nav-number">5.</span> <span class="nav-text">Restore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ECC-Encoding"><span class="nav-number">1.</span> <span class="nav-text">ECC Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PI-Encoding"><span class="nav-number">2.</span> <span class="nav-text">PI Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Utilities"><span class="nav-number">3.</span> <span class="nav-text">Utilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Common-Encoding-Code-Pages"><span class="nav-number">4.</span> <span class="nav-text">Common Encoding/Code Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-encoding-issue-in-my-work"><span class="nav-number">5.</span> <span class="nav-text">One encoding issue in my work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
             
 
           </div>

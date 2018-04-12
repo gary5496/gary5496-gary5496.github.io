@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://gary5496.github.io/"/>
-  <updated>2018-03-28T09:40:03.360Z</updated>
+  <updated>2018-04-12T07:18:53.126Z</updated>
   <id>https://gary5496.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Encoding in SAP</title>
+    <link href="https://gary5496.github.io/2018/04/encoding-issue/"/>
+    <id>https://gary5496.github.io/2018/04/encoding-issue/</id>
+    <published>2018-04-12T04:30:23.000Z</published>
+    <updated>2018-04-12T07:18:53.126Z</updated>
+    
+    <content type="html"><![CDATA[<p>Since different applications are using different encodings to process data, there may be encoding issue when the source application and destination application are using different encodings.</p><h3 id="ECC-Encoding"><a href="#ECC-Encoding" class="headerlink" title="ECC Encoding"></a>ECC Encoding</h3><ul><li>SAP ECC is saving data in database with Unicode encoding. You can check if your SAP application server is using Little Indian (4103) or Big Indian (4102) via <code>t-code I18N -&gt; I18N Customizing -&gt; I18N System Configuration -&gt; Display Current NLS config -&gt; &quot;Code Page of Application Server&quot;</code>. </li><li>When SAP ECC is sending a XML file to PI, UTF-8 encoding (4110) will be used.</li><li>When SAP ECC is writing a flat file to application server folder, the encoding will depend on the ABAP statement <code>OPEN DATASET ... ENCODING ...</code>. If <code>ENCODING DEFAULT</code> or <code>ENCODING UTF-8</code> is used, UTF-8 will be used.</li><li>When SAP ECC is using file port to write an IDOC flat file, the encoding will be UTF-8 if the <code>Unicode format</code> checkbox is selected in port (t-code WE21).</li><li>When SAP ECC is using file port to write an IDOC flat file, the encoding will be using the relevant code page if <code>Unicode format</code> is not selected and <code>Char. Set</code> is specified in port (t-code WE21).</li><li>When SAP ECC is using file port to write an IDOC flat file, if <code>Unicode format</code> and <code>Char. Set</code> are not specified, the encoding will be using the same encoding as ABAP statement <code>ENCODING NON-UNICODE</code>. In an Unicode SAP system, the encoding in the table <code>TCP0C</code> by platform, language and country will be used. In the case of Linux, English, and US, the encoding will be ISO-8859-1 (1100). You can use ABAP statements <code>SET COUNTRY</code> and <code>SET LOCALE LANGUAGE</code> to change the language and country in a ABAP session.</li></ul><h3 id="PI-Encoding"><a href="#PI-Encoding" class="headerlink" title="PI Encoding"></a>PI Encoding</h3><ul><li>PI sender file channel will use the specified file encoding to read the file, if file type is set to <code>Text</code> instead of <code>Binary</code>. </li><li>You can convert a flat file to XML file via adapter module <code>AF_Modules/MessageTransformBean</code>, and specify the encoding of the XML file by setting the parameter <code>Transform.ContentType</code> to <code>text/plain;charset=utf-8</code>.</li><li>You can convert the encoding of an output file from UTF-8 to ISO-8859-1 via adapter module <code>AF_Modules/TextCodepageConversionBean</code> with parameter <code>Conversion.charset</code> equal to <code>iso-8859-1</code>.</li></ul><h3 id="Utilities"><a href="#Utilities" class="headerlink" title="Utilities"></a>Utilities</h3><p>You can check the hex code and UTF-8 bytes for one character in this <a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">site</a>. Please note:</p><ul><li>The hex code is using Unicode big indian, such as <code>0421</code> for <code>CYRILLIC CAPITAL LETTER ES</code> - <code>C</code>.</li><li>The UTF-8 bytes should contain space if there are multiple bytes for one character, such as <code>D0 A1</code>.</li><li>In some cases, <code>UTF-8 bytes as Latin-1 characters bytes</code> will be showing the same invalid characters as destination application, if source application is using <code>UTF-8</code> encoding, and the destination application is using encoding like <code>ISO-8859-1</code> to process data.<br>You can use Notepad++ to open a file with different encodings, and you can also convert it to use another encoding.<br>You can use some application like <code>WinHex</code> or <code>Hex_edit</code> to see the hex code for one text file.</li></ul><h3 id="Common-Encoding-Code-Pages"><a href="#Common-Encoding-Code-Pages" class="headerlink" title="Common Encoding/Code Pages"></a>Common Encoding/Code Pages</h3><ul><li>1100 for ISO-8859-1, which is similar to WINDOWS-1252/ANSI</li><li>4110 for UTF-8, the optional BOM (Byte Order Mask) will be EFBBBF for UTF-8</li><li>4102 for UTF-16be</li><li>4103 for UTF-16le</li><li>8400 for GB2312</li></ul><h3 id="One-encoding-issue-in-my-work"><a href="#One-encoding-issue-in-my-work" class="headerlink" title="One encoding issue in my work"></a>One encoding issue in my work</h3><ul><li>Issue: Below is one encoding issue I came accross with in my work. In SAP ECC system, the character is showing as <code>C</code>, but in destination application, the character is showing as <code>Ð ¡</code>, and can not be recoginzed.</li><li>Analysis: The special character <code>CYRILLIC CAPITAL LETTER ES</code> which is showing exactly the same as <code>LATIN LETTER C</code> is used in SAP ECC. In debugging mode, we will see that the hex code is <code>2104</code> since SAP ECC system is using Unicode little indian. In the <a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">site</a>, we checked with the hex code <code>0421</code> which is Unicode big indian, and we can find that the UTF-8 bytes for this character is <code>D0 A1</code>, and <code>UTF-8 bytes as Latin-1 characters bytes</code> is showing as <code>Ð ¡</code>.</li></ul><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi?input=0421&amp;mode=hex" target="_blank" rel="noopener">Check hex code and UTF-8 bytes for one character</a><br><a href="https://launchpad.support.sap.com/#/notes/552464" target="_blank" rel="noopener">SAP note 552464 - What is Big Endian / Little Endian? What Endian do I have?</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Since different applications are using different encodings to process data, there may be encoding issue when the source application and d
+      
+    
+    </summary>
+    
+      <category term="SAP" scheme="https://gary5496.github.io/categories/SAP/"/>
+    
+    
+      <category term="SAP" scheme="https://gary5496.github.io/tags/SAP/"/>
+    
+  </entry>
   
   <entry>
     <title>ABAP development for Status Management in SAP</title>
@@ -256,11 +281,11 @@
       <category term="ABAP" scheme="https://gary5496.github.io/categories/ABAP/"/>
     
     
+      <category term="SAP" scheme="https://gary5496.github.io/tags/SAP/"/>
+    
       <category term="Website" scheme="https://gary5496.github.io/tags/Website/"/>
     
       <category term="Hexo" scheme="https://gary5496.github.io/tags/Hexo/"/>
-    
-      <category term="SAP" scheme="https://gary5496.github.io/tags/SAP/"/>
     
       <category term="ABAP" scheme="https://gary5496.github.io/tags/ABAP/"/>
     
@@ -531,32 +556,6 @@
     
     
       <category term="Website" scheme="https://gary5496.github.io/tags/Website/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Excel Tips</title>
-    <link href="https://gary5496.github.io/2018/03/excel-tips/"/>
-    <id>https://gary5496.github.io/2018/03/excel-tips/</id>
-    <published>2018-03-06T05:43:46.000Z</published>
-    <updated>2018-03-07T09:17:50.339Z</updated>
-    
-    <content type="html"><![CDATA[<p>Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.</p><h3 id="Add-leading-zeros-to-a-numeric-value"><a href="#Add-leading-zeros-to-a-numeric-value" class="headerlink" title="Add leading zeros to a numeric value"></a>Add leading zeros to a numeric value</h3><pre><code>=TEXT(A1,&quot;0000000000&quot;)</code></pre><h3 id="Add-leading-zeros-to-any-value"><a href="#Add-leading-zeros-to-any-value" class="headerlink" title="Add leading zeros to any value"></a>Add leading zeros to any value</h3><pre><code>=RIGHT(REPT(&quot;0&quot;,10)&amp;A2,10)</code></pre><p>The symbol <code>&amp;</code> will be used to concatenate the strings. The function <code>REPT</code> will repeat the character for times specified.</p><h3 id="Look-up-a-value-from-a-range"><a href="#Look-up-a-value-from-a-range" class="headerlink" title="Look up a value from a range"></a>Look up a value from a range</h3><pre><code>G5=VLOOKUP(&quot;string&quot;,B2:F200,2,FALSE)</code></pre><p>The above example will look up the value <code>string</code> from the first column <code>B</code> and the current row <code>5</code> of the range <code>B2:F206</code>, and the value of <code>C5</code>, which is specified by the 3rd parameter <code>2</code>, will be returned. The fourth parameter <code>FALSE</code> means exact match.</p><h3 id="Convert-an-error-value-to-blank"><a href="#Convert-an-error-value-to-blank" class="headerlink" title="Convert an error value to blank"></a>Convert an error value to blank</h3><pre><code>=IFERROR(VLOOKUP(B251,A$1:I$360,8,FALSE),&quot;&quot;)</code></pre><p>Since the <code>VLOOKUP</code> function may return an error value if the look-up is failed, we can use the <code>IFERROR</code> function to convert the error value to blank.</p><h3 id="Get-a-substring-from-a-string"><a href="#Get-a-substring-from-a-string" class="headerlink" title="Get a substring from a string"></a>Get a substring from a string</h3><pre><code>=MID(C2,2,3)</code></pre><p>The above example will get the substring from string C2. It will begin at the second position, and the length will be 3.</p><h3 id="Summarize-the-value-by-some-conditions"><a href="#Summarize-the-value-by-some-conditions" class="headerlink" title="Summarize the value by some conditions"></a>Summarize the value by some conditions</h3><pre><code>=SUMIFS(A:A,B:B,&quot;&gt;10&quot;, B:B,&quot;&lt;20&quot;)</code></pre><p>The above example will summarize the values for A column, when the value in column B is greater than 10 and less than 20.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Below are some tips for Microsoft Excel collected during my daily work, which may be helpful for you.&lt;/p&gt;
-&lt;h3 id=&quot;Add-leading-zeros-to-a-
-      
-    
-    </summary>
-    
-      <category term="Windows" scheme="https://gary5496.github.io/categories/Windows/"/>
-    
-    
-      <category term="Windows" scheme="https://gary5496.github.io/tags/Windows/"/>
     
   </entry>
   

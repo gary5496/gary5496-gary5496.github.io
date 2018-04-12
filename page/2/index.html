@@ -316,6 +316,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/sap-webservice-setup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/sap-webservice-setup/" itemprop="url">SOAP technical setup in SAP for Webservice</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T17:04:11+08:00">2018-03-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>To enable a webservice in SAP system, we have to perform SOAP technical setup if it was not completed before.</p>
+<h3 id="SOAP-technical-setup-in-SAP"><a href="#SOAP-technical-setup-in-SAP" class="headerlink" title="SOAP technical setup in SAP"></a>SOAP technical setup in SAP</h3><ol>
+<li>Run t-code <code>SRT_ADMIN</code> to perform automatic setup for the below technical settings<ul>
+<li>bgRFC inbound destination</li>
+<li>bgRFC supervisor destination</li>
+<li>Service RFC destination and user</li>
+<li>ICF nodes</li>
+</ul>
+</li>
+<li>Run t-code <code>SRM_ADMIN</code> to check the technical settings</li>
+<li>Make sure the Webservice SICF service <code>/sap/bc/srt/xip/sap/&lt;webservice_name&gt;</code> is activated in t-code <code>SICF</code></li>
+</ol>
+<h3 id="Errors-and-Resolutions"><a href="#Errors-and-Resolutions" class="headerlink" title="Errors and Resolutions"></a>Errors and Resolutions</h3><ul>
+<li><p>Error:</p>
+<blockquote>
+<p>The webservice message is hanging in webservice monitor <code>SRT_MONI</code> with status <em>wait for scheduler</em>.</p>
+</blockquote>
+</li>
+<li><p>Resolution:</p>
+<blockquote>
+<p>Based on SAP note <code>2278161</code>, the probable reason is the incomplete setup of bgRFC supervisor destination. Complete the technical settings setup in <code>SRT_ADMIN</code> to fix the issue.</p>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/tls-ssl/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1001,170 +1166,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/hexo-backup/" itemprop="url">Backup Hexo using GitHub</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T22:39:19+08:00">2018-03-20</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Assumption"><a href="#Assumption" class="headerlink" title="Assumption"></a>Assumption</h3><p>You have already installed Git from <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>, installed Node.js, set up Hexo for your website, created an account in GitHub and created a repository there. </p>
-<h3 id="Requirement"><a href="#Requirement" class="headerlink" title="Requirement"></a>Requirement</h3><p>You want to backup Hexo website data and restore it from anothter computer.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>Log on GitHub with your account. Create a branch such as <code>backup</code> for repository &lt;account_name&gt;.github.io</p>
-<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><ul>
-<li><p>Open the file <code>.gitignore</code> in Hexo base folder, and check if it contains the below two entries. If no, add them to the file.</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"><span class="string">/node_modules</span></span><br></pre></td></tr></table></figure>
-<p>Directory <code>/.deploy_git</code> contains the files after generation by command <code>hexo generate</code>. We don’t need to backup them.<br>Directory <code>/node_modules</code> contains the node.js modules. We don’t need to backup them.</p>
-</li>
-<li><p>Execute the below command in the first backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Init Git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># Create the backup branch, and switch to the new branch</span></span><br><span class="line">git checkout -b backup</span><br><span class="line"><span class="comment"># Link a remote repository to origin</span></span><br><span class="line">git remote add origin git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Execute the below command in each backup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the files and sub-directories in the current directory to staging area</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># Commit the changes in the staging area to current branch</span></span><br><span class="line">git commit -m <span class="string">"commit_comments"</span></span><br><span class="line"><span class="comment"># Push the backup branch to remote repository backup branch</span></span><br><span class="line">git push origin backup</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="Restore"><a href="#Restore" class="headerlink" title="Restore"></a>Restore</h3><p>If you need to restore the Hexo websites in another computer, you have to follow the <a href="https://gary5496.github.io/2018/03/hexo-github-setup/">Hexo setup guide</a> to set up the Hexo in another computer first. Then, run the below command the clone the remote repository backup branch to the local directory.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clone the remote repository backup branch to the current directory</span></span><br><span class="line">git <span class="built_in">clone</span> -b backup git@github.com:gary5496/gary5496.github.io.git</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://blog.csdn.net/zk673820543/article/details/52698760" target="_blank" rel="noopener">http://blog.csdn.net/zk673820543/article/details/52698760</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br><a href="http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1" target="_blank" rel="noopener">http://bbs.itheima.com/forum.php?mod=viewthread&amp;tid=346526&amp;ordertype=1</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1207,7 +1213,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -316,6 +316,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-abap-highlight/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/hexo-abap-highlight/" itemprop="url">Highlight ABAP Language in Hexo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T12:34:49+08:00">2018-03-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ABAP/" itemprop="url" rel="index"><span itemprop="name">ABAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The code highlighting functionality <code>highlight.js</code> is not enabled for ABAP language for Hexo by default. You can follow the below guide to enable it.</p>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><h4 id="1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="1. Update the file .\node_modules\highlight.js\lib\index.js under Hexo base folder, and add the below code"></a>1. Update the file <code>.\node_modules\highlight.js\lib\index.js</code> under Hexo base folder, and add the below code</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hljs.registerLanguage(<span class="string">'abap'</span>, <span class="built_in">require</span>(<span class="string">'./languages/abap'</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="2. Create a file .\node_modules\highlight.js\lib\languages\abap.js under Hexo base folder, and add the below code"></a>2. Create a file <code>.\node_modules\highlight.js\lib\languages\abap.js</code> under Hexo base folder, and add the below code</h4><p>The ABAP language syntax file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/2db174f25da1153f0ca2da12e742526909ad6b3a/src/languages/abap.js" target="_blank" rel="noopener">GitHub</a>, adjusted as below.</p>
+<ul>
+<li>Add <code>module.exports =</code> at the beginning</li>
+<li>Adjust the comment end tag from <code>&#39;\n&#39;</code> to <code>&#39;$&#39;</code></li>
+<li>Correct some typos in the keywords</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">hljs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    case_insensitive: <span class="literal">true</span>,</span><br><span class="line">    keywords: &#123;</span><br><span class="line">    keyword: <span class="string">'ABBREVIATED ABS ABSTRACT FINAL ACCEPT ACCEPTING ACCORDING ACOS ACTUAL ADD ADD-CORRESPONDING ADDITIONS ADJACENT AFTER '</span>  </span><br><span class="line">        +<span class="string">'ALIASES ALL ALLOCATE ANALYZER AND APPEND APPENDING AS ASCENDING DESCENDING ASIN ASSIGN ASSIGNING ATAN ATTRIBUTE AUTHORITY-CHECK '</span></span><br><span class="line">        +<span class="string">'AVG BACK BACKGOUND BEFORE BETWEEN BIG LITTLE BINARY BIT BLANK BLOCK BREAK-POINT BUFFER BY BYPASSING BYTE BYTECHARACTER CALL CASE RESPECTING '</span></span><br><span class="line">        +<span class="string">'CASTING CEIL CENTERED CHANGE CHANGING CHARACTER CHECK CHECKBOX SYMBOL ICONLINE CLASS-DATA CLASS-EVENTS CLASS-METHODS CLEANUP CLEAR '</span></span><br><span class="line">        +<span class="string">'CLIENT CLOCK CLOSE CODE COL_BACKGROUND COL_HEADING COL_NORMAL COL_TOTAL COLLECT COLOR COLUMN COMMENT COMMIT COMMON COMMUNICATION COMPARING '</span></span><br><span class="line">        +<span class="string">'COMPONENT COMPONENTS COMPUTE CONCATENATE CONDENSE CONSTANTS CONTEXT CONTEXTS CONTINUE CONTROL CONTROLS CONVERSION CONVERT COS COSH COUNT COUNTRY '</span></span><br><span class="line">        +<span class="string">'COUNTY CREATE CURRENCY CURRENT CURSOR CUSTOMER-FUNCTION DATA DATABASE DATASET DATE DEALLOCATE DECIMALS DEFAULT UTF-8 NON-UNICODE DEFERRED '</span></span><br><span class="line">        +<span class="string">'DEFINE DEFINING DEFINITION DELETE DELETING DEMAND DESCENDING DESCRIBE DESTINATION DIALOG DIRECTORY DISTANCE DISTINCT DIVIDE DIVIDE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'DUPLICATE DUPLICATES DURING DYNAMIC EDIT EDITOR-CALL ELSE ELSEIF ENCODING ENDING ENDON ENTRIES ERRORS EVENT EVENTS EXCEPTION EXCEPTIONS EXCEPTION-TABLE '</span></span><br><span class="line">        +<span class="string">'EXCLUDE EXCLUDING EXIT EXIT-COMMAND EXP EXPORT EXPORTING EXTENDED EXTENSION EXTRACT FETCH FIELD FIELD-GROUPS FIELDS NO FIELD-SYMBOLS FILTER FINAL FIND '</span></span><br><span class="line">        +<span class="string">'FIRST FLOOR FOR FORMAT FORWARD BACKWARD FOUND FRAC FRAME FREE FRIENDS FROM FUNCTION-POOL GET GIVING GROUP HANDLER HASHED HAVING HEADER HEADING '</span></span><br><span class="line">        +<span class="string">'HELP-ID HIDE HIGH LOW HOLD HOTSPOT ICON ID IGNORING IMMEDIATELY IMPLEMENTATION IMPORT IMPORTING IN INCLUDE INCREMENT INDEX INDEX-LINE INHERITING '</span></span><br><span class="line">        +<span class="string">'INIT INITIAL INITIALIZATION INNER INSERT INSTANCES INTENSIFIED INTERFACES INTERVALS INTO APPENDING INVERTED-DATE IS ITAB JOIN KEEPING '</span></span><br><span class="line">        +<span class="string">'KEY KEYS KIND LANGUAGE LAST LEADING LEAVE LEFT LEFT-JUSTIFIED CIRCULAR LEGACY LENGTH LIKE LINE LINE-COUNT LINES LINE-SELECTION '</span></span><br><span class="line">        +<span class="string">'LINE-SIZE LIST LIST-PROCESSING LOAD LOAD-OF-PROGRAM LOCAL LOCALE LOG LOG10 LOWER '</span></span><br><span class="line">        +<span class="string">'MARGIN MARK MASK MATCH MAX MAXIMUM MEMORY MESSAGE MESSAGE-ID MESSAGES METHODS MIN MOD MODE IF MODIFIER MODIFY MOVE MOVE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'MULTIPLY MULTIPLY-CORRESPONDING NEW NEW-LINE NEW-PAGE NEXT NO- NODES NODETABLE NO-DISPLAY NO-GAP NO-GAPS NO-HEADING WITH-HEADING NON NO-SCROLLING '</span></span><br><span class="line">        +<span class="string">'SCROLLING NOT NO-TITLE WITH-TITLE NO-ZERO NP NS NUMBER OBJECT OBLIGATORY OCCURENCE OCCURENCES OCCURS OF OFF OFFSET ON ONLY ONOFF OPEN '</span></span><br><span class="line">        +<span class="string">'OPTION OPTIONAL OR ORDER OTHERS OUTER OUTPUT-LENGTH OVERLAY PACK PACKAGE PAGE LAST PAGES PARAMETER PARAMETERS PARAMETER-TABLE '</span></span><br><span class="line">        +<span class="string">'PART PERFORM PERFORMING PFN PF-STATUS PLACES POS_HIGH POS_LOW POSITION POSITIONS PRIMARY PRINT PRINT-CONTROL PRIVATE PROCESS PROGRAM PROPERTY '</span></span><br><span class="line">        +<span class="string">'PUBLIC PROTECTED PRIVATE PUSHBUTTON PUT QUICKINFO RADIOBUTTON RAISE RAISING RANGE RANGES READ RECEIVE RECEIVING REDEFINITION '</span></span><br><span class="line">        +<span class="string">'REF REFERENCE REFRESH REJECT RENAMING REPLACE REPLACEMENT REPORT RESERVE RESET RESOLUTION RESULTS RETURN RETURNING RIGHT RIGHT-JUSTIFIED '</span></span><br><span class="line">        +<span class="string">'ROLLBACK ROWS RUN SCAN SCREEN SCREEN-GROUP1 SCREEN-GROUP2 SCREEN-GROUP3 SCREEN-GROUP4 SCREEN-GROUP5 SCREEN-INPUT SCREEN-INTENSIFIED SCROLL '</span></span><br><span class="line">        +<span class="string">'SCROLL-BOUNDARY SEARCH SECTION SELECT SELECTION SELECTIONS SELECTION-SCREEN SELECTION-SET SELECTION-TABLE SELECT-OPTIONS SEND SEPARATED SET '</span></span><br><span class="line">        +<span class="string">'SHARED SHIFT SIGN SIN SINGLE DISTINCT SINH SIZE SKIP SORT SORTABLE SPECIFIED SPLIT SQL SQRT STABLE STAMP STANDARD START STARTING '</span></span><br><span class="line">        +<span class="string">'STATICS STEP-LOOP STOP STRLEN STRUCTURE SUBMIT SUBTRACT SUBTRACT-CORRESPONDING SUFFIX SUM SUPPLY SUPPRESS SYMBOLS SYSTEM-EXCEPTIONS TABLE TABLENAME '</span></span><br><span class="line">        +<span class="string">'TABLES TABLEVIEW TAN TANH TASK TEXT THEN TIME TIMES TITLE TITLEBAR TO TOPIC TOP-OF-PAGE TRAILING TRANSACTION TRANSFER TRANSLATE TRUNC TYPE '</span></span><br><span class="line">        +<span class="string">'TYPELIKE TYPE-POOL TYPE-POOLS TYPES ULINE UNION UNIQUE UNIT UNTIL UP UPDATE UPPER USER-COMMAND USING VALUE VALUES VARY VARYING '</span></span><br><span class="line">        +<span class="string">'VERSION VIA WAIT WHEN WHERE WINDOW WITH WORK WRITE XSTRLEN ZONE TRANSPORTING '</span></span><br><span class="line">        +<span class="string">'CA CN CO CP CS EQ GE GT LE LT NA NE'</span></span><br><span class="line">        +<span class="string">'START-OF-SELECTION START-OF-PAGE END-OF-PAGE END-OF-SELECTION AT ENDAT'</span>,</span><br><span class="line">      literal: <span class="string">'abap_true abap_false'</span>,</span><br><span class="line">      built_in: <span class="string">'DO FORM IF LOOP MODULE START-OF_FILE DEFINE WHILE BEGIN ENDDO ENDFORM ENDIF ENDLOOP ENDMODULE END-OF_FILE END-OF-DEFINITION ENDWHILE END'</span></span><br><span class="line">        +<span class="string">' METHOD ENDMETHOD CHAIN ENDCHAIN CASE ENDCASE FUNCTION ENDFUNCTION ELSEIF ELSE TRY ENDTRY CATCH '</span></span><br><span class="line">    &#125;,</span><br><span class="line">    contains: [ </span><br><span class="line">      hljs.APOS_STRING_MODE,</span><br><span class="line">      hljs.NUMBER_MODE,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'^[*]'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'\b*"'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'built_in'</span>,</span><br><span class="line">        begin: <span class="string">'CALL +([A-Z])'</span>,</span><br><span class="line">        end:<span class="string">' +'</span>,</span><br><span class="line">        relevance: <span class="number">10</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code"><a href="#3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="3. Create a file .\node_modules\highlight.js\styles\abap.css under Hexo base folder, and add the below code"></a>3. Create a file <code>.\node_modules\highlight.js\styles\abap.css</code> under Hexo base folder, and add the below code</h4><p>The ABAP language css file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/f1b511817f2fda61304dead6725daac47704f29b/src/styles/abap.css" target="_blank" rel="noopener">GitHub</a>.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ABAP styles by Cassio Binkowski &lt;cassioiks@gmail.com&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.hljs</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">overflow-x</span>: auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-keyword</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#0005fb</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-string</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#4da31e</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-comment</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#7c7879</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-built_in</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-literal</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-subst</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-number</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#5aceff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder"><a href="#4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder" class="headerlink" title="4. Update the file \node_modules\hexo-util\highlight_alias.json under Hexo base folder"></a>4. Update the file <code>\node_modules\hexo-util\highlight_alias.json</code> under Hexo base folder</h4><p>Add the below field-value mappings to alias object</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>: <span class="string">"abap"</span>,</span><br><span class="line"><span class="string">"ABAP"</span>: <span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
+<p>Add the below value to languages array</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Run <code>hexo clean</code>, <code>hexo generate</code> to generate the files. Below is the result with ABAP code highlighting.</p>
+<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> edisyn <span class="keyword">into</span> <span class="keyword">table</span> i_edisyn</span><br><span class="line">                         <span class="keyword">where</span> idoctyp <span class="keyword">eq</span> doctyp</span><br><span class="line">                         <span class="keyword">and</span>   cimtyp  <span class="keyword">eq</span> cimtyp.</span><br><span class="line">    <span class="built_in">if</span> sy-subrc ne <span class="number">0</span>. <span class="comment">"muß edisyn noch gemerged werden?</span></span><br><span class="line">      ....</span><br><span class="line">    <span class="built_in">endif</span>.<span class="comment">"EDISYN</span></span><br><span class="line"><span class="comment">* nun kann man aus der i_edisyn i_idocsyn füllen</span></span><br><span class="line">    <span class="built_in">loop</span> <span class="keyword">at</span> i_edisyn.</span><br><span class="line">      <span class="keyword">clear</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding i_edisyn <span class="keyword">to</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span> i_edisyn-posno <span class="keyword">to</span> i_idocsyn-nr.</span><br><span class="line">      <span class="keyword">append</span> i_idocsyn.</span><br><span class="line">    <span class="built_in">endloop</span>.</span><br><span class="line">  <span class="built_in">endif</span>.<span class="comment">"cimtyp</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">    <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">      <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">      <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">      L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">      l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">      <span class="keyword">CLEAR</span>: L_LAST-parseg,  L_LAST-mustfl, l_last-parpno.</span><br><span class="line">      L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">      L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">      L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">      <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding L_LAST <span class="keyword">to</span> i_edisyn.</span><br><span class="line">      <span class="keyword">move</span> L_LAST <span class="keyword">to</span> i_edisyn-posno.</span><br><span class="line">      <span class="keyword">append</span> i_edisyn.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/isagalaev/highlight.js/pull/1259" target="_blank" rel="noopener">Add ABAP Language to highlight.js - GitHub</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-backup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -942,161 +1101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-this/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/javascript-this/" itemprop="url">this keyword in JavaScript</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-19T14:31:01+08:00">2018-03-19</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>After reading the below few posts about <code>this</code> variable in JavaScript. I think I have to write a post to note down my understanding about it.</p>
-<p><a href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000</a></p>
-<h3 id="Function-call"><a href="#Function-call" class="headerlink" title="Function call"></a>Function call</h3><p>In the normal function call, <code>this</code> is the global variable, which is <code>window</code> when the page is loaded in web browser. <code>test()</code> is the same as <code>window.test()</code>.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">alert(<span class="keyword">this</span>.x);    <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">test();    <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<h3 id="Method-call"><a href="#Method-call" class="headerlink" title="Method call"></a>Method call</h3><p>When the function is used as a method of an object, <code>this</code> is <code>reference to the object</code> when the method (function) is called.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    x: <span class="number">2</span>,</span><br><span class="line">    method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.method();    <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<h3 id="Constructor-function"><a href="#Constructor-function" class="headerlink" title="Constructor function"></a>Constructor function</h3><p>When the function is used as a constructor function, <code>this</code> is <code>reference to the object</code> in the construction function. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">o</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">this</span>.method = test;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> o();</span><br><span class="line">o.method();    <span class="comment">//2</span></span><br><span class="line">test();    <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<h3 id="Method-apply"><a href="#Method-apply" class="headerlink" title="Method apply"></a>Method apply</h3><p>Developer can use the method <code>object.apply</code> to change the binding of <code>this</code>. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    x: <span class="number">2</span>,</span><br><span class="line">    m: test</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">test();    <span class="comment">//1</span></span><br><span class="line">test.apply(o);    <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<h3 id="Function-call-in-method-call"><a href="#Function-call-in-method-call" class="headerlink" title="Function call in method call"></a>Function call in method call</h3><p>If <code>this</code> variable is used in a function call in an object method call, it will be the reference to <code>window</code>, instead of the <code>reference to the object</code>.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> Foo = &#123;</span><br><span class="line">    x: <span class="number">2</span>,</span><br><span class="line">    method: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">        <span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">        &#125;</span><br><span class="line">        test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Foo.method();    <span class="comment">//1, which is the global variable</span></span><br></pre></td></tr></table></figure>
-<p>To set <code>this</code> to the <code>reference to the object</code> in the above case, you can use a variable like <code>that</code> to store <code>this</code> variable as below.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> Foo = &#123;</span><br><span class="line">    x: <span class="number">2</span>,</span><br><span class="line">    method: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(that.x);</span><br><span class="line">        &#125;</span><br><span class="line">        test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Foo.method();    <span class="comment">//2, which is the global variable</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1144,7 +1148,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1222,7 +1226,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

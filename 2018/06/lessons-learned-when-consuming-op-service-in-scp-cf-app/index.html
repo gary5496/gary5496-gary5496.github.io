@@ -100,28 +100,28 @@
 
 
   
-  <meta name="keywords" content="SAP,ABAP," />
+  <meta name="keywords" content="SAP,SCP,Cloud," />
 
 
-<meta name="description" content="Below you will find some objects which is useful when you are performing ABAP development for status management in SAP. Function Modules STATUS_READ: With this function, you can get the system status">
-<meta name="keywords" content="SAP,ABAP">
+<meta name="description" content="I am trying to follow the below links to build a SCP (SAP Cloud Platform) Cloud Foundry application which is using XSUAA (User account and authentication) service,  SCP Connectivity service and SCC (S">
+<meta name="keywords" content="SAP,SCP,Cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ABAP development for Status Management in SAP">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/sap-status-functions/index.html">
+<meta property="og:title" content="Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application">
+<meta property="og:url" content="https://gary5496.github.io/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="Below you will find some objects which is useful when you are performing ABAP development for status management in SAP. Function Modules STATUS_READ: With this function, you can get the system status">
+<meta property="og:description" content="I am trying to follow the below links to build a SCP (SAP Cloud Platform) Cloud Foundry application which is using XSUAA (User account and authentication) service,  SCP Connectivity service and SCC (S">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-28T09:40:03.360Z">
+<meta property="og:updated_time" content="2018-06-19T06:35:23.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ABAP development for Status Management in SAP">
-<meta name="twitter:description" content="Below you will find some objects which is useful when you are performing ABAP development for status management in SAP. Function Modules STATUS_READ: With this function, you can get the system status">
+<meta name="twitter:title" content="Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application">
+<meta name="twitter:description" content="I am trying to follow the below links to build a SCP (SAP Cloud Platform) Cloud Foundry application which is using XSUAA (User account and authentication) service,  SCP Connectivity service and SCC (S">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/sap-status-functions/"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/"/>
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>ABAP development for Status Management in SAP | Gary Guo</title>
+  <title>Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application | Gary Guo</title>
   
 
 
@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/sap-status-functions/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ABAP development for Status Management in SAP</h1>
+          <h1 class="post-title" itemprop="name headline">Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application</h1>
         
 
         <div class="post-meta">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T15:57:53+08:00">2018-03-28</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T14:17:18+08:00">2018-06-19</time>
             
 
             
@@ -412,28 +412,93 @@
       
 
       
-        <p>Below you will find some objects which is useful when you are performing ABAP development for status management in SAP.</p>
-<h3 id="Function-Modules"><a href="#Function-Modules" class="headerlink" title="Function Modules"></a>Function Modules</h3><ol>
-<li><code>STATUS_READ</code>: With this function, you can get the system status and user status internal codes, such as <code>I0001</code>, <code>E0001</code>.</li>
-<li><code>STATUS_TEXT_EDIT</code>: With this function, you can get the external status code <code>REL</code> <code>APPR</code> for one object. In an update transaction, if you set the input parameter <code>BYPASS_BUFFER</code> to <code>X</code>, it will get the old status code from database. If you set the input parameter <code>BYPASS_BUFFER</code> to blank, it will get the new status code after the change.</li>
-<li><code>STATUS_CHANGE_INTERN</code>: With this function, you can update the system status.</li>
-<li><code>STATUS_CHANGE_EXTERN</code>: With this function, you can update the user status.</li>
-<li><code>STATUS_CHANGES_GET</code>: With this function, you can get the status changes in the current update transaction.</li>
+        <p>I am trying to follow the below links to build a SCP (SAP Cloud Platform) Cloud Foundry application which is using XSUAA (User account and authentication) service,  SCP Connectivity service and SCC (SAP Cloud Connector) to consume On-Premise OData service. The below lessons are learned during the prototype.</p>
+<p><a href="https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/</a><br><a href="https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/</a></p>
+<h3 id="Maven-installation"><a href="#Maven-installation" class="headerlink" title="Maven installation"></a>Maven installation</h3><ol>
+<li>Install JDK and set environment variable <code>JAVA_HOME</code></li>
+<li>Download Apache Maven and unzip the file</li>
+<li>Add environment variable <code>M2_HOME</code> and <code>MAVEN_HOME</code></li>
+<li>Update environment variable <code>PATH</code> for Maven bin folder</li>
+<li>Run command <code>mvn -version</code> to verify the installation</li>
 </ol>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><ol>
-<li><code>JSTO</code>: Status object information. It contains the status profile and object category for one object.</li>
-<li><code>JEST</code>: Individual Object Status. It contains the object status information. Field <code>INACT</code> indicates whether the status is active or not.</li>
-<li><code>TJ02T</code>: System status texts. It contains the external status code and description for one system status, which is <code>INNNN</code>.</li>
-<li><code>TJ30T</code>: Texts for User Status. It contains the external status code and description for one user status, which is <code>ENNNN</code>. </li>
-<li><code>JCDS</code>: Change Documents for system/user status. It contains the change documents for status management.</li>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://www.mkyong.com/maven/how-to-install-maven-in-windows/" target="_blank" rel="noopener">https://www.mkyong.com/maven/how-to-install-maven-in-windows/</a><br><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+<hr>
+<h3 id="Maven-eclipse-plugin-installation"><a href="#Maven-eclipse-plugin-installation" class="headerlink" title="Maven eclipse plugin installation"></a>Maven eclipse plugin installation</h3><p>Please check the below reference links for details. Update site to install Maven plugin in Eclipse:<br><a href="http://download.eclipse.org/technology/m2e/releases/" target="_blank" rel="noopener">http://download.eclipse.org/technology/m2e/releases/</a></p>
+<h3 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation" target="_blank" rel="noopener">https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation</a><br><a href="http://toolsqa.com/java/maven/how-to-install-maven-eclipse-ide/" target="_blank" rel="noopener">http://toolsqa.com/java/maven/how-to-install-maven-eclipse-ide/</a></p>
+<hr>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error:"></a>Error:</h3><p>Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br>Could not transfer artifact org.springframework.boot:spring-boot-starter-parent:pom:1.5.7.RELEASE from/to Central (<a href="http://repo1.maven.org/maven2)" target="_blank" rel="noopener">http://repo1.maven.org/maven2)</a>: Connection refused: connect and ‘parent.relativePath’ points at wrong local POM</p>
+<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li>Run the below command in Linux:<br><code>find ~/.m2  -name &quot;*.lastUpdated&quot; -exec grep -q &quot;Could not transfer&quot; {} \; -print -exec rm {} \;</code><br>Run the below commands in Windows<br><code>cd %userprofile%\.m2\repository</code><br><code>for /r %i in (*.lastUpdated) do del %i</code><br>Then right click on your project in eclipse and choose <code>Maven-&gt;Update Project ...</code>, make sure “Update Dependencies” is checked in the resulting dialog and click OK.</li>
+<li>You can always try <code>mvn -U clean install</code><br>-U Forces a check for updated releases and snapshots on remote repositories</li>
+<li>There may be different versions of Maven running between command prompt and Eclipse. Check the Maven installations and Maven user settings in <code>Eclipse -&gt; Windows -&gt; Preferences</code></li>
 </ol>
-<h3 id="T-codes"><a href="#T-codes" class="headerlink" title="T-codes"></a>T-codes</h3><ol>
-<li><code>BS23</code>: Display system status</li>
-<li><code>BS03</code>: Display status profile (user status)</li>
+<h3 id="Reference-2"><a href="#Reference-2" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/5074063/maven-error-failure-to-transfer" target="_blank" rel="noopener">https://stackoverflow.com/questions/5074063/maven-error-failure-to-transfer</a></p>
+<hr>
+<h3 id="Error-1"><a href="#Error-1" class="headerlink" title="Error:"></a>Error:</h3><p>No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?</p>
+<h3 id="Resolution-1"><a href="#Resolution-1" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li>Install JDK instead of JRE</li>
+<li>Set environment variables <code>JAVA_HOME, classpath, PATH</code> to link them to JDK, instead of JRE</li>
+<li>Check the settings <code>Windows -&gt; Preferences -&gt; Java -&gt;Installed JREs</code> in Eclipse. Make sure there is at least one JDK there. Link the Run configuration of Maven build to the JDK</li>
 </ol>
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
-<li>You can use <code>Authorization key</code> to control the authorization to update user status. If the auth key is assigned to one user status in status profile, the authorization with auth object <code>B_USERSTAT</code> and auth key should be assigned to the user, so that one is able to update the user status. </li>
-</ul>
+<h3 id="Reference-3"><a href="#Reference-3" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/19655184/no-compiler-is-provided-in-this-environment-perhaps-you-are-running-on-a-jre-ra" target="_blank" rel="noopener">https://stackoverflow.com/questions/19655184/no-compiler-is-provided-in-this-environment-perhaps-you-are-running-on-a-jre-ra</a></p>
+<hr>
+<h3 id="Error-2"><a href="#Error-2" class="headerlink" title="Error:"></a>Error:</h3><p>The following artifacts could not be resolved: com.sap.xs2.security:java-container-security-api:jar:0.26.4, com.sap.xs2.security:java-container-security:jar:0.26.4: Failure to find com.sap.xs2.security:java-container-security-api:jar:0.26.4 in <a href="https://repo.maven.apache.org/maven2" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2</a> was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced</p>
+<h3 id="Resolution-2"><a href="#Resolution-2" class="headerlink" title="Resolution:"></a>Resolution:</h3><p>Install XS Security libs to your local Maven repository:</p>
+<ol>
+<li>The first step is to get some additional Java libs from Service Marketplace.<br>Download additional XS security libs from service marketplace:<a href="https://launchpad.support.sap.com/#/softwarecenter/search/XS_JAVA" target="_blank" rel="noopener">https://launchpad.support.sap.com/#/softwarecenter/search/XS_JAVA</a> </li>
+<li>Unzip the file</li>
+<li>Install XS Security Libs to your local maven repo using:<br><code>cd &lt;destLocation&gt;</code><br><code>mvn clean install</code></li>
+</ol>
+<h3 id="Reference-4"><a href="#Reference-4" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/</a></p>
+<hr>
+<h3 id="Error-3"><a href="#Error-3" class="headerlink" title="Error:"></a>Error:</h3><p>The import org.json cannot be resolved<br>The import org.apache.commons.io cannot be resolved</p>
+<h3 id="Resolution-3"><a href="#Resolution-3" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li><p>Download the ZIP file from the below URL and extract it to get the Jar. </p>
+</li>
+<li><p>Add the Jar to your build path. To Add this Jar to your build path <code>Right click the Project &gt; Build Path &gt; Configure build path &gt; Select Libraries tab &gt; Click Add External Libraries &gt; Select the Jar file downloaded</code></p>
+</li>
+</ol>
+<p><a href="http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip" target="_blank" rel="noopener">http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip</a><br><a href="http://commons.apache.org/proper/commons-io/download_io.cgi" target="_blank" rel="noopener">http://commons.apache.org/proper/commons-io/download_io.cgi</a></p>
+<h3 id="Reference-5"><a href="#Reference-5" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/8997598/importing-json-into-an-eclipse-project" target="_blank" rel="noopener">https://stackoverflow.com/questions/8997598/importing-json-into-an-eclipse-project</a></p>
+<hr>
+<h3 id="Error-4"><a href="#Error-4" class="headerlink" title="Error"></a>Error</h3><p>package json.java does not exist<br>package org.apache.commons.io does not exist</p>
+<h3 id="Resolution-4"><a href="#Resolution-4" class="headerlink" title="Resolution"></a>Resolution</h3><ol>
+<li>Run the below Maven command to install the Maven repository<br><code>mvn install:install-file -Dfile=java-json.jar -DgroupId=json.java -DartifactId=java-json -Dversion=1.0 -Dpackaging=jar</code><br><code>mvn install:install-file -Dfile=commons-io-2.6.jar -DgroupId=commons-io -DartifactId=commons-io -Dversion=2.6 -Dpackaging=jar</code></li>
+<li>Add the below dependencies to the pom.xml file<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>json.java<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Reference-6"><a href="#Reference-6" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/41779195/maven-compilation-error-even-if-dependency-path-is-correct" target="_blank" rel="noopener">https://stackoverflow.com/questions/41779195/maven-compilation-error-even-if-dependency-path-is-correct</a></p>
+<hr>
+<h3 id="Error-5"><a href="#Error-5" class="headerlink" title="Error"></a>Error</h3><p>Cannot instantiate the type XSTokenRequest</p>
+<h3 id="Resolution-5"><a href="#Resolution-5" class="headerlink" title="Resolution"></a>Resolution</h3><ol>
+<li>Run the below command to install the Jar file to local Maven repository<br><code>mvn install:install-file -Dfile=java-container-security-api-0.26.4.jar -DgroupId=com.sap.xs2.security -DartifactId=java-container-security-api -Dversion=0.26.4 -Dpackaging=jar</code><br><code>mvn install:install-file -Dfile=java-container-security-0.26.4.jar -DgroupId=com.sap.xs2.security -DartifactId=java-container-security -Dversion=0.26.4 -Dpackaging=jar</code></li>
+<li>Change the pom.xml with the below:<pre><code>&lt;dependency&gt;
+      &lt;groupId&gt;com.sap.xs2.security&lt;/groupId&gt;
+      &lt;artifactId&gt;java-container-security-api&lt;/artifactId&gt;
+      &lt;version&gt;0.26.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sap.xs2.security&lt;/groupId&gt;
+    &lt;artifactId&gt;java-container-security&lt;/artifactId&gt;
+     &lt;version&gt;0.26.4&lt;/version&gt; 
+&lt;/dependency&gt;
+</code></pre></li>
+<li>Run <code>Maven update</code> for the project</li>
+<li>Check the build path for the Java file to see if multiple libraries are used</li>
+</ol>
+<hr>
+<h3 id="Error-6"><a href="#Error-6" class="headerlink" title="Error"></a>Error</h3><p>The import javax.servlet can’t be resolved [duplicate]</p>
+<h3 id="Resolution-6"><a href="#Resolution-6" class="headerlink" title="Resolution"></a>Resolution</h3><p>You need to add the Servlet API to your classpath. In Tomcat 6.0, this is in a JAR called servlet-api.jar in Tomcat’s lib folder. You can either add a reference to that JAR to the project’s classpath, or put a copy of the JAR in your Eclipse project and add it to the classpath from there.</p>
+<h3 id="Reference-7"><a href="#Reference-7" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/4119448/the-import-javax-servlet-cant-be-resolved" target="_blank" rel="noopener">https://stackoverflow.com/questions/4119448/the-import-javax-servlet-cant-be-resolved</a></p>
+<hr>
+<h3 id="Error-7"><a href="#Error-7" class="headerlink" title="Error:"></a>Error:</h3><p>Unable to extract request URI: URI must contain a host<br>http://&lt;virtual_host&gt;:80/sap/opu/odata/sap/&lt;odata_service&gt;//$metadata</p>
+<h3 id="Resolution-7"><a href="#Resolution-7" class="headerlink" title="Resolution:"></a>Resolution:</h3><p>Update the SCC (SAP Cloud Connector) and SCP destination to make sure underscore is not used in the hostname</p>
+<hr>
+<h3 id="How-to-change-the-font-size-in-Eclipse-editor"><a href="#How-to-change-the-font-size-in-Eclipse-editor" class="headerlink" title="How to change the font size in Eclipse editor"></a>How to change the font size in Eclipse editor</h3><p>Windows -&gt; Preferences -&gt; General -&gt; Appearance -&gt; Color and Fonts -&gt; Basic -&gt; Text Font -&gt; Edit -&gt; Apply</p>
+<hr>
+<h3 id="How-to-search-for-a-string-in-a-project-in-Eclipse"><a href="#How-to-search-for-a-string-in-a-project-in-Eclipse" class="headerlink" title="How to search for a string in a project in Eclipse"></a>How to search for a string in a project in Eclipse</h3><p>Ctrl + H</p>
+<hr>
+<h3 id="How-to-upload-a-project-over-20M-to-SCP-CF-environment"><a href="#How-to-upload-a-project-over-20M-to-SCP-CF-environment" class="headerlink" title="How to upload a project over 20M to SCP CF environment"></a>How to upload a project over 20M to SCP CF environment</h3><p>Use Eclipse Cloud Foundry plugin</p>
 
       
     </div>
@@ -456,7 +521,9 @@
           
             <a href="/tags/SAP/" rel="tag"># SAP</a>
           
-            <a href="/tags/ABAP/" rel="tag"># ABAP</a>
+            <a href="/tags/SCP/" rel="tag"># SCP</a>
+          
+            <a href="/tags/Cloud/" rel="tag"># Cloud</a>
           
         </div>
       
@@ -469,8 +536,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/javascript-await-async/" rel="next" title="Async and Await Keywords in JavaScript">
-                <i class="fa fa-chevron-left"></i> Async and Await Keywords in JavaScript
+              <a href="/2018/04/encoding-issue/" rel="next" title="Encoding in SAP">
+                <i class="fa fa-chevron-left"></i> Encoding in SAP
               </a>
             
           </div>
@@ -478,10 +545,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/encoding-issue/" rel="prev" title="Encoding in SAP">
-                Encoding in SAP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Modules"><span class="nav-number">1.</span> <span class="nav-text">Function Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-number">2.</span> <span class="nav-text">Tables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T-codes"><span class="nav-number">3.</span> <span class="nav-text">T-codes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">4.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-installation"><span class="nav-number">1.</span> <span class="nav-text">Maven installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-eclipse-plugin-installation"><span class="nav-number">3.</span> <span class="nav-text">Maven eclipse plugin installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-1"><span class="nav-number">4.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-number">5.</span> <span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution"><span class="nav-number">6.</span> <span class="nav-text">Resolution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-2"><span class="nav-number">7.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1"><span class="nav-number">8.</span> <span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-1"><span class="nav-number">9.</span> <span class="nav-text">Resolution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-3"><span class="nav-number">10.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2"><span class="nav-number">11.</span> <span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-2"><span class="nav-number">12.</span> <span class="nav-text">Resolution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-4"><span class="nav-number">13.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-3"><span class="nav-number">14.</span> <span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-3"><span class="nav-number">15.</span> <span class="nav-text">Resolution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-5"><span class="nav-number">16.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-4"><span class="nav-number">17.</span> <span class="nav-text">Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-4"><span class="nav-number">18.</span> <span class="nav-text">Resolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-6"><span class="nav-number">19.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-5"><span class="nav-number">20.</span> <span class="nav-text">Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-5"><span class="nav-number">21.</span> <span class="nav-text">Resolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-6"><span class="nav-number">22.</span> <span class="nav-text">Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-6"><span class="nav-number">23.</span> <span class="nav-text">Resolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference-7"><span class="nav-number">24.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-7"><span class="nav-number">25.</span> <span class="nav-text">Error:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution-7"><span class="nav-number">26.</span> <span class="nav-text">Resolution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-change-the-font-size-in-Eclipse-editor"><span class="nav-number">27.</span> <span class="nav-text">How to change the font size in Eclipse editor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-search-for-a-string-in-a-project-in-Eclipse"><span class="nav-number">28.</span> <span class="nav-text">How to search for a string in a project in Eclipse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-upload-a-project-over-20M-to-SCP-CF-environment"><span class="nav-number">29.</span> <span class="nav-text">How to upload a project over 20M to SCP CF environment</span></a></li></ol></div>
             
 
           </div>

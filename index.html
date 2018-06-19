@@ -316,6 +316,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/" itemprop="url">Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T14:17:18+08:00">2018-06-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>I am trying to follow the below links to build a SCP (SAP Cloud Platform) Cloud Foundry application which is using XSUAA (User account and authentication) service,  SCP Connectivity service and SCC (SAP Cloud Connector) to consume On-Premise OData service. The below lessons are learned during the prototype.</p>
+<p><a href="https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/09/how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment-part-1/</a><br><a href="https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/13/part-2-how-to-use-the-sap-cloud-platform-connectivity-and-the-cloud-connector-in-the-cloud-foundry-environment/</a></p>
+<h3 id="Maven-installation"><a href="#Maven-installation" class="headerlink" title="Maven installation"></a>Maven installation</h3><ol>
+<li>Install JDK and set environment variable <code>JAVA_HOME</code></li>
+<li>Download Apache Maven and unzip the file</li>
+<li>Add environment variable <code>M2_HOME</code> and <code>MAVEN_HOME</code></li>
+<li>Update environment variable <code>PATH</code> for Maven bin folder</li>
+<li>Run command <code>mvn -version</code> to verify the installation</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://www.mkyong.com/maven/how-to-install-maven-in-windows/" target="_blank" rel="noopener">https://www.mkyong.com/maven/how-to-install-maven-in-windows/</a><br><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+<hr>
+<h3 id="Maven-eclipse-plugin-installation"><a href="#Maven-eclipse-plugin-installation" class="headerlink" title="Maven eclipse plugin installation"></a>Maven eclipse plugin installation</h3><p>Please check the below reference links for details. Update site to install Maven plugin in Eclipse:<br><a href="http://download.eclipse.org/technology/m2e/releases/" target="_blank" rel="noopener">http://download.eclipse.org/technology/m2e/releases/</a></p>
+<h3 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation" target="_blank" rel="noopener">https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation</a><br><a href="http://toolsqa.com/java/maven/how-to-install-maven-eclipse-ide/" target="_blank" rel="noopener">http://toolsqa.com/java/maven/how-to-install-maven-eclipse-ide/</a></p>
+<hr>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error:"></a>Error:</h3><p>Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br>Could not transfer artifact org.springframework.boot:spring-boot-starter-parent:pom:1.5.7.RELEASE from/to Central (<a href="http://repo1.maven.org/maven2)" target="_blank" rel="noopener">http://repo1.maven.org/maven2)</a>: Connection refused: connect and ‘parent.relativePath’ points at wrong local POM</p>
+<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li>Run the below command in Linux:<br><code>find ~/.m2  -name &quot;*.lastUpdated&quot; -exec grep -q &quot;Could not transfer&quot; {} \; -print -exec rm {} \;</code><br>Run the below commands in Windows<br><code>cd %userprofile%\.m2\repository</code><br><code>for /r %i in (*.lastUpdated) do del %i</code><br>Then right click on your project in eclipse and choose <code>Maven-&gt;Update Project ...</code>, make sure “Update Dependencies” is checked in the resulting dialog and click OK.</li>
+<li>You can always try <code>mvn -U clean install</code><br>-U Forces a check for updated releases and snapshots on remote repositories</li>
+<li>There may be different versions of Maven running between command prompt and Eclipse. Check the Maven installations and Maven user settings in <code>Eclipse -&gt; Windows -&gt; Preferences</code></li>
+</ol>
+<h3 id="Reference-2"><a href="#Reference-2" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/5074063/maven-error-failure-to-transfer" target="_blank" rel="noopener">https://stackoverflow.com/questions/5074063/maven-error-failure-to-transfer</a></p>
+<hr>
+<h3 id="Error-1"><a href="#Error-1" class="headerlink" title="Error:"></a>Error:</h3><p>No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?</p>
+<h3 id="Resolution-1"><a href="#Resolution-1" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li>Install JDK instead of JRE</li>
+<li>Set environment variables <code>JAVA_HOME, classpath, PATH</code> to link them to JDK, instead of JRE</li>
+<li>Check the settings <code>Windows -&gt; Preferences -&gt; Java -&gt;Installed JREs</code> in Eclipse. Make sure there is at least one JDK there. Link the Run configuration of Maven build to the JDK</li>
+</ol>
+<h3 id="Reference-3"><a href="#Reference-3" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://stackoverflow.com/questions/19655184/no-compiler-is-provided-in-this-environment-perhaps-you-are-running-on-a-jre-ra" target="_blank" rel="noopener">https://stackoverflow.com/questions/19655184/no-compiler-is-provided-in-this-environment-perhaps-you-are-running-on-a-jre-ra</a></p>
+<hr>
+<h3 id="Error-2"><a href="#Error-2" class="headerlink" title="Error:"></a>Error:</h3><p>The following artifacts could not be resolved: com.sap.xs2.security:java-container-security-api:jar:0.26.4, com.sap.xs2.security:java-container-security:jar:0.26.4: Failure to find com.sap.xs2.security:java-container-security-api:jar:0.26.4 in <a href="https://repo.maven.apache.org/maven2" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2</a> was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced</p>
+<h3 id="Resolution-2"><a href="#Resolution-2" class="headerlink" title="Resolution:"></a>Resolution:</h3><p>Install XS Security libs to your local Maven repository:</p>
+<ol>
+<li>The first step is to get some additional Java libs from Service Marketplace.<br>Download additional XS security libs from service marketplace:<a href="https://launchpad.support.sap.com/#/softwarecenter/search/XS_JAVA" target="_blank" rel="noopener">https://launchpad.support.sap.com/#/softwarecenter/search/XS_JAVA</a> </li>
+<li>Unzip the file</li>
+<li>Install XS Security Libs to your local maven repo using:<br><code>cd &lt;destLocation&gt;</code><br><code>mvn clean install</code></li>
+</ol>
+<h3 id="Reference-4"><a href="#Reference-4" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/" target="_blank" rel="noopener">https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/</a></p>
+<hr>
+<h3 id="Error-3"><a href="#Error-3" class="headerlink" title="Error:"></a>Error:</h3><p>The import org.json cannot be resolved<br>The import org.apache.commons.io cannot be resolved</p>
+<h3 id="Resolution-3"><a href="#Resolution-3" class="headerlink" title="Resolution:"></a>Resolution:</h3><ol>
+<li><p>Download the ZIP file from the below URL and extract it to get the Jar. </p>
+</li>
+<li><p>Add the Jar to your build path. To Add this Jar to your build path <code>Right click the Project &gt; Build Path &gt; Configure build path &gt; Select Libraries tab &gt; Click Add External Libraries &gt; Select the Jar file downloaded</code></p>
+</li>
+</ol>
+<p><a href="http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip" target="_blank" rel="noopener">http://www.java2s.com/Code/JarDownload/java/java-json.jar.zip</a><br><a href="http://commons.apache.org/proper/commons-io/download_io.cgi" target="_blank" rel="noopener">http://commons.apache.org/proper/commons-io/download_io.cgi</a></p>
+<h3 id="Reference-5"><a href="#Reference-5" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/8997598/importing-json-into-an-eclipse-project" target="_blank" rel="noopener">https://stackoverflow.com/questions/8997598/importing-json-into-an-eclipse-project</a></p>
+<hr>
+<h3 id="Error-4"><a href="#Error-4" class="headerlink" title="Error"></a>Error</h3><p>package json.java does not exist<br>package org.apache.commons.io does not exist</p>
+<h3 id="Resolution-4"><a href="#Resolution-4" class="headerlink" title="Resolution"></a>Resolution</h3><ol>
+<li>Run the below Maven command to install the Maven repository<br><code>mvn install:install-file -Dfile=java-json.jar -DgroupId=json.java -DartifactId=java-json -Dversion=1.0 -Dpackaging=jar</code><br><code>mvn install:install-file -Dfile=commons-io-2.6.jar -DgroupId=commons-io -DartifactId=commons-io -Dversion=2.6 -Dpackaging=jar</code></li>
+<li>Add the below dependencies to the pom.xml file<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>json.java<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Reference-6"><a href="#Reference-6" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/41779195/maven-compilation-error-even-if-dependency-path-is-correct" target="_blank" rel="noopener">https://stackoverflow.com/questions/41779195/maven-compilation-error-even-if-dependency-path-is-correct</a></p>
+<hr>
+<h3 id="Error-5"><a href="#Error-5" class="headerlink" title="Error"></a>Error</h3><p>Cannot instantiate the type XSTokenRequest</p>
+<h3 id="Resolution-5"><a href="#Resolution-5" class="headerlink" title="Resolution"></a>Resolution</h3><ol>
+<li>Run the below command to install the Jar file to local Maven repository<br><code>mvn install:install-file -Dfile=java-container-security-api-0.26.4.jar -DgroupId=com.sap.xs2.security -DartifactId=java-container-security-api -Dversion=0.26.4 -Dpackaging=jar</code><br><code>mvn install:install-file -Dfile=java-container-security-0.26.4.jar -DgroupId=com.sap.xs2.security -DartifactId=java-container-security -Dversion=0.26.4 -Dpackaging=jar</code></li>
+<li>Change the pom.xml with the below:<pre><code>&lt;dependency&gt;
+      &lt;groupId&gt;com.sap.xs2.security&lt;/groupId&gt;
+      &lt;artifactId&gt;java-container-security-api&lt;/artifactId&gt;
+      &lt;version&gt;0.26.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sap.xs2.security&lt;/groupId&gt;
+    &lt;artifactId&gt;java-container-security&lt;/artifactId&gt;
+     &lt;version&gt;0.26.4&lt;/version&gt; 
+&lt;/dependency&gt;
+</code></pre></li>
+<li>Run <code>Maven update</code> for the project</li>
+<li>Check the build path for the Java file to see if multiple libraries are used</li>
+</ol>
+<hr>
+<h3 id="Error-6"><a href="#Error-6" class="headerlink" title="Error"></a>Error</h3><p>The import javax.servlet can’t be resolved [duplicate]</p>
+<h3 id="Resolution-6"><a href="#Resolution-6" class="headerlink" title="Resolution"></a>Resolution</h3><p>You need to add the Servlet API to your classpath. In Tomcat 6.0, this is in a JAR called servlet-api.jar in Tomcat’s lib folder. You can either add a reference to that JAR to the project’s classpath, or put a copy of the JAR in your Eclipse project and add it to the classpath from there.</p>
+<h3 id="Reference-7"><a href="#Reference-7" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://stackoverflow.com/questions/4119448/the-import-javax-servlet-cant-be-resolved" target="_blank" rel="noopener">https://stackoverflow.com/questions/4119448/the-import-javax-servlet-cant-be-resolved</a></p>
+<hr>
+<h3 id="Error-7"><a href="#Error-7" class="headerlink" title="Error:"></a>Error:</h3><p>Unable to extract request URI: URI must contain a host<br>http://&lt;virtual_host&gt;:80/sap/opu/odata/sap/&lt;odata_service&gt;//$metadata</p>
+<h3 id="Resolution-7"><a href="#Resolution-7" class="headerlink" title="Resolution:"></a>Resolution:</h3><p>Update the SCC (SAP Cloud Connector) and SCP destination to make sure underscore is not used in the hostname</p>
+<hr>
+<h3 id="How-to-change-the-font-size-in-Eclipse-editor"><a href="#How-to-change-the-font-size-in-Eclipse-editor" class="headerlink" title="How to change the font size in Eclipse editor"></a>How to change the font size in Eclipse editor</h3><p>Windows -&gt; Preferences -&gt; General -&gt; Appearance -&gt; Color and Fonts -&gt; Basic -&gt; Text Font -&gt; Edit -&gt; Apply</p>
+<hr>
+<h3 id="How-to-search-for-a-string-in-a-project-in-Eclipse"><a href="#How-to-search-for-a-string-in-a-project-in-Eclipse" class="headerlink" title="How to search for a string in a project in Eclipse"></a>How to search for a string in a project in Eclipse</h3><p>Ctrl + H</p>
+<hr>
+<h3 id="How-to-upload-a-project-over-20M-to-SCP-CF-environment"><a href="#How-to-upload-a-project-over-20M-to-SCP-CF-environment" class="headerlink" title="How to upload a project over 20M to SCP CF environment"></a>How to upload a project over 20M to SCP CF environment</h3><p>Use Eclipse Cloud Foundry plugin</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/04/encoding-issue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -955,240 +1183,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/client-auth-and-server-auth/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/client-auth-and-server-auth/" itemprop="url">SSL Client Authentication and SSL Server Authentication</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T22:12:01+08:00">2018-03-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Messages-Exchanged-During-SSL-Handshake"><a href="#Messages-Exchanged-During-SSL-Handshake" class="headerlink" title="Messages Exchanged During SSL Handshake"></a>Messages Exchanged During SSL Handshake</h3><p>The following steps describes the sequence of messages exchanged during an SSL handshake. These step describe the programmatic details of the messages exchanged during the SSL handshake.</p>
-<ol>
-<li><p>The client sends the server the client’s SSL version number, cipher settings, randomly generated data, and other information the server needs to communicate with the client using SSL. <code>Client hello</code></p>
-</li>
-<li><p>The server sends the client the server’s SSL version number, cipher settings, randomly generated data, and other information the client needs to communicate with the server over SSL. The server also sends its own certificate and, if the client is requesting a server resource that requires client authentication, requests the client’s certificate. <code>Server hello</code> <code>Certificate</code> <code>Certificate request</code></p>
-</li>
-<li><p>The client can use some of the information sent by the server to authenticate the server. For details, see <code>Server Authentication During SSL Handshake</code>. If the server cannot be authenticated, the user is warned of the problem and informed that an encrypted and authenticated connection cannot be established. If the server can be successfully authenticated, the client goes on to Step 4.</p>
-</li>
-<li><p>Using all data generated in the handshake so far, the client, with the cooperation of the server, depending on the cipher being used, creates the pre-master secret for the session, encrypts it with the server’s public key, obtained from the server’s certificate, sent in Step 2, and sends the encrypted pre-master secret to the server. <code>Client key exchange</code></p>
-</li>
-<li><p>If the server has requested client authentication (an optional step in the handshake), the client also signs another piece of data that is unique to this handshake and known by both the client and server. In this case the client sends both the signed data and the client’s own certificate to the server along with the encrypted pre-master secret. <code>Certificate</code> <code>Client key exchange</code></p>
-</li>
-<li><p>If the server has requested client authentication, the server attempts to authenticate the client. For details, see <code>Client Authentication During SSL Handshake</code>. If the client cannot be authenticated, the session is terminated. If the client can be successfully authenticated, the server uses its private key to decrypt the pre-master secret, then performs a series of steps (which the client also performs, starting from the same pre-master secret) to generate the master secret.</p>
-</li>
-<li><p>Both the client and the server use the master secret to generate the session keys, which are symmetric keys used to encrypt and decrypt information exchanged during the SSL session and to verify its integrity—that is, to detect changes in the data between the time it was sent and the time it is received over the SSL connection.</p>
-</li>
-<li><p>The client sends a message to the server informing it that future messages from the client are encrypted with the session key. It then sends a separate (encrypted) message indicating that the client portion of the handshake is finished. <code>Change cipher spec</code> <code>Client finished</code></p>
-</li>
-<li><p>The server sends a message to the client informing it that future messages from the server are encrypted with the session key. It then sends a separate (encrypted) message indicating that the server portion of the handshake is finished. <code>Change cipher spec</code> <code>Server finished</code></p>
-</li>
-<li><p>The SSL handshake is now complete, and the SSL session has begun. The client and the server use the session keys to encrypt and decrypt the data they send to each other and to validate its integrity.</p>
-</li>
-</ol>
-<p>Before continuing with a session, directory servers can be configured to check that the client’s certificate is present in the user’s entry in an LDAP directory. This configuration option provides one way of ensuring that the client’s certificate has not been revoked.</p>
-<p>Both client and server authentication involve encrypting some piece of data with one key of a public-private key pair and decrypting it with the other key:</p>
-<ul>
-<li><p>In the case of server authentication, the client encrypts the pre-master secret with the server’s public key. Only the corresponding private key can correctly decrypt the secret, so the client has some assurance that the identity associated with the public key is in fact the server with which the client is connected. Otherwise, the server cannot decrypt the pre-master secret and cannot generate the symmetric keys required for the session, and the session is terminated.</p>
-</li>
-<li><p>In the case of client authentication, the client encrypts some random data with the client’s private key—that is, it creates a digital signature. The public key in the client’s certificate can correctly validate the digital signature only if the corresponding private key was used. Otherwise, the server cannot validate the digital signature and the session is terminated.</p>
-</li>
-</ul>
-<h3 id="Server-Authentication-During-SSL-Handshake"><a href="#Server-Authentication-During-SSL-Handshake" class="headerlink" title="Server Authentication During SSL Handshake"></a>Server Authentication During SSL Handshake</h3><p>SSL-enabled client software always requires server authentication, or cryptographic validation by a client of the server’s identity. The server sends the client a certificate to authenticate itself. The client uses the certificate to authenticate the identity the certificate claims to represent.</p>
-<p>To authenticate the binding between a public key and the server identified by the certificate that contains the public key, an SSL-enabled client must receive a yes answer to the four questions shown in the following figure.</p>
-<p><em>Figure 5–9 Authenticating a Server Certificate During SSL Handshake</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/svrauth.gif" alt="Server authentication"></p>
-<p>An SSL-enabled client goes through the following steps to authenticate a server’s identity:</p>
-<ol>
-<li><p>Is today’s date within the validity period?</p>
-<p>The client checks the server certificate’s validity period. If the current date and time are outside of that range, the authentication process won’t go any further. If the current date and time are within the certificate’s validity period, the client goes on to the next step.</p>
-</li>
-<li><p>Is the issuing CA a trusted CA?</p>
-<p>Each SSL-enabled client maintains a list of trusted CA certificates, represented by the shaded area on the right—hand side of Figure 5–9. This list determines which server certificates the client accepts. If the distinguished name (DN) of the issuing CA matches the DN of a CA on the client’s list of trusted CAs, the answer to this question is yes, and the client goes on to the next step. If the issuing CA is not on the list, the server is not authenticated unless the client can verify a certificate chain ending in a CA that is on the list.</p>
-</li>
-<li><p>Does the issuing CA’s public key validate the issuer’s digital signature?</p>
-<p>The client uses the public key from the CA’s certificate (which it found in its list of trusted CAs in step 2) to validate the CA’s digital signature on the server certificate being presented. If the information in the server certificate has changed since it was signed by the CA or if the CA certificate’s public key doesn’t correspond to the private key used by the CA to sign the server certificate, the client won’t authenticate the server’s identity. If the CA’s digital signature can be validated, the server treats the user’s certificate as a valid “letter of introduction” from that CA and proceeds. At this point, the client has determined that the server certificate is valid.</p>
-</li>
-<li><p>Does the domain name in the server’s certificate match the domain name of the server itself?</p>
-<p>This step confirms that the server is actually located at the same network address specified by the domain name in the server certificate. Although step 4 is not technically part of the SSL protocol, it provides the only protection against a form of security attack known as man-in-the-middle. Clients must perform this step and must refuse to authenticate the server or establish a connection if the domain names don’t match. If the server’s actual domain name matches the domain name in the server certificate, the client goes on to the next step.</p>
-</li>
-<li><p>The server is authenticated.</p>
-<p>The client proceeds with the SSL handshake. If the client doesn’t get to step 5 for any reason, the server identified by the certificate cannot be authenticated, and the user is warned of the problem and informed that an encrypted and authenticated connection cannot be established. If the server requires client authentication, the server performs the steps described in <code>Client Authentication During SSL Handshake</code>.</p>
-</li>
-</ol>
-<p>After the steps described here, the server must successfully use its private key to decrypt the pre-master secret sent by the client.</p>
-<h3 id="Client-Authentication-During-SSL-Handshake"><a href="#Client-Authentication-During-SSL-Handshake" class="headerlink" title="Client Authentication During SSL Handshake"></a>Client Authentication During SSL Handshake</h3><p>SSL-enabled servers can be configured to require client authentication, or cryptographic validation by the server of the client’s identity. When a server configured this way requests client authentication separate piece of digitally signed data to authenticate itself. The server uses the digitally signed data to validate the public key in the certificate and to authenticate the identity the certificate claims to represent.</p>
-<p>The SSL protocol requires the client to create a digital signature by creating a one-way hash from data generated randomly during the handshake and known only to the client and server. The hash of the data is then encrypted with the private key that corresponds to the public key in the certificate being presented to the server.</p>
-<p>To authenticate the binding between the public key and the person or other entity identified by the certificate that contains the public key, an SSL-enabled server must receive a yes answer to the first four questions shown in Figure 5–10. Although the fifth question is not part of the SSL protocol, directory servers can be configured to support this requirement to take advantage of the user entry in an LDAP directory as part of the authentication process.</p>
-<p><em>Figure 5–10 Authentication and Verification During SSL Handshake</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/cert.gif" alt="Client authentication"></p>
-<p>An SSL-enabled server goes through the following steps to authenticate a user’s identity:</p>
-<ol>
-<li><p>Does the user’s public key validate the user’s digital signature?</p>
-<p>The server checks that the user’s digital signature can be validated with the public key in the certificate. If so, the server has established that the public key asserted to belong to John Doe matches the private key used to create the signature and that the data has not been tampered with since it was signed.</p>
-<p>At this point, however, the binding between the public key and the DN specified in the certificate has not yet been established. The certificate might have been created by someone attempting to impersonate the user. To validate the binding between the public key and the DN, the server must also complete steps 3 and 4 in this list.</p>
-</li>
-<li><p>Is today’s date within the validity period?</p>
-<p>The server checks the certificate’s validity period. If the current date and time are outside of that range, the authentication process won’t go any further. If the current date and time are within the certificate’s validity period, the server goes onto the next step.</p>
-</li>
-<li><p>Is the issuing CA a trusted CA?</p>
-<p>Each SSL-enabled server maintains a list of trusted CA certificates, represented by the shaded area on the right—hand side of Figure 5–10. This list determines which certificates the server accepts. If the DN of the issuing CA matches the DN of a CA on the server’s list of trusted CAs, the answer to this question is yes, and the server goes on to the next step. If the issuing CA is not on the list, the client is not authenticated unless the server can verify a certificate chain ending in a CA that is trusted or not trusted within their organizations by controlling the lists of CA certificates maintained by clients and servers.</p>
-</li>
-<li><p>Does the issuing CA’s public key validate the issuer’s digital signature?</p>
-<p>The server uses the public key from the CA’s certificate (which it found in its list of trusted CAs in the previous step) to validate the CA’s digital signature on the certificate being presented. If the information in the certificate has changed since it was signed by the CA or if the public key in the CA certificate doesn’t correspond to the private key used by the CA to sign the certificate, the server won’t authenticate the user’s identity. If the CA’s digital signature can be validated, the server treats the user’s certificate as a valid “letter of introduction” from that CA and proceeds. At this point, the SSL protocol allows the server to consider the client authenticated and proceed with the connection as described in step 6. The directory servers may optionally be configured to perform step 5 before step 6.</p>
-</li>
-<li><p>Is the user’s certificate listed in the LDAP entry for the user?</p>
-<p>This optional step provides one way for a system administrator to revoke a user’s certificate even if it passes the tests in all the other steps. The Certificate Management System can automatically remove a revoked certificate from the user’s entry in the LDAP directory. All servers that are set up to perform this step then refuses to authenticate that certificate or establish a connection. If the user’s certificate in the directory is identical to the user’s certificate presented in the SSL handshake, the server goes on to the next step.</p>
-</li>
-<li><p>Is the authenticated client authorized to access the requested resources?</p>
-<p>The server checks what resources the client is permitted to access according to the server’s access control lists (ACLs) and establishes a connection with appropriate access. If the server doesn’t get to step 6 for any reason, the user identified by the certificate cannot be authenticated, and the user is not allowed to access any server resources that require authentication.</p>
-</li>
-</ol>
-<h3 id="Digital-Signatures"><a href="#Digital-Signatures" class="headerlink" title="Digital Signatures"></a>Digital Signatures</h3><p>Digital signatures can be used by Directory Server to maintain integrity of information. If encryption and message digests are applied to the information being sent, the recipient can determine that the information was not tampered with during transit.</p>
-<p>Tamper detection and related authentication techniques rely on a mathematical function called a one-way hash. This function is also called a message digest. A one-way hash is a number of fixed length with the following characteristics:</p>
-<ul>
-<li><p>The value of the hash is unique for the hashed data. Any change in the data, even deleting or altering a single character, results in a different value.</p>
-</li>
-<li><p>The content of the hashed data cannot, for all practical purposes, be deduced from the hash — which is why it is called <em>one-way</em>.</p>
-</li>
-</ul>
-<p>It is possible to use a private key for encryption and a public key for decryption. Although this is not desirable when you are encrypting sensitive information, it is a crucial part of digitally signing any data. Instead of encrypting the data itself, the signing software creates a one-way hash of the data, then uses your private key to encrypt the hash. The encrypted hash, along with other information, such as the hashing algorithm, is known as a digital signature. Figure 5–11 shows two items transferred to the recipient of some signed data.</p>
-<p><em>Figure 5–11 Digital Signatures</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/digsgn.gif" alt="Digital Signature"></p>
-<p>In Figure 5–11, the original data and the digital signature, which is basically a one-way hash (of the original data) that has been encrypted with the signer’s private key. To validate the integrity of the data, the receiving software first uses the signer’s public key to decrypt the hash. It then uses the same hashing algorithm that generated the original hash to generate a new one-way hash of the same data. (Information about the hashing algorithm used is sent with the digital signature, although this isn’t shown in the figure.) Finally, the receiving software compares the new hash against the original hash. If the two hashes match, the data has not changed since it was signed. If they don’t match, the data may have been tampered with since it was signed, or the signature may have been created with a private key that doesn’t correspond to the public key presented by the signer.</p>
-<p>If the two hashes match, the recipient can be certain that the public key used to decrypt the digital signature corresponds to the private key used to create the digital signature. Confirming the identity of the signer, however, also requires some way of confirming that the public key really belongs to a particular person or other entity.</p>
-<p>The significance of a digital signature is comparable to the significance of a handwritten signature. Once you have signed some data, it is difficult to deny doing so later — assuming that the private key has not been compromised or out of the owner’s control. This quality of digital signatures provides a high degree of non-repudiation — that is, digital signatures make it difficult for the signer to deny having signed the data. In some situations, a digital signature may be as legally binding as a handwritten signature.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://docs.oracle.com/cd/E19424-01/820-4811/gbfqu/index.html" target="_blank" rel="noopener">Messages Exchanged During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakhc/index.html" target="_blank" rel="noopener">Server Authentication During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakhe/index.html" target="_blank" rel="noopener">Client Authentication During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakfx/index.html" target="_blank" rel="noopener">Digital Signatures</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1236,7 +1230,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1314,7 +1308,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

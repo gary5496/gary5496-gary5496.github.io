@@ -316,6 +316,240 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/client-auth-and-server-auth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/client-auth-and-server-auth/" itemprop="url">SSL Client Authentication and SSL Server Authentication</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T22:12:01+08:00">2018-03-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Messages-Exchanged-During-SSL-Handshake"><a href="#Messages-Exchanged-During-SSL-Handshake" class="headerlink" title="Messages Exchanged During SSL Handshake"></a>Messages Exchanged During SSL Handshake</h3><p>The following steps describes the sequence of messages exchanged during an SSL handshake. These step describe the programmatic details of the messages exchanged during the SSL handshake.</p>
+<ol>
+<li><p>The client sends the server the client’s SSL version number, cipher settings, randomly generated data, and other information the server needs to communicate with the client using SSL. <code>Client hello</code></p>
+</li>
+<li><p>The server sends the client the server’s SSL version number, cipher settings, randomly generated data, and other information the client needs to communicate with the server over SSL. The server also sends its own certificate and, if the client is requesting a server resource that requires client authentication, requests the client’s certificate. <code>Server hello</code> <code>Certificate</code> <code>Certificate request</code></p>
+</li>
+<li><p>The client can use some of the information sent by the server to authenticate the server. For details, see <code>Server Authentication During SSL Handshake</code>. If the server cannot be authenticated, the user is warned of the problem and informed that an encrypted and authenticated connection cannot be established. If the server can be successfully authenticated, the client goes on to Step 4.</p>
+</li>
+<li><p>Using all data generated in the handshake so far, the client, with the cooperation of the server, depending on the cipher being used, creates the pre-master secret for the session, encrypts it with the server’s public key, obtained from the server’s certificate, sent in Step 2, and sends the encrypted pre-master secret to the server. <code>Client key exchange</code></p>
+</li>
+<li><p>If the server has requested client authentication (an optional step in the handshake), the client also signs another piece of data that is unique to this handshake and known by both the client and server. In this case the client sends both the signed data and the client’s own certificate to the server along with the encrypted pre-master secret. <code>Certificate</code> <code>Client key exchange</code></p>
+</li>
+<li><p>If the server has requested client authentication, the server attempts to authenticate the client. For details, see <code>Client Authentication During SSL Handshake</code>. If the client cannot be authenticated, the session is terminated. If the client can be successfully authenticated, the server uses its private key to decrypt the pre-master secret, then performs a series of steps (which the client also performs, starting from the same pre-master secret) to generate the master secret.</p>
+</li>
+<li><p>Both the client and the server use the master secret to generate the session keys, which are symmetric keys used to encrypt and decrypt information exchanged during the SSL session and to verify its integrity—that is, to detect changes in the data between the time it was sent and the time it is received over the SSL connection.</p>
+</li>
+<li><p>The client sends a message to the server informing it that future messages from the client are encrypted with the session key. It then sends a separate (encrypted) message indicating that the client portion of the handshake is finished. <code>Change cipher spec</code> <code>Client finished</code></p>
+</li>
+<li><p>The server sends a message to the client informing it that future messages from the server are encrypted with the session key. It then sends a separate (encrypted) message indicating that the server portion of the handshake is finished. <code>Change cipher spec</code> <code>Server finished</code></p>
+</li>
+<li><p>The SSL handshake is now complete, and the SSL session has begun. The client and the server use the session keys to encrypt and decrypt the data they send to each other and to validate its integrity.</p>
+</li>
+</ol>
+<p>Before continuing with a session, directory servers can be configured to check that the client’s certificate is present in the user’s entry in an LDAP directory. This configuration option provides one way of ensuring that the client’s certificate has not been revoked.</p>
+<p>Both client and server authentication involve encrypting some piece of data with one key of a public-private key pair and decrypting it with the other key:</p>
+<ul>
+<li><p>In the case of server authentication, the client encrypts the pre-master secret with the server’s public key. Only the corresponding private key can correctly decrypt the secret, so the client has some assurance that the identity associated with the public key is in fact the server with which the client is connected. Otherwise, the server cannot decrypt the pre-master secret and cannot generate the symmetric keys required for the session, and the session is terminated.</p>
+</li>
+<li><p>In the case of client authentication, the client encrypts some random data with the client’s private key—that is, it creates a digital signature. The public key in the client’s certificate can correctly validate the digital signature only if the corresponding private key was used. Otherwise, the server cannot validate the digital signature and the session is terminated.</p>
+</li>
+</ul>
+<h3 id="Server-Authentication-During-SSL-Handshake"><a href="#Server-Authentication-During-SSL-Handshake" class="headerlink" title="Server Authentication During SSL Handshake"></a>Server Authentication During SSL Handshake</h3><p>SSL-enabled client software always requires server authentication, or cryptographic validation by a client of the server’s identity. The server sends the client a certificate to authenticate itself. The client uses the certificate to authenticate the identity the certificate claims to represent.</p>
+<p>To authenticate the binding between a public key and the server identified by the certificate that contains the public key, an SSL-enabled client must receive a yes answer to the four questions shown in the following figure.</p>
+<p><em>Figure 5–9 Authenticating a Server Certificate During SSL Handshake</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/svrauth.gif" alt="Server authentication"></p>
+<p>An SSL-enabled client goes through the following steps to authenticate a server’s identity:</p>
+<ol>
+<li><p>Is today’s date within the validity period?</p>
+<p>The client checks the server certificate’s validity period. If the current date and time are outside of that range, the authentication process won’t go any further. If the current date and time are within the certificate’s validity period, the client goes on to the next step.</p>
+</li>
+<li><p>Is the issuing CA a trusted CA?</p>
+<p>Each SSL-enabled client maintains a list of trusted CA certificates, represented by the shaded area on the right—hand side of Figure 5–9. This list determines which server certificates the client accepts. If the distinguished name (DN) of the issuing CA matches the DN of a CA on the client’s list of trusted CAs, the answer to this question is yes, and the client goes on to the next step. If the issuing CA is not on the list, the server is not authenticated unless the client can verify a certificate chain ending in a CA that is on the list.</p>
+</li>
+<li><p>Does the issuing CA’s public key validate the issuer’s digital signature?</p>
+<p>The client uses the public key from the CA’s certificate (which it found in its list of trusted CAs in step 2) to validate the CA’s digital signature on the server certificate being presented. If the information in the server certificate has changed since it was signed by the CA or if the CA certificate’s public key doesn’t correspond to the private key used by the CA to sign the server certificate, the client won’t authenticate the server’s identity. If the CA’s digital signature can be validated, the server treats the user’s certificate as a valid “letter of introduction” from that CA and proceeds. At this point, the client has determined that the server certificate is valid.</p>
+</li>
+<li><p>Does the domain name in the server’s certificate match the domain name of the server itself?</p>
+<p>This step confirms that the server is actually located at the same network address specified by the domain name in the server certificate. Although step 4 is not technically part of the SSL protocol, it provides the only protection against a form of security attack known as man-in-the-middle. Clients must perform this step and must refuse to authenticate the server or establish a connection if the domain names don’t match. If the server’s actual domain name matches the domain name in the server certificate, the client goes on to the next step.</p>
+</li>
+<li><p>The server is authenticated.</p>
+<p>The client proceeds with the SSL handshake. If the client doesn’t get to step 5 for any reason, the server identified by the certificate cannot be authenticated, and the user is warned of the problem and informed that an encrypted and authenticated connection cannot be established. If the server requires client authentication, the server performs the steps described in <code>Client Authentication During SSL Handshake</code>.</p>
+</li>
+</ol>
+<p>After the steps described here, the server must successfully use its private key to decrypt the pre-master secret sent by the client.</p>
+<h3 id="Client-Authentication-During-SSL-Handshake"><a href="#Client-Authentication-During-SSL-Handshake" class="headerlink" title="Client Authentication During SSL Handshake"></a>Client Authentication During SSL Handshake</h3><p>SSL-enabled servers can be configured to require client authentication, or cryptographic validation by the server of the client’s identity. When a server configured this way requests client authentication separate piece of digitally signed data to authenticate itself. The server uses the digitally signed data to validate the public key in the certificate and to authenticate the identity the certificate claims to represent.</p>
+<p>The SSL protocol requires the client to create a digital signature by creating a one-way hash from data generated randomly during the handshake and known only to the client and server. The hash of the data is then encrypted with the private key that corresponds to the public key in the certificate being presented to the server.</p>
+<p>To authenticate the binding between the public key and the person or other entity identified by the certificate that contains the public key, an SSL-enabled server must receive a yes answer to the first four questions shown in Figure 5–10. Although the fifth question is not part of the SSL protocol, directory servers can be configured to support this requirement to take advantage of the user entry in an LDAP directory as part of the authentication process.</p>
+<p><em>Figure 5–10 Authentication and Verification During SSL Handshake</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/cert.gif" alt="Client authentication"></p>
+<p>An SSL-enabled server goes through the following steps to authenticate a user’s identity:</p>
+<ol>
+<li><p>Does the user’s public key validate the user’s digital signature?</p>
+<p>The server checks that the user’s digital signature can be validated with the public key in the certificate. If so, the server has established that the public key asserted to belong to John Doe matches the private key used to create the signature and that the data has not been tampered with since it was signed.</p>
+<p>At this point, however, the binding between the public key and the DN specified in the certificate has not yet been established. The certificate might have been created by someone attempting to impersonate the user. To validate the binding between the public key and the DN, the server must also complete steps 3 and 4 in this list.</p>
+</li>
+<li><p>Is today’s date within the validity period?</p>
+<p>The server checks the certificate’s validity period. If the current date and time are outside of that range, the authentication process won’t go any further. If the current date and time are within the certificate’s validity period, the server goes onto the next step.</p>
+</li>
+<li><p>Is the issuing CA a trusted CA?</p>
+<p>Each SSL-enabled server maintains a list of trusted CA certificates, represented by the shaded area on the right—hand side of Figure 5–10. This list determines which certificates the server accepts. If the DN of the issuing CA matches the DN of a CA on the server’s list of trusted CAs, the answer to this question is yes, and the server goes on to the next step. If the issuing CA is not on the list, the client is not authenticated unless the server can verify a certificate chain ending in a CA that is trusted or not trusted within their organizations by controlling the lists of CA certificates maintained by clients and servers.</p>
+</li>
+<li><p>Does the issuing CA’s public key validate the issuer’s digital signature?</p>
+<p>The server uses the public key from the CA’s certificate (which it found in its list of trusted CAs in the previous step) to validate the CA’s digital signature on the certificate being presented. If the information in the certificate has changed since it was signed by the CA or if the public key in the CA certificate doesn’t correspond to the private key used by the CA to sign the certificate, the server won’t authenticate the user’s identity. If the CA’s digital signature can be validated, the server treats the user’s certificate as a valid “letter of introduction” from that CA and proceeds. At this point, the SSL protocol allows the server to consider the client authenticated and proceed with the connection as described in step 6. The directory servers may optionally be configured to perform step 5 before step 6.</p>
+</li>
+<li><p>Is the user’s certificate listed in the LDAP entry for the user?</p>
+<p>This optional step provides one way for a system administrator to revoke a user’s certificate even if it passes the tests in all the other steps. The Certificate Management System can automatically remove a revoked certificate from the user’s entry in the LDAP directory. All servers that are set up to perform this step then refuses to authenticate that certificate or establish a connection. If the user’s certificate in the directory is identical to the user’s certificate presented in the SSL handshake, the server goes on to the next step.</p>
+</li>
+<li><p>Is the authenticated client authorized to access the requested resources?</p>
+<p>The server checks what resources the client is permitted to access according to the server’s access control lists (ACLs) and establishes a connection with appropriate access. If the server doesn’t get to step 6 for any reason, the user identified by the certificate cannot be authenticated, and the user is not allowed to access any server resources that require authentication.</p>
+</li>
+</ol>
+<h3 id="Digital-Signatures"><a href="#Digital-Signatures" class="headerlink" title="Digital Signatures"></a>Digital Signatures</h3><p>Digital signatures can be used by Directory Server to maintain integrity of information. If encryption and message digests are applied to the information being sent, the recipient can determine that the information was not tampered with during transit.</p>
+<p>Tamper detection and related authentication techniques rely on a mathematical function called a one-way hash. This function is also called a message digest. A one-way hash is a number of fixed length with the following characteristics:</p>
+<ul>
+<li><p>The value of the hash is unique for the hashed data. Any change in the data, even deleting or altering a single character, results in a different value.</p>
+</li>
+<li><p>The content of the hashed data cannot, for all practical purposes, be deduced from the hash — which is why it is called <em>one-way</em>.</p>
+</li>
+</ul>
+<p>It is possible to use a private key for encryption and a public key for decryption. Although this is not desirable when you are encrypting sensitive information, it is a crucial part of digitally signing any data. Instead of encrypting the data itself, the signing software creates a one-way hash of the data, then uses your private key to encrypt the hash. The encrypted hash, along with other information, such as the hashing algorithm, is known as a digital signature. Figure 5–11 shows two items transferred to the recipient of some signed data.</p>
+<p><em>Figure 5–11 Digital Signatures</em><br><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/digsgn.gif" alt="Digital Signature"></p>
+<p>In Figure 5–11, the original data and the digital signature, which is basically a one-way hash (of the original data) that has been encrypted with the signer’s private key. To validate the integrity of the data, the receiving software first uses the signer’s public key to decrypt the hash. It then uses the same hashing algorithm that generated the original hash to generate a new one-way hash of the same data. (Information about the hashing algorithm used is sent with the digital signature, although this isn’t shown in the figure.) Finally, the receiving software compares the new hash against the original hash. If the two hashes match, the data has not changed since it was signed. If they don’t match, the data may have been tampered with since it was signed, or the signature may have been created with a private key that doesn’t correspond to the public key presented by the signer.</p>
+<p>If the two hashes match, the recipient can be certain that the public key used to decrypt the digital signature corresponds to the private key used to create the digital signature. Confirming the identity of the signer, however, also requires some way of confirming that the public key really belongs to a particular person or other entity.</p>
+<p>The significance of a digital signature is comparable to the significance of a handwritten signature. Once you have signed some data, it is difficult to deny doing so later — assuming that the private key has not been compromised or out of the owner’s control. This quality of digital signatures provides a high degree of non-repudiation — that is, digital signatures make it difficult for the signer to deny having signed the data. In some situations, a digital signature may be as legally binding as a handwritten signature.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://docs.oracle.com/cd/E19424-01/820-4811/gbfqu/index.html" target="_blank" rel="noopener">Messages Exchanged During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakhc/index.html" target="_blank" rel="noopener">Server Authentication During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakhe/index.html" target="_blank" rel="noopener">Client Authentication During SSL Handshake</a><br><a href="https://docs.oracle.com/cd/E19424-01/820-4811/aakfx/index.html" target="_blank" rel="noopener">Digital Signatures</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/sap-webservice-setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1007,165 +1241,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/hexo-abap-highlight/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/hexo-abap-highlight/" itemprop="url">Highlight ABAP Language in Hexo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T12:34:49+08:00">2018-03-21</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ABAP/" itemprop="url" rel="index"><span itemprop="name">ABAP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>The code highlighting functionality <code>highlight.js</code> is not enabled for ABAP language for Hexo by default. You can follow the below guide to enable it.</p>
-<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><h4 id="1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#1-Update-the-file-node-modules-highlight-js-lib-index-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="1. Update the file .\node_modules\highlight.js\lib\index.js under Hexo base folder, and add the below code"></a>1. Update the file <code>.\node_modules\highlight.js\lib\index.js</code> under Hexo base folder, and add the below code</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hljs.registerLanguage(<span class="string">'abap'</span>, <span class="built_in">require</span>(<span class="string">'./languages/abap'</span>));</span><br></pre></td></tr></table></figure>
-<h4 id="2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code"><a href="#2-Create-a-file-node-modules-highlight-js-lib-languages-abap-js-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="2. Create a file .\node_modules\highlight.js\lib\languages\abap.js under Hexo base folder, and add the below code"></a>2. Create a file <code>.\node_modules\highlight.js\lib\languages\abap.js</code> under Hexo base folder, and add the below code</h4><p>The ABAP language syntax file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/2db174f25da1153f0ca2da12e742526909ad6b3a/src/languages/abap.js" target="_blank" rel="noopener">GitHub</a>, adjusted as below.</p>
-<ul>
-<li>Add <code>module.exports =</code> at the beginning</li>
-<li>Adjust the comment end tag from <code>&#39;\n&#39;</code> to <code>&#39;$&#39;</code></li>
-<li>Correct some typos in the keywords</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">hljs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    case_insensitive: <span class="literal">true</span>,</span><br><span class="line">    keywords: &#123;</span><br><span class="line">    keyword: <span class="string">'ABBREVIATED ABS ABSTRACT FINAL ACCEPT ACCEPTING ACCORDING ACOS ACTUAL ADD ADD-CORRESPONDING ADDITIONS ADJACENT AFTER '</span>  </span><br><span class="line">        +<span class="string">'ALIASES ALL ALLOCATE ANALYZER AND APPEND APPENDING AS ASCENDING DESCENDING ASIN ASSIGN ASSIGNING ATAN ATTRIBUTE AUTHORITY-CHECK '</span></span><br><span class="line">        +<span class="string">'AVG BACK BACKGOUND BEFORE BETWEEN BIG LITTLE BINARY BIT BLANK BLOCK BREAK-POINT BUFFER BY BYPASSING BYTE BYTECHARACTER CALL CASE RESPECTING '</span></span><br><span class="line">        +<span class="string">'CASTING CEIL CENTERED CHANGE CHANGING CHARACTER CHECK CHECKBOX SYMBOL ICONLINE CLASS-DATA CLASS-EVENTS CLASS-METHODS CLEANUP CLEAR '</span></span><br><span class="line">        +<span class="string">'CLIENT CLOCK CLOSE CODE COL_BACKGROUND COL_HEADING COL_NORMAL COL_TOTAL COLLECT COLOR COLUMN COMMENT COMMIT COMMON COMMUNICATION COMPARING '</span></span><br><span class="line">        +<span class="string">'COMPONENT COMPONENTS COMPUTE CONCATENATE CONDENSE CONSTANTS CONTEXT CONTEXTS CONTINUE CONTROL CONTROLS CONVERSION CONVERT COS COSH COUNT COUNTRY '</span></span><br><span class="line">        +<span class="string">'COUNTY CREATE CURRENCY CURRENT CURSOR CUSTOMER-FUNCTION DATA DATABASE DATASET DATE DEALLOCATE DECIMALS DEFAULT UTF-8 NON-UNICODE DEFERRED '</span></span><br><span class="line">        +<span class="string">'DEFINE DEFINING DEFINITION DELETE DELETING DEMAND DESCENDING DESCRIBE DESTINATION DIALOG DIRECTORY DISTANCE DISTINCT DIVIDE DIVIDE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'DUPLICATE DUPLICATES DURING DYNAMIC EDIT EDITOR-CALL ELSE ELSEIF ENCODING ENDING ENDON ENTRIES ERRORS EVENT EVENTS EXCEPTION EXCEPTIONS EXCEPTION-TABLE '</span></span><br><span class="line">        +<span class="string">'EXCLUDE EXCLUDING EXIT EXIT-COMMAND EXP EXPORT EXPORTING EXTENDED EXTENSION EXTRACT FETCH FIELD FIELD-GROUPS FIELDS NO FIELD-SYMBOLS FILTER FINAL FIND '</span></span><br><span class="line">        +<span class="string">'FIRST FLOOR FOR FORMAT FORWARD BACKWARD FOUND FRAC FRAME FREE FRIENDS FROM FUNCTION-POOL GET GIVING GROUP HANDLER HASHED HAVING HEADER HEADING '</span></span><br><span class="line">        +<span class="string">'HELP-ID HIDE HIGH LOW HOLD HOTSPOT ICON ID IGNORING IMMEDIATELY IMPLEMENTATION IMPORT IMPORTING IN INCLUDE INCREMENT INDEX INDEX-LINE INHERITING '</span></span><br><span class="line">        +<span class="string">'INIT INITIAL INITIALIZATION INNER INSERT INSTANCES INTENSIFIED INTERFACES INTERVALS INTO APPENDING INVERTED-DATE IS ITAB JOIN KEEPING '</span></span><br><span class="line">        +<span class="string">'KEY KEYS KIND LANGUAGE LAST LEADING LEAVE LEFT LEFT-JUSTIFIED CIRCULAR LEGACY LENGTH LIKE LINE LINE-COUNT LINES LINE-SELECTION '</span></span><br><span class="line">        +<span class="string">'LINE-SIZE LIST LIST-PROCESSING LOAD LOAD-OF-PROGRAM LOCAL LOCALE LOG LOG10 LOWER '</span></span><br><span class="line">        +<span class="string">'MARGIN MARK MASK MATCH MAX MAXIMUM MEMORY MESSAGE MESSAGE-ID MESSAGES METHODS MIN MOD MODE IF MODIFIER MODIFY MOVE MOVE-CORRESPONDING '</span></span><br><span class="line">        +<span class="string">'MULTIPLY MULTIPLY-CORRESPONDING NEW NEW-LINE NEW-PAGE NEXT NO- NODES NODETABLE NO-DISPLAY NO-GAP NO-GAPS NO-HEADING WITH-HEADING NON NO-SCROLLING '</span></span><br><span class="line">        +<span class="string">'SCROLLING NOT NO-TITLE WITH-TITLE NO-ZERO NP NS NUMBER OBJECT OBLIGATORY OCCURENCE OCCURENCES OCCURS OF OFF OFFSET ON ONLY ONOFF OPEN '</span></span><br><span class="line">        +<span class="string">'OPTION OPTIONAL OR ORDER OTHERS OUTER OUTPUT-LENGTH OVERLAY PACK PACKAGE PAGE LAST PAGES PARAMETER PARAMETERS PARAMETER-TABLE '</span></span><br><span class="line">        +<span class="string">'PART PERFORM PERFORMING PFN PF-STATUS PLACES POS_HIGH POS_LOW POSITION POSITIONS PRIMARY PRINT PRINT-CONTROL PRIVATE PROCESS PROGRAM PROPERTY '</span></span><br><span class="line">        +<span class="string">'PUBLIC PROTECTED PRIVATE PUSHBUTTON PUT QUICKINFO RADIOBUTTON RAISE RAISING RANGE RANGES READ RECEIVE RECEIVING REDEFINITION '</span></span><br><span class="line">        +<span class="string">'REF REFERENCE REFRESH REJECT RENAMING REPLACE REPLACEMENT REPORT RESERVE RESET RESOLUTION RESULTS RETURN RETURNING RIGHT RIGHT-JUSTIFIED '</span></span><br><span class="line">        +<span class="string">'ROLLBACK ROWS RUN SCAN SCREEN SCREEN-GROUP1 SCREEN-GROUP2 SCREEN-GROUP3 SCREEN-GROUP4 SCREEN-GROUP5 SCREEN-INPUT SCREEN-INTENSIFIED SCROLL '</span></span><br><span class="line">        +<span class="string">'SCROLL-BOUNDARY SEARCH SECTION SELECT SELECTION SELECTIONS SELECTION-SCREEN SELECTION-SET SELECTION-TABLE SELECT-OPTIONS SEND SEPARATED SET '</span></span><br><span class="line">        +<span class="string">'SHARED SHIFT SIGN SIN SINGLE DISTINCT SINH SIZE SKIP SORT SORTABLE SPECIFIED SPLIT SQL SQRT STABLE STAMP STANDARD START STARTING '</span></span><br><span class="line">        +<span class="string">'STATICS STEP-LOOP STOP STRLEN STRUCTURE SUBMIT SUBTRACT SUBTRACT-CORRESPONDING SUFFIX SUM SUPPLY SUPPRESS SYMBOLS SYSTEM-EXCEPTIONS TABLE TABLENAME '</span></span><br><span class="line">        +<span class="string">'TABLES TABLEVIEW TAN TANH TASK TEXT THEN TIME TIMES TITLE TITLEBAR TO TOPIC TOP-OF-PAGE TRAILING TRANSACTION TRANSFER TRANSLATE TRUNC TYPE '</span></span><br><span class="line">        +<span class="string">'TYPELIKE TYPE-POOL TYPE-POOLS TYPES ULINE UNION UNIQUE UNIT UNTIL UP UPDATE UPPER USER-COMMAND USING VALUE VALUES VARY VARYING '</span></span><br><span class="line">        +<span class="string">'VERSION VIA WAIT WHEN WHERE WINDOW WITH WORK WRITE XSTRLEN ZONE TRANSPORTING '</span></span><br><span class="line">        +<span class="string">'CA CN CO CP CS EQ GE GT LE LT NA NE'</span></span><br><span class="line">        +<span class="string">'START-OF-SELECTION START-OF-PAGE END-OF-PAGE END-OF-SELECTION AT ENDAT'</span>,</span><br><span class="line">      literal: <span class="string">'abap_true abap_false'</span>,</span><br><span class="line">      built_in: <span class="string">'DO FORM IF LOOP MODULE START-OF_FILE DEFINE WHILE BEGIN ENDDO ENDFORM ENDIF ENDLOOP ENDMODULE END-OF_FILE END-OF-DEFINITION ENDWHILE END'</span></span><br><span class="line">        +<span class="string">' METHOD ENDMETHOD CHAIN ENDCHAIN CASE ENDCASE FUNCTION ENDFUNCTION ELSEIF ELSE TRY ENDTRY CATCH '</span></span><br><span class="line">    &#125;,</span><br><span class="line">    contains: [ </span><br><span class="line">      hljs.APOS_STRING_MODE,</span><br><span class="line">      hljs.NUMBER_MODE,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'^[*]'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'comment'</span>,</span><br><span class="line">        begin: <span class="string">'\b*"'</span>,</span><br><span class="line">        end: <span class="string">'$'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        className: <span class="string">'built_in'</span>,</span><br><span class="line">        begin: <span class="string">'CALL +([A-Z])'</span>,</span><br><span class="line">        end:<span class="string">' +'</span>,</span><br><span class="line">        relevance: <span class="number">10</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code"><a href="#3-Create-a-file-node-modules-highlight-js-styles-abap-css-under-Hexo-base-folder-and-add-the-below-code" class="headerlink" title="3. Create a file .\node_modules\highlight.js\styles\abap.css under Hexo base folder, and add the below code"></a>3. Create a file <code>.\node_modules\highlight.js\styles\abap.css</code> under Hexo base folder, and add the below code</h4><p>The ABAP language css file is downloaded from <a href="https://raw.githubusercontent.com/cassioiks/highlight.js/f1b511817f2fda61304dead6725daac47704f29b/src/styles/abap.css" target="_blank" rel="noopener">GitHub</a>.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ABAP styles by Cassio Binkowski &lt;cassioiks@gmail.com&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.hljs</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">overflow-x</span>: auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-keyword</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#0005fb</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-string</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#4da31e</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-comment</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#7c7879</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="selector-class">.hljs-built_in</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-literal</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000007</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-subst</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hljs-number</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#5aceff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder"><a href="#4-Update-the-file-node-modules-hexo-util-highlight-alias-json-under-Hexo-base-folder" class="headerlink" title="4. Update the file \node_modules\hexo-util\highlight_alias.json under Hexo base folder"></a>4. Update the file <code>\node_modules\hexo-util\highlight_alias.json</code> under Hexo base folder</h4><p>Add the below field-value mappings to alias object</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>: <span class="string">"abap"</span>,</span><br><span class="line"><span class="string">"ABAP"</span>: <span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
-<p>Add the below value to languages array</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"abap"</span>,</span><br></pre></td></tr></table></figure>
-<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Run <code>hexo clean</code>, <code>hexo generate</code> to generate the files. Below is the result with ABAP code highlighting.</p>
-<figure class="highlight abap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> edisyn <span class="keyword">into</span> <span class="keyword">table</span> i_edisyn</span><br><span class="line">                         <span class="keyword">where</span> idoctyp <span class="keyword">eq</span> doctyp</span><br><span class="line">                         <span class="keyword">and</span>   cimtyp  <span class="keyword">eq</span> cimtyp.</span><br><span class="line">    <span class="built_in">if</span> sy-subrc ne <span class="number">0</span>. <span class="comment">"muß edisyn noch gemerged werden?</span></span><br><span class="line">      ....</span><br><span class="line">    <span class="built_in">endif</span>.<span class="comment">"EDISYN</span></span><br><span class="line"><span class="comment">* nun kann man aus der i_edisyn i_idocsyn füllen</span></span><br><span class="line">    <span class="built_in">loop</span> <span class="keyword">at</span> i_edisyn.</span><br><span class="line">      <span class="keyword">clear</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding i_edisyn <span class="keyword">to</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span> i_edisyn-posno <span class="keyword">to</span> i_idocsyn-nr.</span><br><span class="line">      <span class="keyword">append</span> i_idocsyn.</span><br><span class="line">    <span class="built_in">endloop</span>.</span><br><span class="line">  <span class="built_in">endif</span>.<span class="comment">"cimtyp</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">IF</span> CL_IDOC_PORT_DEF=&gt;SEND_ENHANCED_DOCU( ) = <span class="literal">abap_true</span>.</span><br><span class="line">    <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">WITH</span> <span class="keyword">KEY</span> SEGTYP = CL_IDOC_PORT_DEF=&gt;ENH_SEGMENT <span class="keyword">TRANSPORTING</span> <span class="keyword">NO</span> <span class="keyword">FIELDS</span>.</span><br><span class="line">    <span class="built_in">IF</span> sy-subrc &lt;&gt; <span class="number">0</span>.</span><br><span class="line">      <span class="keyword">DESCRIBE</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">LINES</span> <span class="keyword">COUNT</span>.</span><br><span class="line">      <span class="keyword">READ</span> <span class="keyword">TABLE</span> i_idocsyn <span class="keyword">INDEX</span> <span class="keyword">COUNT</span> <span class="keyword">INTO</span> l_LAST.</span><br><span class="line">      L_LAST-nr = L_LAST-nr + <span class="number">1</span>.</span><br><span class="line">      l_LAST-segtyp = CL_IDOC_PORT_DEF=&gt;enh_segment.</span><br><span class="line">      <span class="keyword">CLEAR</span>: L_LAST-parseg,  L_LAST-mustfl, l_last-parpno.</span><br><span class="line">      L_LAST-occmin = <span class="number">1</span>.</span><br><span class="line">      L_LAST-hlevel = <span class="number">01</span>.</span><br><span class="line">      L_LAST-occmax = <span class="number">999999</span>.</span><br><span class="line">      <span class="keyword">APPEND</span> L_LAST <span class="keyword">TO</span> i_idocsyn.</span><br><span class="line">      <span class="keyword">move</span>-corresponding L_LAST <span class="keyword">to</span> i_edisyn.</span><br><span class="line">      <span class="keyword">move</span> L_LAST <span class="keyword">to</span> i_edisyn-posno.</span><br><span class="line">      <span class="keyword">append</span> i_edisyn.</span><br><span class="line">    <span class="built_in">ENDIF</span>.</span><br><span class="line">  <span class="built_in">ENDIF</span>.</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/isagalaev/highlight.js/pull/1259" target="_blank" rel="noopener">Add ABAP Language to highlight.js - GitHub</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1213,7 +1288,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1291,7 +1366,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

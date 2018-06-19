@@ -100,28 +100,28 @@
 
 
   
-  <meta name="keywords" content="JavaScript,Testing," />
+  <meta name="keywords" content="SAP,SCP,Cloud," />
 
 
-<meta name="description" content="IntroductionThere are many ways to test and debug JavaScript code. Here I will note down some methods that I am using. Methods1. Create a HTML file with JavaScript codeCreate a HTML file such as test.">
-<meta name="keywords" content="JavaScript,Testing">
+<meta name="description" content="How to install SAP modulesRun the below command before running npm installnpm config set @sap:registry https://npm.sap.com  How to create a SCP CF node.js applicationCheck the below link for detail:ht">
+<meta name="keywords" content="SAP,SCP,Cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Testing in JavaScript">
-<meta property="og:url" content="https://gary5496.github.io/2018/03/javascript-testing/index.html">
+<meta property="og:title" content="Lessons Learnt during creating SCP CF Node.js application">
+<meta property="og:url" content="https://gary5496.github.io/2018/06/lessons-learned-scp-cf-nodejs-app/index.html">
 <meta property="og:site_name" content="Gary Guo">
-<meta property="og:description" content="IntroductionThere are many ways to test and debug JavaScript code. Here I will note down some methods that I am using. Methods1. Create a HTML file with JavaScript codeCreate a HTML file such as test.">
+<meta property="og:description" content="How to install SAP modulesRun the below command before running npm installnpm config set @sap:registry https://npm.sap.com  How to create a SCP CF node.js applicationCheck the below link for detail:ht">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-21T07:53:47.417Z">
+<meta property="og:updated_time" content="2018-06-19T08:01:00.602Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Testing in JavaScript">
-<meta name="twitter:description" content="IntroductionThere are many ways to test and debug JavaScript code. Here I will note down some methods that I am using. Methods1. Create a HTML file with JavaScript codeCreate a HTML file such as test.">
+<meta name="twitter:title" content="Lessons Learnt during creating SCP CF Node.js application">
+<meta name="twitter:description" content="How to install SAP modulesRun the below command before running npm installnpm config set @sap:registry https://npm.sap.com  How to create a SCP CF node.js applicationCheck the below link for detail:ht">
 
 
 
 
 
 
-  <link rel="canonical" href="https://gary5496.github.io/2018/03/javascript-testing/"/>
+  <link rel="canonical" href="https://gary5496.github.io/2018/06/lessons-learned-scp-cf-nodejs-app/"/>
 
 
 
@@ -130,7 +130,7 @@
     sidebar: "",
   };
 </script>
-  <title>Testing in JavaScript | Gary Guo</title>
+  <title>Lessons Learnt during creating SCP CF Node.js application | Gary Guo</title>
   
 
 
@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-testing/">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/06/lessons-learned-scp-cf-nodejs-app/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gary Guo">
@@ -337,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Testing in JavaScript</h1>
+          <h1 class="post-title" itemprop="name headline">Lessons Learnt during creating SCP CF Node.js application</h1>
         
 
         <div class="post-meta">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T15:21:52+08:00">2018-03-21</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T15:47:49+08:00">2018-06-19</time>
             
 
             
@@ -370,7 +370,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a></span>
 
                 
                 
@@ -412,49 +412,18 @@
       
 
       
-        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>There are many ways to test and debug JavaScript code. Here I will note down some methods that I am using.</p>
-<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-Create-a-HTML-file-with-JavaScript-code"><a href="#1-Create-a-HTML-file-with-JavaScript-code" class="headerlink" title="1. Create a HTML file with JavaScript code"></a>1. Create a HTML file with JavaScript code</h4><p>Create a HTML file such as <code>test.html</code> with JavaScript code in local directory. Open the file directly<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"ISO-8859-1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> test = <span class="string">'Test string'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(test);</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"Hello, World!"</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">This is a test page.</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="2-Test-with-jsfiddle"><a href="#2-Test-with-jsfiddle" class="headerlink" title="2. Test with jsfiddle"></a>2. Test with jsfiddle</h4><ul>
-<li><p>Open site <a href="https://jsfiddle.net" target="_blank" rel="noopener">jsfiddle</a></p>
-</li>
-<li><p>Add the below code to HTML section</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"console-log"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add the below code to CSS section</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.console-line</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">font-family</span>: monospace;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add the below code to JavaScript section and choose a <code>jQuery</code> library as the <code>FRAMEWORK &amp; EXTENSIONS</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> consoleLine = <span class="string">"&lt;p class=\"console-line\"&gt;&lt;/p&gt;"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span> = &#123;</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#console-log"</span>).append($(consoleLine).html(text));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Choose <code>Save</code> button to save new fiddle, and bookmark the new URL</p>
-</li>
-<li><p>Now, you can add your code for testing. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = <span class="string">"Test String"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br><span class="line">alert(<span class="string">"Hello, World!"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="3-Test-with-Visual-Studio-Code-and-local-web-server"><a href="#3-Test-with-Visual-Studio-Code-and-local-web-server" class="headerlink" title="3. Test with Visual Studio Code and local web server"></a>3. Test with Visual Studio Code and local web server</h4><ul>
-<li>Install Node.js</li>
-<li>Create a new folder for your project</li>
-<li><p>Add a package.json file to the project folder</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"Demo"</span>, </span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>, </span><br><span class="line">   <span class="attr">"description"</span>: <span class="string">"demo project."</span>, </span><br><span class="line">   <span class="attr">"scripts"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite"</span>: <span class="string">"lite-server --port 10001"</span>, </span><br><span class="line">     <span class="attr">"start"</span>: <span class="string">"npm run lite"</span> </span><br><span class="line">   &#125;, </span><br><span class="line">   <span class="attr">"author"</span>: <span class="string">""</span>, </span><br><span class="line">   <span class="attr">"license"</span>: <span class="string">"ISC"</span>, </span><br><span class="line">   <span class="attr">"devDependencies"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite-server"</span>: <span class="string">"^1.3.1"</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Install the web server</p>
-<p>In a terminal window (command prompt in Windows) opened on your project folder, run this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>This will install lite-server (defined in package.json), a static server that loads index.html in your default browser and auto refreshes it when application files change.</p>
-</li>
-<li><p>Start the local web server</p>
-<p>Assuming you have an index.html file in your project folder. In the same terminal window (command prompt in Windows) run this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
-<p>Wait a second and index.html is loaded and displayed in your default browser served by your local web server!<br>lite-server is watching your files and refreshes the page as soon as you make changes to any html, js or css files.<br>And if you have VS Code configured to auto save (menu File / Auto Save), you see changes in the browser as you type!</p>
-<p>Notes:</p>
-<blockquote>
-<p>Do not close the command line prompt until you’re done coding in your app for the day<br>It opens on <a href="http://localhost:10001" target="_blank" rel="noopener">http://localhost:10001</a> but you can change the port by editing the package.json file.</p>
-</blockquote>
-<p>That’s it. Now before any coding session just type npm start and you are good to go!</p>
-</li>
-</ul>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://blogs.msdn.microsoft.com/cdndevs/2016/01/24/visual-studio-code-and-local-web-server/" target="_blank" rel="noopener">Visual Studio Code and local web server</a></p>
+        <h3 id="How-to-install-SAP-modules"><a href="#How-to-install-SAP-modules" class="headerlink" title="How to install SAP modules"></a>How to install SAP modules</h3><p>Run the below command before running <code>npm install</code><br><code>npm config set @sap:registry https://npm.sap.com</code></p>
+<hr>
+<h3 id="How-to-create-a-SCP-CF-node-js-application"><a href="#How-to-create-a-SCP-CF-node-js-application" class="headerlink" title="How to create a SCP CF node.js application"></a>How to create a SCP CF node.js application</h3><p>Check the below link for detail:<br><a href="https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/772b45ce6c46492b908d4c985add932a.html" target="_blank" rel="noopener">https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/772b45ce6c46492b908d4c985add932a.html</a></p>
+<hr>
+<h3 id="How-to-install-Cloud-Foundry-client-tools"><a href="#How-to-install-Cloud-Foundry-client-tools" class="headerlink" title="How to install Cloud Foundry client tools"></a>How to install Cloud Foundry client tools</h3><p>Download the Cloud Foundry client tool from the below link and install it<br><a href="https://github.com/cloudfoundry/cli#downloads" target="_blank" rel="noopener">https://github.com/cloudfoundry/cli#downloads</a></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><p><a href="https://www.sap.com/developer/tutorials/hcp-cf-getting-started.html" target="_blank" rel="noopener">https://www.sap.com/developer/tutorials/hcp-cf-getting-started.html</a><br><a href="https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/75125ef1e60e490e91eb58fe48c0f9e7.html#loio4ef907afb1254e8286882a2bdef0edf4" target="_blank" rel="noopener">https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/75125ef1e60e490e91eb58fe48c0f9e7.html#loio4ef907afb1254e8286882a2bdef0edf4</a></p>
+<hr>
+<h3 id="How-to-connect-to-CF-region"><a href="#How-to-connect-to-CF-region" class="headerlink" title="How to connect to CF region"></a>How to connect to CF region</h3><p><code>cf api https://api.cf.us10.hana.ondemand.com</code><br><code>cf login</code><br><code>cf target -o ORG -s SPACE</code></p>
+<hr>
+<h3 id="How-to-deploy-an-application-to-SCP-CF-environment"><a href="#How-to-deploy-an-application-to-SCP-CF-environment" class="headerlink" title="How to deploy an application to SCP CF environment"></a>How to deploy an application to SCP CF environment</h3><p><code>cf push</code> is executed in the same directory to deploy an application where the manifest.yml is located.<br><code>cf app myapp</code> is used to check the status of application myapp.<br><code>cf apps</code> is used to check the status of all deployed applications.</p>
+<hr>
+<h3 id="How-to-access-a-deployed-application"><a href="#How-to-access-a-deployed-application" class="headerlink" title="How to access a deployed application"></a>How to access a deployed application</h3><p>Access the application via link <code>&lt;app_host&gt;.cfapps.us10.hana.ondemand.com</code></p>
 
       
     </div>
@@ -475,9 +444,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/SAP/" rel="tag"># SAP</a>
           
-            <a href="/tags/Testing/" rel="tag"># Testing</a>
+            <a href="/tags/SCP/" rel="tag"># SCP</a>
+          
+            <a href="/tags/Cloud/" rel="tag"># Cloud</a>
           
         </div>
       
@@ -490,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/hexo-abap-highlight/" rel="next" title="Highlight ABAP Language in Hexo">
-                <i class="fa fa-chevron-left"></i> Highlight ABAP Language in Hexo
+              <a href="/2018/06/lessons-learned-when-consuming-op-service-in-scp-cf-app/" rel="next" title="Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application">
+                <i class="fa fa-chevron-left"></i> Lessons Learned When Consuming On-Premise Service in SCP Cloud Foundry Application
               </a>
             
           </div>
@@ -499,10 +470,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/nodejs-debugging/" rel="prev" title="Debug Hexo with VS Code">
-                Debug Hexo with VS Code <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -729,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">2.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Create-a-HTML-file-with-JavaScript-code"><span class="nav-number">2.1.</span> <span class="nav-text">1. Create a HTML file with JavaScript code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Test-with-jsfiddle"><span class="nav-number">2.2.</span> <span class="nav-text">2. Test with jsfiddle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Test-with-Visual-Studio-Code-and-local-web-server"><span class="nav-number">2.3.</span> <span class="nav-text">3. Test with Visual Studio Code and local web server</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-install-SAP-modules"><span class="nav-number">1.</span> <span class="nav-text">How to install SAP modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-create-a-SCP-CF-node-js-application"><span class="nav-number">2.</span> <span class="nav-text">How to create a SCP CF node.js application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-install-Cloud-Foundry-client-tools"><span class="nav-number">3.</span> <span class="nav-text">How to install Cloud Foundry client tools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-connect-to-CF-region"><span class="nav-number">5.</span> <span class="nav-text">How to connect to CF region</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-deploy-an-application-to-SCP-CF-environment"><span class="nav-number">6.</span> <span class="nav-text">How to deploy an application to SCP CF environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-access-a-deployed-application"><span class="nav-number">7.</span> <span class="nav-text">How to access a deployed application</span></a></li></ol></div>
             
 
           </div>

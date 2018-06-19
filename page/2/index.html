@@ -316,6 +316,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/sap-enhance-vendor-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gary Guo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gary Guo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/sap-enhance-vendor-code/" itemprop="url">Enhance ABAP Code provided by Vendor in SAP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T11:49:43+08:00">2018-03-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ABAP/" itemprop="url" rel="index"><span itemprop="name">ABAP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>In SAP, sometimes we may need to add an enhancement implementation for an implicit enhancement spot of Vendor provided ABAP code. In that case, when you are trying to enhance the vendor code, you may receive an error message <code>Object &lt;object_type&gt; &lt;object_name&gt; cannot be enhanced; software component Unknown cannot be enhanced</code>.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>After the analysis, we find that in the function <code>TR_GET_DLVUNIT_CHANGEABILITY</code>, it will check table <code>CVERS</code> and <code>DLV_SYSTC</code> to see if the software component is changeable or not. If not, the error message will display. The software component is assigned to the package (development class) of the ABAP code.</p>
+<p>To fix the issue, we tried to find a t-code or program to update table entries in <code>CVERS</code> and <code>DLV_SYSTC</code> to set the changeable flag to <em>Yes</em> for the software component, but with no luck.</p>
+<p>Later, we tried to update the software component for the package, and below is the solution.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Run t-code <code>SE03</code>, and choose <code>Administration</code> -&gt; <code>Display/Change Namespaces</code>. Switch to change mode, double click on the namespace <code>/&lt;vendor_ns&gt;/</code> of the vendor package, change <code>Namespace role</code> to <code>C: Recipient</code> and save the entry.</p>
+<p>Run t-code <code>SE80</code>, choose <code>Package</code>, input the package name, double click on the package, switch to change mode, change <code>Software Component</code> to <code>HOME</code>, and save the package.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/client-auth-and-server-auth/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1057,190 +1204,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gary5496.github.io/2018/03/javascript-testing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gary Guo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gary Guo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/javascript-testing/" itemprop="url">Testing in JavaScript</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T15:21:52+08:00">2018-03-21</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>There are many ways to test and debug JavaScript code. Here I will note down some methods that I am using.</p>
-<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-Create-a-HTML-file-with-JavaScript-code"><a href="#1-Create-a-HTML-file-with-JavaScript-code" class="headerlink" title="1. Create a HTML file with JavaScript code"></a>1. Create a HTML file with JavaScript code</h4><p>Create a HTML file such as <code>test.html</code> with JavaScript code in local directory. Open the file directly<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"ISO-8859-1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> test = <span class="string">'Test string'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(test);</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"Hello, World!"</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">This is a test page.</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="2-Test-with-jsfiddle"><a href="#2-Test-with-jsfiddle" class="headerlink" title="2. Test with jsfiddle"></a>2. Test with jsfiddle</h4><ul>
-<li><p>Open site <a href="https://jsfiddle.net" target="_blank" rel="noopener">jsfiddle</a></p>
-</li>
-<li><p>Add the below code to HTML section</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"console-log"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add the below code to CSS section</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.console-line</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">font-family</span>: monospace;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Add the below code to JavaScript section and choose a <code>jQuery</code> library as the <code>FRAMEWORK &amp; EXTENSIONS</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> consoleLine = <span class="string">"&lt;p class=\"console-line\"&gt;&lt;/p&gt;"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span> = &#123;</span><br><span class="line">    log: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#console-log"</span>).append($(consoleLine).html(text));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Choose <code>Save</code> button to save new fiddle, and bookmark the new URL</p>
-</li>
-<li><p>Now, you can add your code for testing. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = <span class="string">"Test String"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br><span class="line">alert(<span class="string">"Hello, World!"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="3-Test-with-Visual-Studio-Code-and-local-web-server"><a href="#3-Test-with-Visual-Studio-Code-and-local-web-server" class="headerlink" title="3. Test with Visual Studio Code and local web server"></a>3. Test with Visual Studio Code and local web server</h4><ul>
-<li>Install Node.js</li>
-<li>Create a new folder for your project</li>
-<li><p>Add a package.json file to the project folder</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"Demo"</span>, </span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>, </span><br><span class="line">   <span class="attr">"description"</span>: <span class="string">"demo project."</span>, </span><br><span class="line">   <span class="attr">"scripts"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite"</span>: <span class="string">"lite-server --port 10001"</span>, </span><br><span class="line">     <span class="attr">"start"</span>: <span class="string">"npm run lite"</span> </span><br><span class="line">   &#125;, </span><br><span class="line">   <span class="attr">"author"</span>: <span class="string">""</span>, </span><br><span class="line">   <span class="attr">"license"</span>: <span class="string">"ISC"</span>, </span><br><span class="line">   <span class="attr">"devDependencies"</span>: &#123; </span><br><span class="line">     <span class="attr">"lite-server"</span>: <span class="string">"^1.3.1"</span> </span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Install the web server</p>
-<p>In a terminal window (command prompt in Windows) opened on your project folder, run this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>This will install lite-server (defined in package.json), a static server that loads index.html in your default browser and auto refreshes it when application files change.</p>
-</li>
-<li><p>Start the local web server</p>
-<p>Assuming you have an index.html file in your project folder. In the same terminal window (command prompt in Windows) run this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
-<p>Wait a second and index.html is loaded and displayed in your default browser served by your local web server!<br>lite-server is watching your files and refreshes the page as soon as you make changes to any html, js or css files.<br>And if you have VS Code configured to auto save (menu File / Auto Save), you see changes in the browser as you type!</p>
-<p>Notes:</p>
-<blockquote>
-<p>Do not close the command line prompt until you’re done coding in your app for the day<br>It opens on <a href="http://localhost:10001" target="_blank" rel="noopener">http://localhost:10001</a> but you can change the port by editing the package.json file.</p>
-</blockquote>
-<p>That’s it. Now before any coding session just type npm start and you are good to go!</p>
-</li>
-</ul>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://blogs.msdn.microsoft.com/cdndevs/2016/01/24/visual-studio-code-and-local-web-server/" target="_blank" rel="noopener">Visual Studio Code and local web server</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1288,7 +1251,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
